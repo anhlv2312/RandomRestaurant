@@ -1,16 +1,17 @@
 <?php
-   include('config.php');
-   session_start();
+    include("dbaccess.php");
+    session_start();
+
+    $db = new MySQLDatabase();
    
-   $user_check = $_SESSION['login_user'];
-   
-   $ses_sql = mysqli_query($db,"SELECT username FROM user WHERE username = '$user_check' ");
-   
-   $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
-   
-   $login_session = $row['username'];
-   
-   if(!isset($_SESSION['login_user'])){
-      header("location:login.php");
-   }
+    $user_check = $_SESSION['login_user'];
+
+    $db->connect();
+    $row = $db->getRows("SELECT username FROM user WHERE username = '$user_check'");
+
+    $login_session = $row['username'];
+
+    if(!isset($_SESSION['login_user'])){
+        header("location:login.php");
+    }
 ?>
