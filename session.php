@@ -8,6 +8,7 @@
 
     $db->connect();
     $row = $db->getRows("SELECT username FROM user WHERE username = '$user_check'");
+    $db->disconnect();
 
     $login_session = $row['username'];
 
