@@ -16,8 +16,8 @@
         $db->disconnect();
 
         if($count == 1) {
-            $_SESSION['login_user'] = $myusername;
-            header("location: welcome.php");
+            $_SESSION['username'] = $myusername;
+            header("location: index.php");
         }else {
             $error = "Your Login Name or Password is invalid";
         }
