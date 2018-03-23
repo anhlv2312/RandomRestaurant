@@ -1,13 +1,55 @@
-main {
-	background-color: lightblue;
+body {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
-#banner {
+aside, article, footer {
+	border: 1px solid red;
+}
+
+nav {
+	display: flex;
+}
+
+main {
+	display: flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+
+aside {
+	height: 50vh;
+	width: 30%;
+	order: 2;
+}
+
+article {
+	width: 70%;
+	order: 1;
+}
+
+footer {
+	background-color: #666666;
+	display: flex;
+	justify-content: space-around;
+	box-sizing: border-box;
+}
+
+
+footer ul li {
+	list-style: none;
+}
+
+.banner {
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	height: 150px;
 	width: 100%;
+	margin: 0;
+	padding: 0;
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.login-panel {
 
 }

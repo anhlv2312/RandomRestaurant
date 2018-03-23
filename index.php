@@ -4,64 +4,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf8">
+    <meta charset="utf-8">
+    <title>Random Restaurant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <title></title>
-</head>
-<body class="bg-light">
-    
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <h3><a class="navbar-branch" ref="index.html">
-            <span style="color: #ca661a">Random</span>
-            <span style="color: #ca3415"> Restaurant</span>
-        </a></h3>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="#">Active</a></li> 
-                <li class="nav-item"> <a class="nav-link" href="#">Link</a></li> 
-                <li class="nav-item"> <a class="nav-link" href="#">Link</a></li> 
-                <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> 
-                </li> 
-            </ul>
-        </div>
+    <script type="text/javascript">
+    // $(document).ready(function(){
+    //     $.getJSON("test.json", function(data){
+    //         console.log(data);
+    //         var content = data.a;
+    //         $("<a href='dfasf'>dfafdfsadfdf</a>").appendTo("#test");
+    //         console.log(content);
+    //         $("#test").append(content);
+    //     });
+    // });
+    </script>
 
+</head>
+<body>
+    <nav>
+        <h3>
+            <a>
+                <span style="color: #ca661a">Random</span>
+                <span style="color: #ca3415"> Restaurant</span>
+            </a>
+        </h3>
+        <ul>
+            <li><a href="#">Active</a></li> 
+            <li><a href="#">Link</a></li> 
+            <li><a href="#">Link</a></li> 
+            <li><a href="#">Disabled</a></li> 
+        </ul>
+
+        <div>
         <?php if (isset($username)): ?>
             Hello <?=$username?> 
             <a href="logout.php">Logout</a>
         <?php else: ?>
             <a href="login.php">Login</a>
         <?php endif ?>
+        </div>
 
     </nav>
 
     <header>
-        <div id="banner" src="images/pexels-photo-675951.jpeg"></div>
+        <h1 class="banner" src="images/pexels-photo-675951.jpeg"></h1>
     </header>
 
-    <aside class="">
-        
-    </aside>
+    <main>
 
-    <main class=container>
-        <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">OrderDetail</div>
-            <div class="col-md-8 order-md-1">Menu</div>
-        </div>
+        <aside>
+            <h3>OrderDetail</h3>
+        </aside>
+
+        <article>
+            <h3>Menu</h3>
+
+        </article>
     </main>
 
-    <footer class="my-5 ot-5 text-muted text-center text-small">
-        <ul class="list-inline">
-            <li class="list-inline-item">first</li>
-            <li class="list-inline-item">second</li>
-            <li class="list-inline-item">third</li>
+    <footer>
+        <ul>
+            <li>first</li>
+            <li>second</li>
+            <li>third</li>
+        </ul>
+        <ul>
+            <li>first</li>
+            <li>second</li>
+            <li>third</li>
+        </ul>
+        <ul>
+            <li>first</li>
+            <li>second</li>
+            <li>third</li>
         </ul>
     </footer>
 
