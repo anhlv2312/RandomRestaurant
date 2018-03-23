@@ -28,7 +28,7 @@
 <body>
     <nav>
         <h3>
-            <a>
+            <a class="logo" href="#">
                 <span style="color: #ca661a">Random</span>
                 <span style="color: #ca3415"> Restaurant</span>
             </a>
@@ -38,21 +38,16 @@
             <li><a href="#">Link</a></li> 
             <li><a href="#">Link</a></li> 
             <li><a href="#">Disabled</a></li> 
+            <?php if (isset($username)): ?>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
+                <li><a href="login.php">Login</a></li>
+            <?php endif ?>
         </ul>
-
-        <div>
-        <?php if (isset($username)): ?>
-            Hello <?=$username?> 
-            <a href="logout.php">Logout</a>
-        <?php else: ?>
-            <a href="login.php">Login</a>
-        <?php endif ?>
-        </div>
-
     </nav>
 
     <header>
-        <h1 class="banner" src="images/pexels-photo-675951.jpeg"></h1>
+        <h1 class="banner"></h1>
     </header>
 
     <main>
