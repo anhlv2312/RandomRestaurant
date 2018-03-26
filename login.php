@@ -1,71 +1,63 @@
 <?php
     include("dbaccess.php");
     session_start();
-
+    $error = false;
     $db = new MySQLDatabase();
 
     if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $db->connect();
 
-        $myusername = mysqli_real_escape_string($db->link,$_POST['username']);
-        $mypassword = md5(mysqli_real_escape_string($db->link,$_POST['password']));
+        $user_id = mysqli_real_escape_string($db->link,$_POST['user_id']);
+        $password = md5(mysqli_real_escape_string($db->link,$_POST['password']));
 
-        $count = $db->getNumRows("SELECT username FROM user WHERE username = '$myusername' and password = '$mypassword'");
+        $count = $db->getNumRows("SELECT user_id FROM user WHERE user_id = '$user_id' and password = '$password'");
 
         $db->disconnect();
 
         if($count == 1) {
-            $_SESSION['username'] = $myusername;
+            $_SESSION['user_id'] = $user_id;
             header("location: index.php");
-        }else {
-            $error = "Your Login Name or Password is invalid";
+        } else {
+            $error = true;
         }
     }
 ?>
+<!DOCTYPE html>
 <html>
-   
-   <head>
-      <title>Login Page</title>
-      
-      <style type = "text/css">
-         body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
-         }
-         label {
-            font-weight:bold;
-            width:100px;
-            font-size:14px;
-         }
-         .box {
-            border:#666666 solid 1px;
-         }
-      </style>
-      
-   </head>
-   
-   <body bgcolor = "#FFFFFF">
-	
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>UserName: </label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password: </label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
+<head>
+    <meta charset="utf-8">
+    <title>Random Restaurant - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head> 
+<body class="container-fluid">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form class="form-control" action="" method="post">
+                    <div class="form-group">
+                        <label for="user_id">Username</label>
+                        <input type="text" class="form-control" id="user_id" name="user_id">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary" action="">Login</button>
+                    </div>
+                    <?php if ($error): ?>
+                        <div class="alert alert-danger">Login Failed!</div>
+                    <?php endif ?>
+                </form>
             </div>
-				
-         </div>
-			
-      </div>
-
-   </body>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</body>
 </html>

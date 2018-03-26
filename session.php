@@ -4,11 +4,11 @@
 
     $db = new MySQLDatabase();
    
-    $username = $_SESSION['username'];
+    $username = $_SESSION['user_id'];
 
     $db->connect();
-    $row = $db->getRows("SELECT username FROM user WHERE username = '$username'");
+    $row = $db->getFirstRow("SELECT user_id FROM user WHERE user_id = '$username'");
     $db->disconnect();
 
-    $username = $row['username'];
+    $username = $row['user_id'];
 ?>

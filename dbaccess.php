@@ -35,9 +35,14 @@
             return mysqli_num_rows($result);
         }
 
-        function getRows($query){
+        function getFirstRow($query){
             $result = $this->execute($query);
             return mysqli_fetch_array($result, MYSQLI_ASSOC);
+        }
+
+        function getRows($query){
+            $result = $this->execute($query);
+            return mysqli_fetch_all($result, MYSQLI_ASSOC);
         }
 
     }
