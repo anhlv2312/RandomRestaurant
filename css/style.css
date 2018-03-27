@@ -4,8 +4,17 @@
 }
 
 body {
+	display: flex;
+	flex-wrap: wrap;
 	background-color: darkgray;
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+nav, header, footer {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 a {
@@ -19,8 +28,7 @@ a:hover {
 }
 
 nav {
-	padding: 10px;
-	display: flex;
+	padding: 1em;
 	justify-content: space-between;
 	align-items: center;
 	background-color: lightgray;
@@ -28,46 +36,52 @@ nav {
 } 
 
 header {
-	display: flex;
 	align-items: flex-end;
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	height: 150px;
-	width: 100%;
-	margin: 0;
-	padding: 0;
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
-main {
+footer {
 	display: flex;
-	background-color: lightgray;
-	overflow: auto;
+	flex-direction: column;
+	padding: 2em;
+	align-items: stretch;
+	border-top: 1px solid #ca3415;
 }
 
-section {
-	order: 1;
+
+main, aside{
+	display: flex;
+	flex-wrap: wrap;
+	background-color: lightgray;
+}
+
+main {
+	width: 70%
 }
 
 aside {
-	border: 1px solid red;
 	background-color: white;
 	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	padding: 0.5em;
-	min-width: 30%;
-	order: 2;
+	width: 30%;
 }
 
-footer {
-	display: flex;
-	justify-content: space-around;
+section, article {
+	width: 100%;
 }
 
-article.footer {
-	margin: 2em;
+article img {
+	float: left;
+	width: 160px;
+	height: 120px;
+	background-color: white;
+}
+
+article div {
+	clear: left;
 }
 
 h4 {
@@ -75,15 +89,13 @@ h4 {
 	margin-bottom: 0.5em;
 }
 
-h3.brand-name {
+h2.brand-name {
 	text-shadow: 1px 1px 3px gray;
 	font-size: 2em;
 }
 
 footer h3.brand-name {
-	float: right;
-	margin: 1em;
-	width: 15%;
+	max-width: 50%;
 }
 
 h1.page-title {
@@ -93,26 +105,29 @@ h1.page-title {
 	line-height: 0.8em;
 }
 
-ul.nav-bar {
+ul.nav-bar, ul.category-menu, ul.footer {
 	display: flex;
+	justify-content: space-around;
+}
+
+ul.nav-bar li, ul.category-menu li, ul.footer li{
+	list-style: none;
+}
+
+ul.footer li:last-child {
+	display: flex;
+	justify-content: space-around;
 }
 
 ul.nav-bar li {
-	padding-right: 4em;
-	list-style: none;
+	padding-right: 3em;
 }
 
 ul.category-menu {
 	flex-grow: 1;
 	height: 3em;
 	background-color: darkgray;
-	display: flex;
-	justify-content: space-around;
 	align-items: center;
-}
-
-ul.category-menu li {
-	list-style: none;
 }
 
 ul.category-menu li:hover {
