@@ -12,16 +12,10 @@ class Orders extends CI_Controller {
 		}
 	}
 
-	public function takeaway($page='home') {
-			
-		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php')) {
-			show_404();
-		}
-
+	public function takeaway() {
 		$this->data['title'] = "Takeaway";
 
 		$this->load->view('templates/header', $this->data);
-		$this->load->view('pages/'.$page, $this->data);
 		$this->load->view('templates/footer', $this->data);
 
 	}
