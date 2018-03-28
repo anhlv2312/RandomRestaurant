@@ -17,7 +17,7 @@
 			</li>
 			<li>
 				<h2 class="brand-name" >
-					<a href="#">
+					<a href="<?php echo base_url() ?>"
 						<span style="color: #ca661a">Random</span>
 						<span style="color: #ca3415"> Restaurant</span>
 					</a>
