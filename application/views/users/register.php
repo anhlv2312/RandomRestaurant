@@ -1,7 +1,8 @@
 
 	<section id="users">
 		<?php echo form_open('users/register'); ?>
-			<?php echo validation_errors() ?><?php echo $error_message ?>
+			<?php echo validation_errors() ?>
+			<p><?php echo $message ?></p>
 			<label for="user_id">Your Phone Number:</label>
 			<input tabindex="1" type="text" name="user_id" value="<?php echo set_value('user_id'); ?>">
 			<label for="email">Email Address (optional):</label>

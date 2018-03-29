@@ -12,14 +12,7 @@ class Users extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('security');
 		$this->load->model('users_model');
-		$this->data = [];
-
-		$error = $this->input->get('error');
-		if (isset($error)) {
-			$this->data['error_message'] = "<p>".ucwords(str_replace('_',' ',$error)).".</p>";
-		} else {
-			$this->data['error_message'] = $error;
-		}
+		$this->data['message'] = ucwords(str_replace('_', ' ', $this->input->get('message')));
 	}
 
 	public function login() {
@@ -38,7 +31,7 @@ class Users extends CI_Controller {
 				$_SESSION['user_id'] = $user_id;
 				header("Location: " . base_url() . "home");
 			} else {
-				header("Location: " . base_url() . "users/login?error=login_failed");
+				header("Location: " . base_url() . "users/login?message=login_failed");
 			}
 		}
 
@@ -57,10 +50,10 @@ class Users extends CI_Controller {
 			$this->load->view('templates/footer.php');
 		} else {
 			if (!$this->verify_captcha()){
-				header("Location: " . base_url() . "users/register?error=captcha_verification_failed");
+				header("Location: " . base_url() . "users/register?message=captcha_verification_failed");
 			} else {
 				$this->users_model->register($user_id, $this->generate_password(), $email);
-				//$this->send_otp();
+				header("Location: " . base_url() . "users/login");
 			}
 		}
 	}
