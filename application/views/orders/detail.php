@@ -1,3 +1,4 @@
-		<aside class="order-detail">
-			<h2 class="order-detail">OrderDetail</h2>
-		</aside>
+
+		<aside id="order-detail">
+			<h2>Order Detail</h2>
+		</aside>		

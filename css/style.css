@@ -4,15 +4,10 @@
 }
 
 body {
-	display: flex;
-	flex-wrap: wrap;
-	background-color: darkgray;
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-}
-
-nav, header, main, footer {
-	display: flex;
-	width: 100%;
+	font-size: 14px;
+	color: black;
+	background-color: white;
 }
 
 a {
@@ -25,85 +20,46 @@ a:hover {
 	color: white;
 }
 
-nav {
+header {
+	background-color: gray;
+}
+
+footer {
+	display: flex;
+	justify-content: space-around;
+	padding: 2em;
+	border-top: 1px solid #ca3415;
+	background-color: darkgray;
+}
+
+main {
+	display: flex;
+	background-color: white;
+}
+
+#nav-bar {
+	display: flex;
+	width: 100%;
 	padding: 1em;
 	justify-content: space-between;
 	align-items: center;
 	background-color: lightgray;
 } 
 
-header {
+#banner {
+	display: flex;
 	align-items: flex-end;
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	height: 150px;
 	background-size: 100%;
-	background-position: center;
+	background-position: center, center;
 	background-repeat: no-repeat;
 	border-top: 1px solid #ca3415;
 	border-bottom: 1px solid darkgray;
 }
 
-footer {
-	display: flex;
-	flex-direction: column;
-	padding: 2em;
-	align-items: stretch;
-	border-top: 1px solid #ca3415;
-}
 
-
-main {
-	flex-wrap: nowrap;
-	background-color: white;
-}
-
-section.orders {
-	background-color: lightgray;
-	width: 70%;
-}
-
-aside.order-detail {
-	width: 30%;
-}
-
-ul.main-menu article {
-	overflow: auto;
-	width: 100%;
-	border-bottom: 1px solid darkgray;
-}
-
-ul.main-menu article:last-child {
-	border-bottom: 0px;
-}
-
-ul.main-menu article img {
-	margin-right: 0.5em;
-	float:left;
-	width: 160px;
-	height: 120px;
-	background-color: white;
-}
-
-ul.main-menu article p:first-of-type {
-	margin-top: 0.5em;
-}
-
-h4 {
-	color: #ca3415;
-	margin-bottom: 0.5em;
-}
-
-h2.brand-name {
-	text-shadow: 1px 1px 3px gray;
-	font-size: 2em;
-	user-select: none;
-}
-
-footer h3.brand-name {
-	max-width: 50%;
-}
-
-h1.page-title {
+#banner h1 {
 	font-size: 5em;
 	color: rgba(0,0,0,0.5);
 	text-transform: uppercase;
@@ -111,69 +67,99 @@ h1.page-title {
 	user-select: none;
 }
 
-ul.nav-bar, ul.category-menu, ul.footer {
+h2.logo {
+	text-shadow: 1px 1px 3px gray;
+	font-size: 2em;
+	user-select: none;
+}
+
+footer article h4 {
+	color: #ca3415;
+	margin-bottom: 0.5em;
+}
+
+#orders {
+	background-color: lightgray;
+	width: 70%;
+}
+
+#orders article img {
+	margin-right: 0.5em;
+	float:left;
+	width: 160px;
+	height: 120px;
+	background-color: white;
+}
+
+#orders article ul li {
+	overflow: auto;
+	list-style: none;
+	border-bottom: 1px solid darkgray;
+}
+
+#orders article ul li:last-child {
+	border-bottom: 0;
+}
+
+#nav-menu ul, #category-menu ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
 
-ul.nav-bar li, ul.category-menu li, ul.footer li{
+#nav-menu ul li, #category-menu ul li {
+	font-size: 1.2em;
 	list-style: none;
 	user-select: none;
 }
 
-ul.footer li:last-child {
-	display: flex;
-	justify-content: space-around;
-}
-
-ul.nav-bar li {
+#nav-menu ul li {
 	padding-right: 3em;
 }
 
-ul.category-menu {
+#category-menu ul {
 	flex-grow: 1;
 	height: 3em;
 	background-color: darkgray;
 	align-items: center;
 }
 
-ul.category-menu li:hover {
+#category-menu ul li:hover {
 	color: white;
 	cursor: pointer;
 }
 
-ul.category-menu li.selected {
+#category-menu ul li.selected {
 	color: white;
 }
 
-section.login {
+#login {
 	background-color: white;
 	padding: 2em;
 	width: 100%;
 }
 
-section.login form {
+#login form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-section.login label, input {
+#login label, input {
 	min-width: 250px;
 }
 
-section.login label {
+#login label {
 	margin-top: 2em;
 	margin-bottom: 0.5em;
 }
 
-section.login input {
+#login input {
 	height: 1.5em;
 	font-size: 1em;
 }
 
-section.login button {
+#login button {
 	background-color: #ca661a;
 	border-color: #ca3415;
 	border-radius: 0.5em;

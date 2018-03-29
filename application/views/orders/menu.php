@@ -1,36 +1,36 @@
+
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('ul.main-menu li').hide();
-				$('ul.main-menu li:first-of-type').show();
+				$("#category-menu li:first-of-type").addClass("selected");
+				$('#orders article').hide();
+				$('#orders article:first-of-type').show();
 			});
-			$(document).on('click', 'ul.category-menu li', function(){
-				$('ul.category-menu li').removeClass('selected')
+			$(document).on('click', '#category-menu li', function(){
+				$('#category-menu li').removeClass('selected')
 				$(this).addClass('selected');
-				$('ul.main-menu li').hide();
-				$('ul.main-menu li#' + $(this).attr('href')).show();
+				$('#orders article').hide();
+				$('#' + $(this).attr('href')).show();
 			});
 		</script>
-		<section class="orders">
-			<ul class="category-menu">
-				<?php foreach ($categories as $category): ?>
-					<li href="<?php echo $category->cat_slug ?>"><?php echo $category->name ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<ul class="main-menu">
-				<?php foreach ($categories as $category): ?>
-					<li id="<?php echo $category->cat_slug ?>" >
-						<?php foreach ($dishes as $dish): ?>
-							<?php if ($dish->cat_slug == $category->cat_slug): ?>
-								<article>
-									<img src="<?php echo $dish->dish_code ?>" alt="<?php echo $dish->name ?>">
-									<p class= "menu-item" id="<?php echo $dish->dish_code ?>">
-										<strong><?php echo $dish->name ?></strong>
-									</p>
-									<p><?php echo $dish->description ?></p>
-								</article>
-							<?php endif?>
-						<?php endforeach; ?>
+		<section id="orders">
+			<nav id="category-menu">
+				<ul>
+					<?php foreach ($categories as $category): ?>
+						<li href="<?php echo $category->cat_slug ?>"><?php echo $category->name ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</nav>
+			<?php foreach ($categories as $category): ?>
+			<article id="<?php echo $category->cat_slug ?>">
+				<ul>
+				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug):?>
+					<li>
+						<img src="" alt="<?php echo $dish->name ?>">
+						<h4 id="<?php echo $dish->dish_code ?>"><?php echo $dish->name ?></h4>
+						<p><?php echo $dish->description ?></p>
 					</li>
-				<?php endforeach; ?>				
-			</ul>
+				<?php endif; endforeach ?>
+				</ul>
+			</article>
+			<?php endforeach; ?>				
 		</section>
