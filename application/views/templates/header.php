@@ -28,3 +28,4 @@
 	<header>
 		<h1 class="page-title"><?php if (isset($title)) { echo $title; } ?></h1>
 	</header>
+	<main>

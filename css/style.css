@@ -10,7 +10,7 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
-nav, header, footer {
+nav, header, footer, main {
 	display: flex;
 	flex-wrap: wrap;
 	box-sizing: border-box;
@@ -53,23 +53,18 @@ footer {
 }
 
 
-main, aside{
-	display: flex;
-	flex-wrap: wrap;
+main section {
 	background-color: lightgray;
+	width: 70%;
 }
 
-main {
-	width: 70%
-}
-
-aside {
+main aside {
 	background-color: white;
 	display: flex;
 	width: 30%;
 }
 
-section, article {
+main article {
 	width: 100%;
 }
 
