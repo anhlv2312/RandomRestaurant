@@ -30,7 +30,6 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	background-color: lightgray;
-	border-bottom: 1px solid #ca3415;
 } 
 
 header {
@@ -40,6 +39,8 @@ header {
 	background-size: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
+	border-top: 1px solid #ca3415;
+	border-bottom: 1px solid darkgray;
 }
 
 footer {
@@ -53,6 +54,7 @@ footer {
 
 main {
 	flex-wrap: nowrap;
+	background-color: white;
 }
 
 section.orders {
@@ -61,20 +63,29 @@ section.orders {
 }
 
 aside.order-detail {
-	background-color: white;
 	width: 30%;
 }
 
-.main-menu article {
-	clear: left;
+ul.main-menu article {
+	overflow: auto;
 	width: 100%;
+	border-bottom: 1px solid darkgray;
 }
 
-.main-menu article img {
+ul.main-menu article:last-child {
+	border-bottom: 0px;
+}
+
+ul.main-menu article img {
+	margin-right: 0.5em;
 	float:left;
 	width: 160px;
 	height: 120px;
 	background-color: white;
+}
+
+ul.main-menu article p:first-of-type {
+	margin-top: 0.5em;
 }
 
 h4 {
@@ -108,6 +119,7 @@ ul.nav-bar, ul.category-menu, ul.footer {
 
 ul.nav-bar li, ul.category-menu li, ul.footer li{
 	list-style: none;
+	user-select: none;
 }
 
 ul.footer li:last-child {
