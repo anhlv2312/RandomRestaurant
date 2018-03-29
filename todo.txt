@@ -1,0 +1,7 @@
+Facebook API to login
+Google Map API to find direction, estimate pickup time
+
+
+Send initial password via Twilio - Done
+
+TODO
