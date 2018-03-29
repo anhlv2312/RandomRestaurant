@@ -19,7 +19,7 @@ class Orders extends CI_Controller {
 		$this->data['dishes'] = $this->dishes_model->get_dishes();
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('orders/menu', $this->data);
-		$this->load->view('orders/bag', $this->data);
+		$this->load->view('orders/detail', $this->data);
 		$this->load->view('templates/footer', $this->data);
 
 	}

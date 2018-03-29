@@ -10,10 +10,8 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
-nav, header, footer, main {
+nav, header, footer {
 	display: flex;
-	flex-wrap: wrap;
-	box-sizing: border-box;
 	width: 100%;
 }
 
@@ -53,30 +51,31 @@ footer {
 }
 
 
-main section {
+main {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+section.orders {
 	background-color: lightgray;
 	width: 70%;
 }
 
-main aside {
+aside.order-detail {
 	background-color: white;
-	display: flex;
 	width: 30%;
 }
 
-main article {
+.main-menu article {
+	clear: left;
 	width: 100%;
 }
 
-article img {
-	float: left;
+.main-menu article img {
+	float:left;
 	width: 160px;
 	height: 120px;
 	background-color: white;
-}
-
-article div {
-	clear: left;
 }
 
 h4 {
@@ -138,7 +137,6 @@ ul.category-menu li.selected {
 }
 
 section.login {
-	#border-top: 1px solid #ca3415;
 	background-color: white;
 	padding: 2em;
 	width: 100%;
