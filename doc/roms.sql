@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2018 at 12:20 PM
+-- Generation Time: Mar 29, 2018 at 01:51 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.7
 
@@ -268,7 +268,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`) VALUES
-('0450087209', 'e10adc3949ba59abbe56e057f20f883e', '', '', '');
+('0450087209', 'cd38a17a1a1b7ecf6b82a3e5f6e16c9f', '', '', '');
 
 -- --------------------------------------------------------
 

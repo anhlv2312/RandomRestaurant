@@ -12,7 +12,8 @@ class Users extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('security');
 		$this->load->model('users_model');
-		$this->data['message'] = ucwords(str_replace('_', ' ', $this->input->get('message')));
+		$this->data['message'] = ucfirst(str_replace('_', ' ', $this->input->get('message')));
+		$this->data['user_id'] = $this->input->get('user_id');
 	}
 
 	public function login() {
@@ -22,7 +23,7 @@ class Users extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		$password = $this->input->post('password');
 		
-		if ($this->form_validation->run() == FALSE) {
+		if (!$this->form_validation->run()) {
 			$this->load->view('templates/header.php');
 			$this->load->view('users/login.php', $this->data);
 			$this->load->view('templates/footer.php');
@@ -52,8 +53,16 @@ class Users extends CI_Controller {
 			if (!$this->verify_captcha()){
 				header("Location: " . base_url() . "users/register?message=captcha_verification_failed");
 			} else {
-				$this->users_model->register($user_id, $this->generate_password(), $email);
-				header("Location: " . base_url() . "users/login");
+				$password = $this->generate_password();
+				$this->users_model->register($user_id, $password, $email);
+				if ($this->config->item('twilio_enabled')) {
+					$this->send_password($phone_number, $password);
+				} else {
+					$this->data['password'] = $password;
+				}
+				$this->load->view('templates/header.php');
+				$this->load->view('users/success.php', $this->data);
+				$this->load->view('templates/footer.php');
 			}
 		}
 	}
@@ -72,7 +81,7 @@ class Users extends CI_Controller {
 		));
 
 		$context = stream_context_create($opts);
-		$response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+		$response = file_get_contents('https://www.google.com/recaptcha/api/siteverify', FALSE, $context);
 		$result = json_decode($response);
 		return $result->success;
 	}

@@ -11,7 +11,7 @@ class Users_model extends CI_Model {
 		if (isset($row)) {
 			return md5($password) == $row->password;
 		}
-		return false;
+		return FALSE;
 	}
 
 	public function register($user_id, $password, $email) {

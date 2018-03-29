@@ -17,7 +17,7 @@ a {
 
 a:hover {
 	text-decoration: none;
-	color: #ca661a;
+	color: #cc661a;
 }
 
 main {
@@ -109,8 +109,14 @@ article.information h4 {
 	padding: 0.5em;
 }
 
-#nav-menu ul li {
-	padding-right: 3em;
+#nav-menu ul li a {
+	display: inline-block;
+	padding: 0 1em;
+	color: black;
+}
+
+#nav-menu ul li a:hover {
+	color: white;
 }
 
 #category-menu ul {
