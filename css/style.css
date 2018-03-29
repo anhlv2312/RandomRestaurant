@@ -10,7 +10,7 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
-nav, header, footer {
+nav, header, main, footer {
 	display: flex;
 	width: 100%;
 }
@@ -52,7 +52,6 @@ footer {
 
 
 main {
-	display: flex;
 	flex-wrap: nowrap;
 }
 
