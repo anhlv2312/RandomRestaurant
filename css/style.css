@@ -20,21 +20,12 @@ a:hover {
 	color: white;
 }
 
-header {
-	background-color: gray;
-}
-
 footer {
 	display: flex;
 	justify-content: space-around;
 	padding: 2em;
 	border-top: 1px solid #ca3415;
 	background-color: darkgray;
-}
-
-main {
-	display: flex;
-	background-color: white;
 }
 
 #nav-bar {
@@ -73,7 +64,7 @@ h2.logo {
 	user-select: none;
 }
 
-footer article h4 {
+article.information h4 {
 	color: #ca3415;
 	margin-bottom: 0.5em;
 }
@@ -131,6 +122,10 @@ footer article h4 {
 
 #category-menu ul li.selected {
 	color: white;
+}
+
+#map {
+	height: 500px;
 }
 
 #login {

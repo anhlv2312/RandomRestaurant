@@ -1,3 +1,4 @@
+
 	<section id="login">
 		<?php echo form_open('users/login'); ?>
 			<?php echo validation_errors() ?><?php echo $error_message ?>
