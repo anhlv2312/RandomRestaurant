@@ -7,7 +7,7 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	font-size: 14px;
 	color: black;
-	background-color: white;
+	background-color: darkgray;
 }
 
 a {
@@ -20,6 +20,11 @@ a:hover {
 	color: white;
 }
 
+main {
+	display: flex;
+	background-color: white;
+}
+
 footer {
 	display: flex;
 	justify-content: space-around;
@@ -30,7 +35,6 @@ footer {
 
 #nav-bar {
 	display: flex;
-	width: 100%;
 	padding: 1em;
 	justify-content: space-between;
 	align-items: center;
@@ -102,6 +106,7 @@ article.information h4 {
 	font-size: 1.2em;
 	list-style: none;
 	user-select: none;
+	padding: 0.5em;
 }
 
 #nav-menu ul li {
@@ -110,7 +115,6 @@ article.information h4 {
 
 #category-menu ul {
 	flex-grow: 1;
-	height: 3em;
 	background-color: darkgray;
 	align-items: center;
 }
@@ -124,44 +128,43 @@ article.information h4 {
 	color: white;
 }
 
-#map {
+#location {
 	height: 500px;
 }
 
-#login {
-	background-color: white;
+#users {
 	padding: 2em;
 	width: 100%;
 }
 
-#login form {
+#users form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-#login label, input {
+#users label, input {
 	min-width: 250px;
 }
 
-#login label {
+#users label {
 	margin-top: 2em;
 	margin-bottom: 0.5em;
 }
 
-#login input {
-	height: 1.5em;
+#users input {
+	height: 2em;
 	font-size: 1em;
 }
 
-#login button {
+#users button {
 	background-color: #ca661a;
 	border-color: #ca3415;
 	border-radius: 0.5em;
+	padding: 0 2em;
 	margin: 2em;
 	height: 3em;
-	width: 100px;
 	color: white;
-	font-size: 0.8em;
+	font-size: 1em;
 }
 

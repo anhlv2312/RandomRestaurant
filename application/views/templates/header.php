@@ -20,7 +20,7 @@
 					<li><a href="<?php echo base_url() ?>">Home</a></li> 
 					<li><a href="<?php echo base_url('orders/takeaway') ?>">Takeaway</a></li> 
 					<li><a href="<?php echo base_url('location') ?>">Location</a></li>
-					<li><a href="<?php echo base_url('about') ?>">About Us</a></li>
+					<li><a href="<?php echo base_url('contact') ?>">Contact</a></li>
 					<?php if (isset($user_id)): ?>
 						<li><a href="<?php echo base_url('users/logout') ?>">Logout</a></li>
 					<?php else: ?>

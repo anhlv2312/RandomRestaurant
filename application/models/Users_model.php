@@ -6,13 +6,20 @@ class Users_model extends CI_Model {
 	}
 
 	public function authenticate($user_id, $password) {
-		$query = $this->db->query("SELECT * FROM `users` WHERE `user_id` = '$user_id';");
-		$row = $query->row_array();
+		$query = $this->db->get_where("users", array('user_id' => $user_id));
+		$row = $query->row();
 		if (isset($row)) {
-			if (md5($password) == $row['password']) {
-				return true;
-			}
+			return md5($password) == $row->password;
 		}
 		return false;
+	}
+
+	public function register($user_id, $password, $email) {
+		$data = array(
+			'user_id' => $user_id,
+			'password' => md5($password),
+			'email' => $email
+		);
+		$this->db->insert('users', $data);
 	}
 }
