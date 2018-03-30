@@ -21,5 +21,5 @@
 			infowindow.open(map, marker);
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $this->config->item('google_map_api') ?>&callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $this->config->item('google_map_api_key') ?>&callback=initMap" async defer></script>
 	<main>
