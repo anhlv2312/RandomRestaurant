@@ -4,4 +4,7 @@ Google Map API to find direction, estimate pickup time
 
 Send initial password via Twilio - Done
 
-TODO
+TODO:
+	Check Send_Password status and return result;
+	Forgot Password
+

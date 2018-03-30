@@ -5,7 +5,7 @@ class Pages extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->helper('url');
-		$this->data = [];
+		$this->data['banner'] = TRUE;
 
 		if (isset($_SESSION['user_id'])) {
 			$this->data['user_id'] = $_SESSION['user_id'];

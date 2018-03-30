@@ -6,7 +6,7 @@ class Orders extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->model('dishes_model');
-		$this->data=[];
+		$this->data['banner'] = TRUE;
 
 		if (isset($_SESSION['user_id'])) {
 			$this->data['user_id'] = $_SESSION['user_id'];

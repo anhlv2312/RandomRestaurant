@@ -28,9 +28,11 @@
 					<?php endif ?>
 				</ul>
 			</nav>
-			</section>
-		<section id="banner">
-			<h1><?php if (isset($title)) { echo $title; } ?></h1>
 		</section>
+		<?php if (isset($banner)): ?>
+	 		<section id="banner">
+				<h1><?php if (isset($title)) { echo $title; } ?></h1>
+			</section>
+		<? endif ?>
 	</header>
 	<main>
