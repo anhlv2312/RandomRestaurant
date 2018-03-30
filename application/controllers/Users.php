@@ -1,6 +1,5 @@
 <?php
 require FCPATH . 'application/third_party/twilio-php-master/Twilio/autoload.php';
-require FCPATH . 'application/third_party/sendgrid-php/sendgrid-php.php';
 use Twilio\Rest\Client;
 
 class Users extends CI_Controller {
@@ -141,12 +140,6 @@ class Users extends CI_Controller {
 			} else { 
 				$this->data['message'] = "Your password is: <pre>" . $new_password . "</pre>";
 			}
-			if (!$email == "") {
-				$status_code = $this->send_password_via_email($email, $new_password);
-				if ($status_code = "202") {
-					$this->data['message'] = $this->data['message'] . "<br>Your password has been sent to your email: <pre>". $email . "</pre>";
-				}
-			}
 			$this->load->view('users/message', $this->data);
 		}
 		$this->load->view('templates/footer');
@@ -186,19 +179,6 @@ class Users extends CI_Controller {
 				$this->config->item('roms_app_name') . 
 				". Please login to change your password ASAP."
 			));
-	}
-
-	private function send_password_via_email($email_address, $password) {
-		$content = $password . " is your temporary password at " . $this->config->item('roms_app_name') . ". Please login to change your password ASAP.";
-		$from = new SendGrid\Email($this->config->item('roms_app_name'), "random@restaurant.com");
-		$subject = "Your New Password at Random Restaurant";
-		$to = new SendGrid\Email("Our Valued Customer", $email_address);
-		$content = new SendGrid\Content("text/plain", $content);
-		$mail = new SendGrid\Mail($from, $subject, $to, $content);
-		$apiKey = $this->config->item('sendgrid_api_key');
-		$sg = new \SendGrid($apiKey);
-		$response = $sg->client->mail()->send()->post($mail);
-		return $response->statusCode();
 	}
 
 }

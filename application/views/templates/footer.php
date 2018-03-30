@@ -16,7 +16,7 @@
 			<p>+61 450 087 209</p>
 			<p>vuanh.le@uqconnect.edu.au</p>
 		</article>
-		<h2 class="brand-name" >
+		<h2 class="logo" >
 			<a href="<?php echo base_url() ?>"
 				<span style="color: #ca661a">Random</span>
 				<span style="color: #ca3415"> Restaurant</span>
