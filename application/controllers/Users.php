@@ -16,9 +16,7 @@ class Users extends CI_Controller {
 	}
 
 	public function login() {
-		if (isset($_SESSION['user_id'])) {
-			header("Location: " . base_url() . 'users/view_account');
-		}
+		if (isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/view_account'); }
 
 		$this->load->view('templates/header');
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
@@ -48,9 +46,7 @@ class Users extends CI_Controller {
 	}
 
 	public function view_account() {
-		if (!isset($_SESSION['user_id'])) {
-			header("Location: " . base_url() . 'users/login');
-		}
+		if (!isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/login'); }
 
 		$this->load->view('templates/header');
 		$user_id = $_SESSION['user_id'];
@@ -157,6 +153,7 @@ class Users extends CI_Controller {
 	}
 
 	private function verify_captcha() {
+		if (!$this->config->item('google_captcha_enabled')) { return TRUE; }
 		$post_data = http_build_query(array(
 			'secret' => $this->config->item('google_captcha_secret'),
 			'response' => $_POST['g-recaptcha-response'],
