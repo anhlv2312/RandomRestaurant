@@ -7,10 +7,6 @@ class Orders extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('dishes_model');
 		$this->data['banner'] = TRUE;
-
-		if (isset($_SESSION['user_id'])) {
-			$this->data['user_id'] = $_SESSION['user_id'];
-		}
 	}
 
 	public function takeaway() {
@@ -20,7 +16,7 @@ class Orders extends CI_Controller {
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('orders/menu', $this->data);
 		$this->load->view('orders/detail', $this->data);
-		$this->load->view('templates/footer', $this->data);
+		$this->load->view('templates/footer');
 
 	}
 }

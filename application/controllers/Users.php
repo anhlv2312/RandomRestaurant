@@ -11,11 +11,10 @@ class Users extends CI_Controller {
 		$this->load->helper(array('url', 'form', 'string', 'security'));
 		$this->load->model('users_model');
 		$this->data['banner'] = FALSE;
-		$this->data['message'] = ucfirst(str_replace('_', ' ', $this->input->get('message')));
-		$this->data['user_id'] = $this->input->get('user_id');
 	}
 
 	public function login() {
+		$this->load->view('templates/header');
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[8]');
 
@@ -23,22 +22,40 @@ class Users extends CI_Controller {
 		$password = $this->input->post('password');
 		
 		if (!$this->form_validation->run()) {
-			$this->data['message'] == "" ? $this->data['message'] = "Login to your account" : $this->data['message'];
-			$this->load->view('templates/header.php');
-			$this->load->view('users/login.php', $this->data);
-			$this->load->view('templates/footer.php');
+			$this->data['status'] = "Login to your account";
+			$this->load->view('users/login', $this->data);
 		} else {
 			if ($this->users_model->authenticate($user_id, $password)) {
 				$_SESSION['user_id'] = $user_id;
-				header("Location: " . base_url() . "home");
+				header("Location: " . base_url() . "users/view_account");
 			} else {
-				header("Location: " . base_url() . "users/login?message=login_failed");
+				$this->data['status'] = "Your phone number or password is incorrect";
+				$this->load->view('users/login', $this->data);
 			}
 		}
+		$this->load->view('templates/footer');
+	}
 
+	public function logout() {
+		session_destroy();
+		header("Location: " . base_url() . "users/view_account");
+	}
+
+	public function view_account() {
+		$this->load->view('templates/header');
+		if (!isset($_SESSION['user_id'])) {
+			header("Location: " . base_url() . 'users/login');
+		} else {
+			$user_id = $_SESSION['user_id'];
+			$this->data['status'] = "Your account information";
+			$this->data['message'] = "Hello " . $user_id . ", have a nice day!";
+			$this->load->view('users/account', $this->data);
+		}
+		$this->load->view('templates/footer');
 	}
 
 	public function register() {
+		$this->load->view('templates/header');
 		$this->form_validation->set_rules('email', 'Email Address', 'trim|xss_clean|valid_email');
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|is_unique[users.user_id]|min_length[8]|max_length[12]', 
 		array('is_unique' => 'This %s already exists.'));
@@ -47,63 +64,91 @@ class Users extends CI_Controller {
 		$email = $this->input->post('email');
 
 		if (!$this->form_validation->run()) {
-			$this->data['message'] == "" ? $this->data['message'] = "Register new account" : $this->data['message'];
-			$this->load->view('templates/header.php');
-			$this->load->view('users/register.php', $this->data);
-			$this->load->view('templates/footer.php');
+			$this->data['status'] = "Register new account";
+			$this->load->view('users/register', $this->data);
+		} else if (!$this->verify_captcha()) {
+			$this->data['status'] = "Please confirm you are not a robot";
+			$this->load->view('users/register', $this->data);
+		} else {
+			$password = random_string('alnum', 10);
+			$this->users_model->register($user_id, $password, $email);
+			$this->data['status'] = "Register successfully";
+			if ($this->config->item('twilio_enabled')) {
+				$this->send_password_via_sms($user_id, $password);
+				$this->data['message'] = "Your password has been sent to your phone number";
+			} else {
+				$this->data['message'] = "Your password is: <pre>" . $password . "</pre>";
+			}
+			$this->load->view('users/message', $this->data);
+		}
+		$this->load->view('templates/footer');
+	}
+
+	public function change_password() {
+		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean|min_length[8]');
+		$this->form_validation->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length[8]');
+		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean|matches[new_password]');
+		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|min_length[8]|max_length[12]', 
+		array('is_unique' => 'This %s already exists.'));
+
+		$user_id = $this->input->post('user_id');
+		$old_password = $this->input->post('old_password');
+		$new_password = $this->input->post('new_password');
+
+		if (!$this->form_validation->run()) {
+			$this->data['status'] = "Change your password";
+			$this->load->view('templates/header');
+			$this->load->view('users/change', $this->data);
+			$this->load->view('templates/footer');
 		} else {
 			if (!$this->verify_captcha()){
 				header("Location: " . base_url() . "users/register?message=captcha_verification_failed");
 			} else {
-				$password = random_string('alnum', 10);
-
-				$this->users_model->register($user_id, $password, $email);
-
-				if ($this->config->item('twilio_enabled')) {
-					$this->send_temporary_password($user_id, $password);
+				$this->load->view('templates/header');
+				if ($this->users_model->authenticate($user_id, $old_password)) {
+					$this->users_model->set_password($user_id, $new_password);
+					$this->data['status'] = "Password is changed successfully";
+					$this->data['message'] = "Your password has been changed";
+					$this->load->view('users/message', $this->data);
 				} else {
-					$this->data['password'] = $password;
+					$this->data['status'] = "Your phone number or password is incorrect";
+					$this->load->view('users/change', $this->data);
 				}
-
-				$this->load->view('templates/header.php');
-				$this->load->view('users/success.php', $this->data);
-				$this->load->view('templates/footer.php');
+				$this->load->view('templates/footer');
 			}
 		}
 	}
 
-	public function change_password() {
-		$this->form_validation->set_rules('email', 'Email Address', 'trim|xss_clean|valid_email');
-		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|is_unique[users.user_id]|min_length[8]|max_length[12]', 
-		array('is_unique' => 'This %s already exists.'));
+	public function reset_password() {
+		$this->load->view('templates/header');
+		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|min_length[8]|max_length[12]');
 
 		$user_id = $this->input->post('user_id');
-		$email = $this->input->post('email');
 
 		if (!$this->form_validation->run()) {
-			$this->data['message'] == "" ? $this->data['message'] = "Change your password" : $this->data['message'];
-			$this->load->view('templates/header.php');
-			$this->load->view('users/password.php', $this->data);
-			$this->load->view('templates/footer.php');
+			$this->data['status'] = "Reset your password";
+			$this->load->view('users/reset', $this->data);
 		} else {
 			if (!$this->verify_captcha()){
 				header("Location: " . base_url() . "users/register?message=captcha_verification_failed");
 			} else {
-				$password = random_string('alnum', 10);
-
-				$this->users_model->register($user_id, $password, $email);
-
+				$new_password = random_string('alnum', 10);
+				$this->users_model->set_password($user_id, $new_password);
 				if ($this->config->item('twilio_enabled')) {
-					$this->send_temporary_password($user_id, $password);
+					$this->send_password_via_sms($user_id, $new_password);
+					$this->data['status'] = "Reset password successfully";
+					$this->data['message'] = "Your password has been sent to your phone number";
+				} else if (TRUE){
+					$this->data['status'] = "Reset password successfully";
+					$this->data['message'] = "Your password is: <pre>" . $new_password . "</pre>";
 				} else {
-					$this->data['password'] = $password;
+					$this->data['status'] = "Unable to resend your password";
+					$this->data['message'] = "You dont have email address";
 				}
-
-				$this->load->view('templates/header.php');
-				$this->load->view('users/success.php', $this->data);
-				$this->load->view('templates/footer.php');
+				$this->load->view('users/message', $this->data);
 			}
 		}
+		$this->load->view('templates/footer');
 	}
 
 	private function verify_captcha() {
@@ -125,7 +170,7 @@ class Users extends CI_Controller {
 		return $result->success;
 	}
 
-	private function send_temporary_password($phone_number, $password) {
+	private function send_password_via_sms($phone_number, $password) {
 		$sid = $this->config->item('twilio_sid');
 		$token = $this->config->item('twilio_token');
 		$client = new Client($sid, $token);
@@ -139,8 +184,4 @@ class Users extends CI_Controller {
 		);
 	}
 
-	public function logout() {
-		session_destroy();
-		header("Location: ".base_url()."home");
-	}
 }

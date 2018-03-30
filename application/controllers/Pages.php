@@ -6,10 +6,6 @@ class Pages extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('url');
 		$this->data['banner'] = TRUE;
-
-		if (isset($_SESSION['user_id'])) {
-			$this->data['user_id'] = $_SESSION['user_id'];
-		}
 	}
 
 	public function view($page='home') {
@@ -24,7 +20,7 @@ class Pages extends CI_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$this->load->view('pages/'.$page, $this->data);
-		$this->load->view('templates/footer', $this->data);
+		$this->load->view('templates/footer');
 
 	}
 }

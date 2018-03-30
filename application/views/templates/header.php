@@ -20,9 +20,9 @@
 					<li><a href="<?php echo base_url() ?>">Home</a></li> 
 					<li><a href="<?php echo base_url('orders/takeaway') ?>">Takeaway</a></li> 
 					<li><a href="<?php echo base_url('location') ?>">Location</a></li>
-					<li><a href="<?php echo base_url('contact') ?>">Contact</a></li>
-					<?php if (isset($user_id)): ?>
-						<li><a href="<?php echo base_url('users/logout') ?>">Logout</a></li>
+					<li><a href="<?php echo base_url('contact') ?>">Contact Us</a></li>
+					<?php if (isset($_SESSION['user_id'])): ?>
+						<li><a href="<?php echo base_url('users/view_account') ?>">Your Account</a></li>
 					<?php else: ?>
 						<li><a href="<?php echo base_url('users/login') ?>">Login</a></li>
 					<?php endif ?>
@@ -31,7 +31,7 @@
 		</section>
 		<?php if (isset($banner)): ?>
 	 		<section id="banner">
-				<h1><?php if (isset($title)) { echo $title; } ?></h1>
+				<h1><?php if (isset($title)): echo $title; endif ?></h1>
 			</section>
 		<? endif ?>
 	</header>
