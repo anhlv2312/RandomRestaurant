@@ -3,7 +3,7 @@
 		<?php echo form_open(); ?>
 			<h3><?php echo $status ?></h3>
 			<label><?php echo $message ?></label>
-			<label>Options:</label>
+			<label>Manage your account:</label>
 			<ul>
 				<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>
 			</ul>

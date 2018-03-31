@@ -4,7 +4,7 @@
 			<h3><?php echo $status ?></h3>
 			<?php echo validation_errors() ?>
 			<label for="user_id">Your Phone Number:</label>
-			<input type="text" name="user_id" value="<?php echo set_value('user_id') ?>">
+			<input type="text" name="user_id" value="<?php echo set_value('user_id', $user_id) ?>">
 			<label for="old_password">Old Password:</label>
 			<input type="password" name="old_password" value="<?php echo set_value('old_password') ?>">
 			<label for="new_password">New Password:</label>

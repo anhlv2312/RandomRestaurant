@@ -7,7 +7,7 @@
 			<input type="text" name="user_id" value="<?php echo set_value('user_id') ?>">
 			<label for="password">Password:</label>
 			<input type="password" name="password" value="<?php echo set_value('password') ?>">
-			<label>Options:</label>
+			<label>Other options:</label>
 			<ul>
 				<li><a href="<?php echo base_url('users/register') ?>">Register new account</a></li>
 				<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>

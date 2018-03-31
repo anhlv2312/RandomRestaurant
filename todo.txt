@@ -1,10 +1,18 @@
-Facebook API to login
-Google Map API to find direction, estimate pickup time
 
 
-Send initial password via Twilio - Done
 
 TODO:
 	Check Send_Password status and return result;
-	Forgot Password
+	Dish filter
+	Shop cart
 
+DONE:
+
+	Forgot Password
+	Send initial password via Twilio 
+
+
+WISHLIST
+	Facebook API to login
+	Google Map API to find direction, estimate pickup time
+	Fixed Order Detail panel (use css)

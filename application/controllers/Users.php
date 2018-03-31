@@ -6,9 +6,8 @@ class Users extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->library('session');
-		$this->load->library('form_validation');
-		$this->load->helper(array('url', 'form', 'string', 'security'));
+		$this->load->library(array('session', 'email', 'form_validation'));
+		$this->load->helper(array('url', 'email', 'form', 'string', 'security'));
 		$this->load->model('users_model');
 		$this->data['banner'] = FALSE;
 		$this->form_validation->set_message('user_exists', 'This {field} does not exists');
@@ -74,9 +73,13 @@ class Users extends CI_Controller {
 			$password = random_string('alnum', 10);
 			$this->users_model->register($user_id, $password, $email);
 			$this->data['status'] = "Register successfully";
+
+			$email_address = $this->send_password_via_email($user_id, $password);
 			if ($this->config->item('twilio_enabled')) {
 				$this->send_password_via_sms($user_id, $password);
-				$this->data['message'] = "Your password has been sent to your phone number";
+				$this->data['message'] = "Your password has been sent to your phone number: <strong>" . $user_id . "</strong>";
+			} else if ($email_address) { 
+				$this->data['message'] = "Your password has been sent to your email address: <strong>" . $email_address . "</strong>";
 			} else {
 				$this->data['message'] = "Your password is: <pre>" . $password . "</pre>";
 			}
@@ -94,6 +97,8 @@ class Users extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		$old_password = $this->input->post('old_password');
 		$new_password = $this->input->post('new_password');
+
+		$this->data['user_id'] = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 
 		$this->load->view('templates/header');
 		if (!$this->form_validation->run()) {
@@ -130,16 +135,20 @@ class Users extends CI_Controller {
 			$this->data['status'] = "Please confirm you are not a robot";
 			$this->load->view('users/reset', $this->data);
 		} else {
-			$new_password = random_string('alnum', 10);
-			$this->users_model->set_password($user_id, $new_password);
-			$email = $this->users_model->get_email($user_id);
+			$password = random_string('alnum', 10);
+			$this->users_model->set_password($user_id, $password);
 			$this->data['status'] = "Reset password successfully";
+			
+			$email_address = $this->send_password_via_email($user_id, $password);
 			if ($this->config->item('twilio_enabled')) {
-				$this->send_password_via_sms($user_id, $new_password);
-				$this->data['message'] = "Your password has been sent to your phone number: " . $user_id;
-			} else { 
-				$this->data['message'] = "Your password is: <pre>" . $new_password . "</pre>";
+				$this->send_password_via_sms($user_id, $password);
+				$this->data['message'] = "Your password has been sent to your phone number: <strong>" . $user_id . "</strong>";
+			} else if ($email_address) { 
+				$this->data['message'] = "Your password has been sent to your email address: <strong>" . $email_address . "</strong>";
+			} else {
+				$this->data['message'] = "Your password is: <pre>" . $password . "</pre>";
 			}
+
 			$this->load->view('users/message', $this->data);
 		}
 		$this->load->view('templates/footer');
@@ -168,17 +177,39 @@ class Users extends CI_Controller {
 		return $result->success;
 	}
 
-	private function send_password_via_sms($phone_number, $password) {
+	private function send_password_via_sms($user_id, $password) {
 		$sid = $this->config->item('twilio_sid');
 		$token = $this->config->item('twilio_token');
 		$client = new Client($sid, $token);
 
-		$client->messages->create($phone_number, array(
+		$client->messages->create($user_id, array(
 			'from' => $this->config->item('twilio_number'),
 			'body' => $password . " is your temporary password at " . 
 				$this->config->item('roms_app_name') . 
 				". Please login to change your password ASAP."
 			));
+	}
+
+	public function send_password_via_email($user_id, $password) {
+		$email_address = $this->users_model->get_email($user_id);
+		if (valid_email($email_address)) {
+			$this->email->initialize($this->config->item('email_config'));
+			$this->email->set_mailtype("html");
+			$this->email->set_newline("\r\n");
+
+			$content = '<p>Hello ' . $user_id . ',</p>';
+			$content .= '<p><strong>' . $password . '</strong> is your temporary password at ' . $this->config->item('roms_app_name') . '.</p>';
+			$content .= '<p>Please <a href="' . base_url() . 'users/login">login<a> to change your password ASAP.</p>';
+
+			$this->email->to($email_address);
+			$this->email->from('anhlv.com@gmail.com', $this->config->item('roms_app_name'));
+			$this->email->subject('Your New Password at ' . $this->config->item('roms_app_name'));
+			$this->email->message($content);
+			$this->email->send();
+			return $email_address;
+		} else {
+			return NULL;
+		}
 	}
 
 }
