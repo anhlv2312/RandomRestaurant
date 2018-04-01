@@ -78,27 +78,38 @@ article.information h4 {
 	margin-bottom: 0.5em;
 }
 
-#orders {
+#main-menu {
 	background-color: lightgray;
 	width: 70%;
 }
 
-#orders article img {
+#main-menu article figure {
 	margin-right: 0.5em;
-	float:left;
+	float: left;
 	width: 160px;
 	height: 120px;
 	background-color: white;
+	background-size: cover;
 }
 
-#orders article ul li {
+#main-menu article ul li {
 	overflow: auto;
 	border-bottom: 1px solid darkgray;
 }
 
-#orders article ul li:last-child {
+#main-menu article ul li:last-child {
 	border-bottom: 0;
 }
+
+#main-menu article h3 {
+	cursor: pointer;
+	margin: 0.5em;
+}
+
+#main-menu article p {
+
+}
+
 
 #nav-menu ul, #category-menu ul {
 	display: flex;
@@ -176,4 +187,70 @@ article.information h4 {
 	color: white;
 	font-size: 1em;
 }
+
+#modal {
+	position: fixed;
+	z-index: 1;
+	border: 0px;
+	width: 100vw;
+	height: 100vh;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.5);
+}
+
+#modal .body {
+	display: flex;
+	padding-top: 15vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	animation-name: modal-animate;
+	animation-duration: 0.5s
+}
+
+#modal .header {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 15px;
+	width: 50%;
+	background-color: black;
+	color: white;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+#modal .main {
+	overflow: auto;
+	width: 50vw;
+	height: 50vh;
+	background-color: lightgray;
+	padding: 10px 15px;
+}
+
+#modal .footer {
+	width: 50%;
+	padding: 10px 15px;
+	background-color: black;
+	color: white;
+	text-align: right;
+}
+
+#modal .close:hover {
+	color: #cc661a;
+	user-select: none;
+	cursor: pointer;
+}
+
+@keyframes modal-animate {
+	from {opacity:0}
+	to {opacity:1}
+}
+
+#modal .review-content {
+	margin-bottom: 1em;
+} 
+
+#modal .review-content:last-of-type {
+	margin-bottom: 0;
+} 
 

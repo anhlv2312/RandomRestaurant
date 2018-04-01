@@ -7,6 +7,15 @@
 	<script src="<?php echo base_url('js/jquery.min.js') ?>"></script>
 </head>
 <body>
+	<dialog id="modal">
+		<div class="body">
+			<div class="header"></div>
+			<div class="main"></div>
+			<div class="footer">
+				<span class="close">Close</span>
+			</div>
+		</div>
+	</dialog>
 	<header>
 		<section id="nav-bar">
 			<h2 class="logo" >

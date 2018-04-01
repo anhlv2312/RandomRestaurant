@@ -7,7 +7,7 @@ TODO:
 	Shop cart
 
 DONE:
-
+	Send password via Email
 	Forgot Password
 	Send initial password via Twilio 
 
