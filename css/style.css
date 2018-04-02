@@ -84,7 +84,7 @@ footer {
 	align-items: flex-end;
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	background-size: cover;
-	background-position: center, center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	border-bottom: 1px solid gray;
 }
@@ -103,7 +103,7 @@ footer {
 	width: 100vw;
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	background-size: cover;
-	background-position: center, center;
+	background-position: center center;
 	background-repeat: no-repeat;
 }
 

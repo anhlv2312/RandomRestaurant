@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 02:38 PM
+-- Generation Time: Apr 02, 2018 at 04:09 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.7
 
@@ -85,7 +85,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('12', 'appertizers', 'Salt & Spicy Calamari', 'Tempura battered five-spice & chilli squid slices'),
 ('12a', 'appertizers', 'Fish Cakes (4 pcs)', 'Spicy fish cakes served with lime sweet chilli sauce'),
 ('12c', 'appertizers', 'Tamarind King Prawns (4pcs)', 'Tempura battered tail-on king prawns glazed in a tasty mild chili tamarind sauce on crispy glass noodles. '),
-('12d', 'appertizers', 'Salt and Spicy Chicken or Tofu', 'Tempura battered (Ive spice and chilli chicken breast pieces or tofu. '),
+('12d', 'appertizers', 'Salt and Spicy Chicken', 'Tempura battered spice and chilli chicken breast pieces or tofu. '),
 ('12e', 'appertizers', 'Golden Bags', 'A combination of ground chicken, prawn meat, water chestnuts, fresh coriander wrapped in light pastry, deep-fried and served with lime sweet chili sauce. '),
 ('12f', 'appertizers', 'Wing Wing', 'De-boned chicken wing, filled with a combination of ground pork, Mung bean noodles, water chestnuts and coriander. Crumbed, deep-fried and served with a lime sweet chili sauce. '),
 ('12g', 'appertizers', 'Soft Shell Crab', 'Tempura battered five-spice and chilli soft shell crab dipped with sweet vinegar'),
@@ -117,15 +117,14 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('28d', 'chicken', 'Spicy Chilli Chicken Wings', 'Crispy deep-fried chicken wings smothered in our tasty ginger chilli sauce on crisp mixed /eaves. '),
 ('29', 'chicken', 'Chilli Garlic Chicken', 'Garlic infused chicken breast pieces wok-tossed with seasonal vegetables and chilli.'),
 ('30', 'chicken', 'Ginger and Shallot Chicken', 'Ginger infused chicken breast pieces wok-tossed with seasonal vegetables.'),
-('31', 'chicken', 'Sweet and Sour Chicken or Pork', 'Golden tempura battered chicken breast fillet or tender pork pieces glazed in a special sweet and sour blend of pineapple, celery and tomatoes'),
-('31a', 'chicken', 'Salty & Spicy Pork, Chicken or Tofu', 'Light battered spicy pork, chicken or tofu with fresh chilli'),
+('31', 'chicken', 'Sweet and Sour Chicken', 'Golden tempura battered chicken breast fillet or tender pork pieces glazed in a special sweet and sour blend of pineapple, celery and tomatoes'),
+('31a', 'chicken', 'Salty & Spicy Chicken', 'Light battered spicy pork, chicken or tofu with fresh chilli'),
 ('32', 'chicken', 'Honey Lemon Chicken', 'Tempura battered chicken breast fillet or king prawns glazed with a house-made honey lemon sauce and roasted sesame seeds. '),
 ('32a', 'chicken', 'Satay Chicken', 'Tender chicken breast pieces and seasonal vegetables wok-tossed with homemade peanut satay sauce. '),
 ('32b', 'chicken', 'Chicken Chow Mein', 'Tender chicken breast pieces stir-fried with seasonal vegetables on a bed of thin egg noodles. '),
 ('32c', 'chicken', 'Chicken Foo Young Egg', 'Tender chicken breast pieces scrambled with eggs and vegetables'),
 ('32d', 'chicken', 'Teriyaki Chicken', 'Tender chicken breast pieces wok-tossed in a tasty Teriyaki sauce with onions and seasonal vegetables . '),
 ('33', 'thai_vietnamese', 'Chilli Lemongrass', 'A classic Vietnamese style, fresh lemongrass and chilli with your choice of tender chicken, beef or king prawns'),
-('33a', 'thai_vietnamese', 'Ah-Sam (Hot Tamarind Base)', 'A fresh new style of a hot tamarind base, saw-leaves, coriander and seasonal vegetables stir-fried with your choice of tender chicken, beef or king prawns. '),
 ('34', 'thai_vietnamese', 'Thai Red Curry', 'A creamy and spicy red curry with your choice of tender chicken, beef or king prawn, wok tossed with seasonal vegetables'),
 ('35', 'thai_vietnamese', 'Thai Green Curry', 'A hot and spicy green curry with your choice of tender chicken, beef or king prawns, wok-tossed with seasonal vegetables. '),
 ('35a', 'thai_vietnamese', 'Yellow Curry', ''),
@@ -334,8 +333,6 @@ INSERT INTO `reviews` (`dish_code`, `user_id`, `content`, `rating`) VALUES
 ('32c', '0452000826', 'Aenean at dolor eu arcu suscipit finibus. Suspendisse aliquam urna ut elit feugiat mollis. Suspendisse vehicula elit a pulvinar tempus. Suspendisse justo augue, blandit ac commodo vitae, viverra et justo. Nulla facilisi. Quisque quis felis libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nunc mauris, viverra non nibh a, consequat finibus ex. Praesent laoreet sit amet leo nec tincidunt. Duis aliquet cursus fermentum. Pellentesque id aliquet massa, vel imperdiet neque.', 5),
 ('32d', '0492726924', 'Nam placerat iaculis dapibus. Praesent euismod nulla sed suscipit interdum. In hac habitasse platea dictumst. Quisque sodales tincidunt lacus. Morbi accumsan ipsum eget nulla congue, nec tristique magna placerat. Donec ac purus dui. Cras pretium vel felis consequat commodo. Maecenas molestie, mi non vestibulum cursus, lorem lectus luctus ante, vitae malesuada tellus quam tempus metus. Aliquam convallis augue quis felis dictum porttitor. Vivamus ut hendrerit lorem, in porta sem. Pellentesque faucibus molestie consequat.', 5),
 ('33', '0474053564', 'Nulla ut lectus turpis. Morbi erat nisi, bibendum at elementum ut, tincidunt non purus. Proin sollicitudin dolor quam, ut hendrerit dolor congue eget. Donec placerat faucibus nisl, non eleifend nisi finibus nec. Sed pellentesque ut nisi vel finibus. Suspendisse eu nulla massa. Duis nec orci purus. Ut porta condimentum leo, vel sagittis orci consequat et. Proin rhoncus porta ipsum at tincidunt. Pellentesque vel vehicula elit. Etiam mattis odio a eros sollicitudin tempor. Suspendisse consectetur hendrerit tincidunt. Cras porttitor sem et nisl sollicitudin cursus. Maecenas quis condimentum eros, ut iaculis ipsum. Fusce aliquam diam ut varius porta.', 5),
-('33a', '0417935528', 'Etiam purus mauris, porta sit amet vehicula non, placerat ultrices quam. Vestibulum eget magna eu ante sodales posuere a condimentum lectus. Integer tristique, tellus vel gravida vehicula, enim leo scelerisque dui, vitae sollicitudin libero justo non leo. Curabitur libero nisi, eleifend a tempus id, congue eget diam. Ut ut libero lorem. Ut convallis ante nisi, vel porta lorem blandit id. Mauris vestibulum ac odio eu vehicula. Curabitur risus lorem, hendrerit ut mauris faucibus, laoreet dignissim arcu. In congue eget lectus in condimentum. Nulla nec volutpat elit. Curabitur id mattis arcu. Donec laoreet ipsum at turpis porta, ac scelerisque quam molestie. Duis risus nisl, vehicula sit amet ante auctor, viverra bibendum sem. Nulla facilisi.', 5),
-('33a', '0493744028', 'Curabitur facilisis nec nulla a feugiat. Cras in tellus ut dolor accumsan lobortis quis sed mauris. Suspendisse sed nisl semper, tempor leo sit amet, ullamcorper nisl. Praesent ut dui elit. Quisque et ipsum nisl. Nam id dolor neque. Curabitur condimentum venenatis egestas. Vivamus vulputate ultrices turpis at pretium.', 5),
 ('34', '0493744028', 'Curabitur facilisis nec nulla a feugiat. Cras in tellus ut dolor accumsan lobortis quis sed mauris. Suspendisse sed nisl semper, tempor leo sit amet, ullamcorper nisl. Praesent ut dui elit. Quisque et ipsum nisl. Nam id dolor neque. Curabitur condimentum venenatis egestas. Vivamus vulputate ultrices turpis at pretium.', 5),
 ('35', '0437347207', 'Curabitur hendrerit dapibus dolor, ut porta odio hendrerit venenatis. Integer quis ligula ac elit fermentum ultrices. Sed accumsan odio sapien, id pulvinar est aliquet et. Aliquam commodo turpis pharetra, luctus tellus at, porta erat. Praesent ut lacus ut lacus fringilla pretium. Fusce sit amet leo in enim rutrum tincidunt ut eget ante. Etiam rutrum, ligula vitae eleifend laoreet, magna massa sodales ligula, vel volutpat massa magna non nunc. Mauris et magna mollis, laoreet velit in, blandit nisl. Aliquam egestas justo aliquam neque suscipit laoreet. Vestibulum vehicula mi eu tellus tempus molestie. Curabitur eget justo et ante eleifend suscipit ac id quam.', 5),
 ('35a', '0437347207', 'Curabitur hendrerit dapibus dolor, ut porta odio hendrerit venenatis. Integer quis ligula ac elit fermentum ultrices. Sed accumsan odio sapien, id pulvinar est aliquet et. Aliquam commodo turpis pharetra, luctus tellus at, porta erat. Praesent ut lacus ut lacus fringilla pretium. Fusce sit amet leo in enim rutrum tincidunt ut eget ante. Etiam rutrum, ligula vitae eleifend laoreet, magna massa sodales ligula, vel volutpat massa magna non nunc. Mauris et magna mollis, laoreet velit in, blandit nisl. Aliquam egestas justo aliquam neque suscipit laoreet. Vestibulum vehicula mi eu tellus tempus molestie. Curabitur eget justo et ante eleifend suscipit ac id quam.', 5),
@@ -402,9 +399,9 @@ INSERT INTO `reviews` (`dish_code`, `user_id`, `content`, `rating`) VALUES
 ('59', '0416616915', 'Integer quis vulputate libero. Vestibulum vitae congue nibh. Maecenas semper eros a mauris fringilla, et ornare purus placerat. Pellentesque in mollis lacus. Vestibulum sagittis sodales justo, id congue mi venenatis ut. Quisque erat quam, aliquet non viverra ut, porta vel lectus. Ut in nulla nec metus cursus placerat.', 5),
 ('59', '0493744028', 'Vestibulum nulla nisl, fringilla at facilisis at, luctus sed felis. Donec et elementum mauris. Nunc feugiat interdum justo nec semper. Mauris venenatis neque velit, sit amet consequat tellus congue eu. Mauris dui diam, convallis non felis quis, interdum mollis erat. Etiam efficitur ex ut mi mattis, non ornare lorem rhoncus. Donec ultricies vel dolor eget tempus. Quisque euismod in lorem sed condimentum. Nam venenatis libero in mollis malesuada. Vestibulum ut pellentesque lacus.', 5),
 ('60', '0452000826', 'Aenean at dolor eu arcu suscipit finibus. Suspendisse aliquam urna ut elit feugiat mollis. Suspendisse vehicula elit a pulvinar tempus. Suspendisse justo augue, blandit ac commodo vitae, viverra et justo. Nulla facilisi. Quisque quis felis libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam nunc mauris, viverra non nibh a, consequat finibus ex. Praesent laoreet sit amet leo nec tincidunt. Duis aliquet cursus fermentum. Pellentesque id aliquet massa, vel imperdiet neque.', 5),
-('60', '0477435523', 'Sed eu lacus in enim faucibus auctor ut sit amet magna. Pellentesque eget urna nec ante imperdiet auctor. Sed luctus finibus ex at ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus id pulvinar nisl. Pellentesque sed condimentum lectus, sit amet egestas tortor. Morbi dignissim ex eu lorem rutrum finibus. Quisque at venenatis erat.', 5);
+('60', '0477435523', 'Sed eu lacus in enim faucibus auctor ut sit amet magna. Pellentesque eget urna nec ante imperdiet auctor. Sed luctus finibus ex at ultrices. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus id pulvinar nisl. Pellentesque sed condimentum lectus, sit amet egestas tortor. Morbi dignissim ex eu lorem rutrum finibus. Quisque at venenatis erat.', 5),
+('60a', '0460994447', 'Suspendisse sollicitudin justo eu magna hendrerit, in mattis ipsum ultricies. Curabitur tempus enim lorem, in scelerisque ipsum tristique in. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ut ante nec leo ultrices lacinia. Praesent eros orci, rhoncus sed nunc nec, vehicula gravida libero. Maecenas maximus risus erat, pulvinar pellentesque lorem porttitor sed. Donec feugiat porta nisl, in ultricies ex feugiat ac. Nunc purus nisl, aliquet quis neque vehicula, mollis molestie purus. In hac habitasse platea dictumst. Fusce non elit vel sapien pretium convallis. Donec ligula eros, eleifend ac metus sed, aliquam luctus felis. Curabitur turpis lacus, porta in tincidunt sit amet, bibendum non arcu. Sed sagittis nec elit malesuada iaculis.', 4);
 INSERT INTO `reviews` (`dish_code`, `user_id`, `content`, `rating`) VALUES
-('60a', '0460994447', 'Suspendisse sollicitudin justo eu magna hendrerit, in mattis ipsum ultricies. Curabitur tempus enim lorem, in scelerisque ipsum tristique in. Interdum et malesuada fames ac ante ipsum primis in faucibus. In ut ante nec leo ultrices lacinia. Praesent eros orci, rhoncus sed nunc nec, vehicula gravida libero. Maecenas maximus risus erat, pulvinar pellentesque lorem porttitor sed. Donec feugiat porta nisl, in ultricies ex feugiat ac. Nunc purus nisl, aliquet quis neque vehicula, mollis molestie purus. In hac habitasse platea dictumst. Fusce non elit vel sapien pretium convallis. Donec ligula eros, eleifend ac metus sed, aliquam luctus felis. Curabitur turpis lacus, porta in tincidunt sit amet, bibendum non arcu. Sed sagittis nec elit malesuada iaculis.', 4),
 ('60a', '0474053564', 'Aenean tempor ligula eget erat pulvinar, a laoreet justo dictum. Curabitur ut diam pulvinar massa porttitor posuere. Sed eu lacinia elit, ac consectetur diam. Nulla vulputate magna a pellentesque tempus. Quisque ut nisi vitae neque cursus accumsan vel a lectus. Maecenas sem tortor, gravida eget nulla bibendum, facilisis eleifend ex. Maecenas dictum molestie urna, sodales ullamcorper purus tempor eget. Vivamus sed ante eget nulla dictum tincidunt non porta odio. Aliquam ullamcorper consequat arcu at efficitur. Aenean dui lorem, semper quis ex et, elementum convallis tortor. In sit amet cursus magna. Pellentesque a nunc magna. Morbi in nulla ut sem porta rhoncus. Sed lorem turpis, tempor ut iaculis a, pretium eget diam. Sed sapien enim, bibendum et leo a, congue ultrices velit. Nam finibus convallis diam vel mollis.', 3),
 ('60b', '0416616915', 'Suspendisse tempus mi felis, nec venenatis ante dapibus vitae. Cras eu libero ut ex rhoncus tempus. In dignissim gravida bibendum. Sed luctus, dolor vitae pellentesque egestas, ante magna dignissim elit, eget scelerisque lacus turpis ut erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed molestie laoreet odio, sed iaculis tellus convallis at. Cras egestas sem neque, non luctus augue pellentesque eget. Fusce vitae lorem at lacus vehicula vehicula eget a augue. Mauris et ante nec nulla iaculis accumsan ac at orci. Ut in est non neque varius ultrices at eget magna. Donec et molestie erat. Duis posuere sodales urna a congue.', 4),
 ('60b', '0460994447', 'Aliquam pretium sollicitudin ex et condimentum. Vivamus tempus ipsum a vestibulum facilisis. Sed mi magna, laoreet sed lacus sit amet, accumsan tempor sem. Proin vel neque et purus dictum congue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse vitae tempor dolor. Donec luctus mollis sem id sagittis. Praesent semper finibus tortor interdum pellentesque. Nullam lobortis risus lorem, id condimentum arcu bibendum id. Donec et viverra risus. Fusce vel suscipit sapien. Suspendisse imperdiet est id efficitur scelerisque. Integer ac volutpat augue, quis aliquam ipsum. Aliquam semper vel lacus ut porta. Nulla posuere gravida semper. Donec vehicula diam in risus pharetra tempus.', 4),
@@ -502,10 +499,8 @@ CREATE TABLE `variations` (
 --
 
 INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
-('Beef', '26', 13.9),
 ('Beef', '27a', 13.9),
 ('Beef', '33', 13.9),
-('Beef', '33a', 13.9),
 ('Beef', '34', 14.9),
 ('Beef', '35', 14.9),
 ('Beef', '35a', 14.9),
@@ -519,7 +514,6 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Chicken', '10', 7),
 ('Chicken', '32', 13.9),
 ('Chicken', '33', 13.9),
-('Chicken', '33a', 13.9),
 ('Chicken', '34', 14.9),
 ('Chicken', '35', 14.9),
 ('Chicken', '35a', 14.9),
@@ -566,6 +560,7 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Default', '24b', 14.8),
 ('Default', '25', 13.9),
 ('Default', '25a', 13.9),
+('Default', '26', 13.9),
 ('Default', '27', 13.9),
 ('Default', '27b', 13.9),
 ('Default', '27c', 13.9),
@@ -577,7 +572,7 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Default', '29', 13.9),
 ('Default', '30', 13.9),
 ('Default', '31', 13.9),
-('Default', '31a', 11.903),
+('Default', '31a', 11.9),
 ('Default', '32a', 13.9),
 ('Default', '32b', 13.9),
 ('Default', '32c', 13.9),
@@ -647,7 +642,6 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Default', '88', 18.9),
 ('King Prawn', '10', 7),
 ('King Prawn', '33', 18.9),
-('King Prawn', '33a', 18.9),
 ('King Prawn', '34', 18.9),
 ('King Prawn', '35', 18.9),
 ('King Prawn', '35a', 18.9),
@@ -664,11 +658,14 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Mixed', '10', 7),
 ('Mixed Seafood', '38', 18.9),
 ('Pork', '10', 7),
+('Pork', '31', 13.9),
+('Pork', '31a', 11.9),
 ('Prawn', '32', 18.9),
 ('Prawn', '44b', 18.9),
 ('Prawn', '86b', 18.9),
 ('Soft Shell Crab', '86b', 19.9),
-('Tofu', '10', 7);
+('Tofu', '10', 7),
+('Tofu', '31a', 11.9);
 
 --
 -- Indexes for dumped tables
