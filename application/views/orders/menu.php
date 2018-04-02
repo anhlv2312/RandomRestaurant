@@ -28,7 +28,7 @@
 			});
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
-				$.getJSON("<?php echo base_url('api/reviews/') ?>" + dish_code, function(data){
+				$.getJSON("<?php echo base_url('reviews/get_reviews_by_dish/') ?>" + dish_code, function(data){
 					$.each(data, function(i, review){
 						$('#modal .main').append('<h3 class="review-user">' + review.user_id + '</h3>')
 						$('#modal .main').append('<p class="review-content">' + review.content + '</p>')
