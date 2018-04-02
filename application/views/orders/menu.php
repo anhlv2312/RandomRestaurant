@@ -1,5 +1,15 @@
 
 		<script type="text/javascript">
+			$(window).on("scroll", function(e) {
+				if ($(this).scrollTop() > 150) {
+					$('#category-menu').addClass("category-menu-fixed");
+					$('#order-detail').addClass("order-detail-fixed");
+				} else {
+					$('#category-menu').removeClass("category-menu-fixed");
+					$('#order-detail').removeClass("order-detail-fixed");
+				}
+
+			});
 			$(document).ready(function(){
 				$("#category-menu li:first-of-type").addClass("selected");
 				$('#main-menu article').hide();
@@ -26,15 +36,24 @@
 				$('#main-menu article').hide();
 				$('#' + $(this).attr('href')).show();
 			});
+			$(document).on('click', 'img', function(){
+				add_item($(this).attr('dish_code'));
+			});
+
+			function add_item(dish_code) {
+				$.when($.ajax("<?php echo base_url('orders/add_item_to_bag/') ?>" + dish_code)).then(function(data, textStatus, jqXHR ) {
+					update_bag();
+				});
+			};
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
 				$.getJSON("<?php echo base_url('reviews/get_reviews_by_dish/') ?>" + dish_code, function(data){
 					$.each(data, function(i, review){
-						$('#modal .main').append('<h3 class="review-user">' + review.user_id + '</h3>')
-						$('#modal .main').append('<p class="review-content">' + review.content + '</p>')
+						$('#modal .main').append('<h3 class="review-user">' + review.user_id + '</h3>');
+						$('#modal .main').append('<p class="review-content">' + review.content + '</p>');
 					});
 				});
-			}
+			};
 		</script>
 		<section id="main-menu">
 			<nav id="category-menu">
@@ -50,7 +69,7 @@
 				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug): ?>
 					<li>
 						<figure style="background: url('<?php echo base_url('images/sample.jpg') ?>')" alt="<?php echo $dish->name ?>"></figure>
-						<img src="<?php echo base_url('images/bag.png') ?>">
+						<img dish_code="<?php echo $dish->dish_code ?>" src="<?php echo base_url('images/bag.png') ?>">
 						<h3><span id="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></span></h3>
 						<p><?php echo $dish->description ?></p>
 					</li>

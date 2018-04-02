@@ -1,6 +1,7 @@
 * {
 	margin: 0px;
 	padding: 0px;
+	box-sizing: border-box;
 }
 
 body {
@@ -8,7 +9,6 @@ body {
 	font-size: 14px;
 	color: black;
 	background-color: darkgray;
-	box-sizing: border-box;
 }
 
 li {
@@ -25,6 +25,10 @@ a:hover {
 	color: #cc661a;
 }
 
+header {
+	margin-top: 70px;
+}
+
 main {
 	display: flex;
 	background-color: white;
@@ -39,12 +43,15 @@ footer {
 }
 
 #nav-bar {
+	position: fixed;
+	top:0px;
+	width: 100vw;
 	display: flex;
-	width: 100%;
 	padding: 15px;
 	justify-content: space-between;
 	background-color: lightgray;
 	border-bottom: 1px solid #ca3415;
+	z-index: 1;
 } 
 
 #nav-bar ul {
@@ -113,7 +120,7 @@ article.information h4 {
 
 #main-menu {
 	background-color: lightgray;
-	width: 70%;
+	width: 70vw;
 }
 
 #main-menu article figure {
@@ -157,6 +164,14 @@ article.information h4 {
 	color: gray;
 }
 
+.category-menu-fixed {
+	width: 70vw;
+	top:70px;
+	position: fixed;
+	z-index: 1;
+	border-bottom: 1px solid gray;
+}
+
 #category-menu ul {
 	display: flex;
 	flex-wrap: wrap;
@@ -189,7 +204,7 @@ article.information h4 {
 
 #users {
 	padding: 2em;
-	width: 100%;
+	width: 100vw;
 }
 
 #users form {
@@ -247,7 +262,7 @@ article.information h4 {
 	display: flex;
 	justify-content: space-between;
 	padding: 10px 15px;
-	width: 50%;
+	width: 50vw;
 	background-color: black;
 	color: white;
 	font-weight: bold;
@@ -265,7 +280,7 @@ article.information h4 {
 #modal .footer {
 	display: flex;
 	justify-content: space-between;
-	width: 50%;
+	width: 50vw;
 	padding: 10px 15px;
 	background-color: black;
 	color: white;
@@ -289,4 +304,33 @@ article.information h4 {
 #modal .review-content:last-of-type {
 	margin-bottom: 0;
 } 
+
+.order-detail-fixed {
+	position: fixed;
+	top: 70px;
+	left: 70vw;
+}
+
+#order-detail {
+	padding: 1.5em;
+}
+
+#bag {
+	width: 26vw;
+	border-collapse: collapse;
+}
+
+#bag td, #bag th {
+	border: 1px solid gray;
+
+}
+
+#bag .remove {
+	opacity: 0.3;
+}
+
+#bag .remove:hover {
+	opacity: 1;
+	cursor: pointer;
+}
 

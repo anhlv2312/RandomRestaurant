@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 02:07 AM
+-- Generation Time: Apr 02, 2018 at 02:38 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.7
 
@@ -151,8 +151,8 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('47', 'vergetarian', 'Chilli Lemongrass Tofu', 'Deep-fried tofu slices wok-tossed with fresh chilli lemongrass and seasonal vegetables garnished with roasted cashew nuts. '),
 ('47a', 'vergetarian', 'Thai Spicy Tofu Vegetarian', 'Seasonal vegetables and tofu wok-tossed with dried red curry paste and aromatic kaffir lime leaves. '),
 ('48', 'vergetarian', 'Vegetarian Delight', 'Snow peas, broccoli and seasonal vegetables wak-tossed in garlic oyster sauce and garnished with roasted cashew nuts. '),
-('49', 'vergetarian', 'Vegetarian Thai Pad', 'A popular Thai style noodle dish in our special homemade sauce wok-tossed with vegetables, flat rice noodles, egg, bean spouts and shallots garnished with roasted cashew nuts and ground peanuts. '),
-('50', 'vergetarian', 'Thai Red, Green or Panang Vegetarian', 'Seasonal vegetables and your choice of spicy red curry, hot Green curry or aromatic Panang curry. All coconut cream based. '),
+('49', 'vergetarian', 'Vegetarian Pad Thai', 'A popular Thai style noodle dish in our special homemade sauce wok-tossed with vegetables, flat rice noodles, egg, bean spouts and shallots garnished with roasted cashew nuts and ground peanuts. '),
+('50', 'vergetarian', 'Vegetarian Thai Curry', 'Seasonal vegetables and your choice of spicy red curry, hot Green curry or aromatic Panang curry. All coconut cream based. '),
 ('51', 'vergetarian', 'Satay Vegetarian', 'Seasonal vegetables wok-tossed with homemade peanut satay sauce and garnished with roasted cashew nuts. '),
 ('52', 'vergetarian', 'Chilli Black Bean Basil Tofu', 'Deep fried tofu slices and seasonal vegetables wok-tossed in a special black bean sauce with fresh chilli and sweet basil leaves, garnished with roasted cashew nuts. '),
 ('53', 'vergetarian', 'Basil Prik Phao Vegetarian', 'Seasonal vegetables wok-tossed in roasted chill paste and sweet basil leaves garnished with roasted cashew nuts.'),
@@ -161,7 +161,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('57', 'vergetarian', 'Vegetarian Thai Fried Rice', 'Seasonal vegetables wok-tossed with egg and roasted chilli paste. '),
 ('57a', 'vergetarian', 'Vegetarian Pineapple Fried Rice', 'Seasonal vegetables wok-tossed with egg, pineapple and aromatic spicy curry. '),
 ('58', 'vergetarian', 'Vegetarian Chow Mein', 'Seasonal vegetables stir-fried with garlic and oyster sauce on a bed of egg noodles.'),
-('58a', 'vergetarian', 'Vegetarian Singapore Fried Noodles', 'Seasonal vegetables and thin rice noodles wok-tossed with egg, spicy curry and chilli. '),
+('58a', 'vergetarian', 'Vegetarian Singapore Noodles', 'Seasonal vegetables and thin rice noodles wok-tossed with egg, spicy curry and chilli. '),
 ('58b', 'vergetarian', 'Vegetarian Hokkien Stir Fry', 'Seasonal vegetables and Hakkien noodles wok-tossed with garlic and oyster sauce. '),
 ('58c', 'vergetarian', 'Vegetarian Pad Se Heaw', 'Seasonal Chinese vegetables wok-tossed with flat rice noodles, egg, bean sprouts and shallots. '),
 ('59', 'vergetarian', 'Vegetarian Foo Young Egg', 'Seasonal vegetables scrambled with egg.'),
@@ -175,7 +175,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('60g', 'vergetarian', 'Spicy Teriyaki Tofu', 'Ginger and garlic infused tofu drizzled with spicy Japanese teriyaki sauce, onion and broccoli. '),
 ('66', 'chef_recommended', 'Peppercorn Roast Duck', 'Roasted duck slices wok-tossed with fresh garlic, spicy peppercorn, wild ginger, capsicum, onion, fresh chilli, sweet basil and aromatic kaffir lime leaves. '),
 ('67', 'chef_recommended', 'Ketchup Pork Chop', 'Battered boneless pork chop wok-tossed with onion, pineapple in our special ketchup'),
-('68', 'chef_recommended', 'Crispy Garlic Black Bean King Prawn', 'Chilli garlic infused tail-on king prawns, lightly battered, wok-tossed with fresh chilli and spicy black beans. '),
+('68', 'chef_recommended', 'Garlic Black Bean King Prawn', 'Chilli garlic infused tail-on king prawns, lightly battered, wok-tossed with fresh chilli and spicy black beans. '),
 ('69', 'chef_recommended', 'XO King Prawn', 'Chilli shrimps infused tail-on king prawns wok-tossed with seasonal vegetables. '),
 ('70', 'chef_recommended', 'Ginger Shallot Scallops', 'Ginger infused roe-off scallops wok-tossed with fresh ginger, onion, carrot, shallots capsicum and zucchini. '),
 ('70a', 'chef_recommended', 'Spicy Teriyaki Scallops', 'Ginger garlic infused roe-off scallops drizzled with spicy Japanese Teriyaki sauce, onion and broccoli. '),
