@@ -31,7 +31,7 @@ header {
 
 main {
 	display: flex;
-	background-color: white;
+	background-color: #eee;
 }
 
 footer {
@@ -83,10 +83,10 @@ footer {
 	display: flex;
 	align-items: flex-end;
 	background-image: url("../images/pexels-photo-675951.jpeg");
-	background-size: 100%;
+	background-size: cover;
 	background-position: center, center;
 	background-repeat: no-repeat;
-	border-bottom: 1px solid darkgray;
+	border-bottom: 1px solid gray;
 }
 
 
@@ -102,7 +102,7 @@ footer {
 	height: 75vh;
 	width: 100vw;
 	background-image: url("../images/pexels-photo-675951.jpeg");
-	background-size: 100%;
+	background-size: cover;
 	background-position: center, center;
 	background-repeat: no-repeat;
 }
@@ -161,7 +161,6 @@ article.information h4 {
 
 #main-menu article h3 span:hover {
 	cursor: pointer;
-	color: gray;
 }
 
 .category-menu-fixed {
@@ -169,7 +168,6 @@ article.information h4 {
 	top:70px;
 	position: fixed;
 	z-index: 1;
-	border-bottom: 1px solid gray;
 }
 
 #category-menu ul {
@@ -179,6 +177,7 @@ article.information h4 {
 	flex-grow: 1;
 	background-color: darkgray;
 	align-items: center;
+	border-bottom: 1px solid gray;
 }
 
 #category-menu ul li {
@@ -236,6 +235,13 @@ article.information h4 {
 	height: 3em;
 	color: white;
 	font-size: 1em;
+	outline: none;
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+#users button:hover {
+	background-color: #ca3415;
+	cursor: pointer;
 }
 
 #modal {
@@ -312,7 +318,15 @@ article.information h4 {
 }
 
 #order-detail {
+	display: flex;
+	flex-direction: column;
 	padding: 1.5em;
+}
+
+#order-detail h2 {
+	text-align: center;
+	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 #bag {
@@ -321,16 +335,43 @@ article.information h4 {
 }
 
 #bag td, #bag th {
-	border: 1px solid gray;
+	padding-bottom: 0.5em;
+}
 
+#bag .total {
+	border-top: 1px solid gray;
+	text-align: right;
+	padding-top: 0.5em;
+	font-size: 1.2em;
 }
 
 #bag .remove {
 	opacity: 0.3;
+	margin-right: 0.3em;
+	font-size: 0.8em;
+	user-select: none;
 }
 
 #bag .remove:hover {
 	opacity: 1;
+	cursor: pointer;
+}
+
+#order-detail button {
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	background-color: #1c9442;
+	border-color: #177133;
+	border-radius: 0.5em;
+	padding: 0 2em;
+	margin: 1em 6em;
+	height: 3em;
+	color: white;
+	font-size: 1em;
+	outline: none;
+}
+
+#order-detail button:hover {
+	background-color: #2abe58;
 	cursor: pointer;
 }
 

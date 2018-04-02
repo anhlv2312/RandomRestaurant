@@ -23,22 +23,32 @@ class Orders extends CI_Controller {
 		echo json_encode($this->cart->contents());
 	}
 
-	public function add_item_to_bag($dish_code, $var_name='Default') {
+	public function add_item_to_bag($dish_code) {
 		$dish = $this->dishes_model->get_dish($dish_code);
 		if ($dish == NULL) {
 			show_404();
 		} else {
-			$variation = $this->dishes_model->get_variation($dish_code, $var_name);
+			$variation = $this->dishes_model->get_variation($dish_code);
 			$dish['name'] = preg_replace("/\s\(.*\)/", "", $dish['name']);
+			$dish['name'] = preg_replace("/[^A-Za-z0-9 ]/", '', $dish['name']);
 			$data = array(
-				'id'      => $dish_code,
-				'qty'     => 1,
-				'price'   => $variation['price'],
-				'name'    => $dish['name'],
-				'options' => array('variation' => $var_name)
+				'id' => $dish_code,
+				'qty' => 1,
+				'price' => $variation['price'],
+				'name' => $dish['name'],
+				'options' => array('variation' => $variation['var_name'])
 			);
 			$this->cart->insert($data);
+			echo json_encode($data);
 		}
+	}
+
+	public function remove_item_from_bag($row_id) {
+		$data = array(
+			'rowid' => $row_id,
+			'qty' => 0
+		);
+		$this->cart->update($data);
 	}
 
 }

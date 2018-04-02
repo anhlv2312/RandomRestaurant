@@ -20,8 +20,8 @@ class Dishes_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function get_variation($dish_code, $var_name='Default') {
-		$query = $this->db->get_where('variations', array('dish_code' => $dish_code, 'var_name' => $var_name));
+	public function get_variation($dish_code) {
+		$query = $this->db->get_where('variations', array('dish_code' => $dish_code));
 		return $query->row_array();
 	}
 

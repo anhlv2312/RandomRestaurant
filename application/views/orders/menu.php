@@ -36,8 +36,12 @@
 				$('#main-menu article').hide();
 				$('#' + $(this).attr('href')).show();
 			});
-			$(document).on('click', 'img', function(){
+			$(document).on('click', '#main-menu article img', function(){
 				add_item($(this).attr('dish_code'));
+			});
+
+			$(document).on('click', '#bag .remove', function(){
+				remove_item($(this).attr('id'));
 			});
 
 			function add_item(dish_code) {
@@ -45,6 +49,14 @@
 					update_bag();
 				});
 			};
+
+			function remove_item(row_id) {
+				$.when($.ajax("<?php echo base_url('orders/remove_item_from_bag/') ?>" + row_id)).then(function(data, textStatus, jqXHR ) {
+					update_bag();
+				});
+			};
+
+
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
 				$.getJSON("<?php echo base_url('reviews/get_reviews_by_dish/') ?>" + dish_code, function(data){
