@@ -5,7 +5,7 @@
 			<?php echo validation_errors() ?>
 			<label for="user_id">Your Phone Number:</label>
 			<input type="text" name="user_id" value="<?php echo set_value('user_id') ?>">
-			<label for="email">Email Address (optional):</label>
+			<label for="email">Email Address:</label>
 			<input type="text" name="email" value="<?php echo set_value('email') ?>">
 			<label>Captcha:</label>
 			<div class="g-recaptcha" data-sitekey="<?php echo $this->config->item('google_captcha_site') ?>"></div>

@@ -56,7 +56,7 @@ class Users extends CI_Controller {
 	}
 
 	public function register() {
-		$this->form_validation->set_rules('email', 'Email Address', 'trim|xss_clean|valid_email');
+		$this->form_validation->set_rules('email', 'Email Address', 'trim|required|xss_clean|valid_email');
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|is_unique[users.user_id]|min_length[8]|max_length[12]');
 
 		$user_id = $this->input->post('user_id');
