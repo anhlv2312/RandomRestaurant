@@ -1,5 +1,5 @@
 <?php
-require FCPATH . 'application/third_party/twilio-php-master/Twilio/autoload.php';
+require APPPATH . 'third_party/twilio-php-master/Twilio/autoload.php';
 use Twilio\Rest\Client;
 
 class Users extends CI_Controller {
@@ -15,7 +15,7 @@ class Users extends CI_Controller {
 	}
 
 	public function login() {
-		if (isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/view_account'); }
+		if (isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/index'); }
 
 		$this->load->view('templates/header', $this->data);
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
@@ -30,7 +30,7 @@ class Users extends CI_Controller {
 		} else {
 			if ($this->users_model->authenticate($user_id, $password)) {
 				$_SESSION['user_id'] = $user_id;
-				header("Location: " . base_url() . "users/view_account");
+				header("Location: " . base_url() . "users/index");
 			} else {
 				$this->data['status'] = "Your phone number or password is incorrect";
 				$this->load->view('users/login', $this->data);
@@ -41,10 +41,10 @@ class Users extends CI_Controller {
 
 	public function logout() {
 		session_destroy();
-		header("Location: " . base_url() . "users/view_account");
+		header("Location: " . base_url() . "users/index");
 	}
 
-	public function view_account() {
+	public function index() {
 		if (!isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/login'); }
 
 		$this->load->view('templates/header', $this->data);

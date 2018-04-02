@@ -8,20 +8,21 @@ class Pages extends CI_Controller {
 		$this->data['banner'] = TRUE;
 	}
 
-	public function view($page='home') {
-			
-		if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php')) {
-			show_404();
-		}
+	public function view($page='index') {
 
-		if ($page !== "home") {
-			$this->data['title'] = ucfirst($page);
-		} else {
+		if ($page == "index") {
 			$this->data['banner'] = FALSE;
-		}
+			$this->load->view('templates/header', $this->data);
+			$this->load->view('pages/home', $this->data);	
 
-		$this->load->view('templates/header', $this->data);
-		$this->load->view('pages/'.$page, $this->data);
+		} else {
+			$this->data['title'] = ucfirst($page);
+			$this->load->view('templates/header', $this->data);			
+			if (!file_exists(APPPATH.'views/pages/'.$page.'.php')) {
+				show_404();
+			}
+			$this->load->view('pages/'.$page, $this->data);		
+		}
 		$this->load->view('templates/footer');
 
 	}

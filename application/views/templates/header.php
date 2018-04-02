@@ -26,11 +26,11 @@
 		</h2>
 		<ul>
 			<li><a href="<?php echo base_url() ?>">Home</a></li> 
-			<li><a href="<?php echo base_url('orders/takeaway') ?>">Takeaway</a></li> 
+			<li><a href="<?php echo base_url('orders/index') ?>">Takeaway</a></li> 
 			<li><a href="<?php echo base_url('location') ?>">Location</a></li>
 			<li><a href="<?php echo base_url('contact') ?>">Contact Us</a></li>
 			<?php if (isset($_SESSION['user_id'])): ?>
-				<li><a href="<?php echo base_url('users/view_account') ?>">Your Account</a></li>
+				<li><a href="<?php echo base_url('users/index') ?>">Your Account</a></li>
 			<?php else: ?>
 				<li><a href="<?php echo base_url('users/login') ?>">Login</a></li>
 			<?php endif ?>

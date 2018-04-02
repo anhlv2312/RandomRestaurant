@@ -9,7 +9,7 @@ class Orders extends CI_Controller {
 		$this->data['banner'] = TRUE;
 	}
 
-	public function takeaway() {
+	public function index() {
 		$this->data['title'] = "Takeaway";
 		$this->data['categories'] = $this->dishes_model->get_categories();
 		$this->data['dishes'] = $this->dishes_model->get_dishes();
