@@ -15,7 +15,7 @@
 				}
 			});
 
-			$(document).on('click', '#main-menu article h3', function(){
+			$(document).on('click', '#main-menu article h3 span', function(){
 				$('#modal .header').text($(this).text());
 				load_reviews($(this).attr('id'));
 				$('#modal').prop('open', true);
@@ -50,7 +50,8 @@
 				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug): ?>
 					<li>
 						<figure style="background: url('<?php echo base_url('images/sample.jpg') ?>')" alt="<?php echo $dish->name ?>"></figure>
-						<h3 id="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></h3>
+						<img src="<?php echo base_url('images/bag.png') ?>">
+						<h3><span id="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></span></h3>
 						<p><?php echo $dish->description ?></p>
 					</li>
 				<?php endif; endforeach ?>

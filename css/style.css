@@ -68,6 +68,7 @@ footer {
 
 #nav-bar ul li a:hover {
 	color: white;
+	text-shadow: 1px 1px 2px black;
 }
 
 #banner {
@@ -116,7 +117,7 @@ article.information h4 {
 }
 
 #main-menu article figure {
-	margin-right: 0.5em;
+	margin-right: 1em;
 	float: left;
 	width: 160px;
 	height: 120px;
@@ -133,9 +134,27 @@ article.information h4 {
 	border-bottom: 0;
 }
 
-#main-menu article h3 {
+#main-menu article img {
+	float: right;
+	height: 80px;
+	opacity: 0.8;
+	margin: 1.5em 2em 1em 1em;
+}
+
+#main-menu article img:hover {
 	cursor: pointer;
-	margin: 0.5em;
+	opacity: 1;
+
+}
+
+#main-menu article h3 {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+#main-menu article h3 span:hover {
+	cursor: pointer;
+	color: gray;
 }
 
 #category-menu ul {
@@ -156,10 +175,12 @@ article.information h4 {
 #category-menu ul li:hover {
 	color: white;
 	cursor: pointer;
+	text-shadow: 1px 1px 2px black;
 }
 
 #category-menu ul li.selected {
 	color: white;
+	text-shadow: 1px 1px 2px black;
 }
 
 #location {
