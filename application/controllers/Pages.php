@@ -14,8 +14,10 @@ class Pages extends CI_Controller {
 			show_404();
 		}
 
-		if ($page != "home") {
+		if ($page !== "home") {
 			$this->data['title'] = ucfirst($page);
+		} else {
+			$this->data['banner'] = FALSE;
 		}
 
 		$this->load->view('templates/header', $this->data);

@@ -17,7 +17,7 @@ class Users extends CI_Controller {
 	public function login() {
 		if (isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/view_account'); }
 
-		$this->load->view('templates/header');
+		$this->load->view('templates/header', $this->data);
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[8]');
 
@@ -47,7 +47,7 @@ class Users extends CI_Controller {
 	public function view_account() {
 		if (!isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/login'); }
 
-		$this->load->view('templates/header');
+		$this->load->view('templates/header', $this->data);
 		$user_id = $_SESSION['user_id'];
 		$this->data['status'] = "Your account information";
 		$this->data['message'] = "Hello " . $user_id . ", have a nice day!";
@@ -62,7 +62,7 @@ class Users extends CI_Controller {
 		$user_id = $this->input->post('user_id');
 		$email = $this->input->post('email');
 
-		$this->load->view('templates/header');
+		$this->load->view('templates/header', $this->data);
 		if (!$this->form_validation->run()) {
 			$this->data['status'] = "Register new account";
 			$this->load->view('users/register', $this->data);
@@ -100,7 +100,7 @@ class Users extends CI_Controller {
 
 		$this->data['user_id'] = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 
-		$this->load->view('templates/header');
+		$this->load->view('templates/header', $this->data);
 		if (!$this->form_validation->run()) {
 			$this->data['status'] = "Change your password";
 			$this->load->view('users/change', $this->data);
@@ -127,7 +127,7 @@ class Users extends CI_Controller {
 
 		$user_id = $this->input->post('user_id');
 
-		$this->load->view('templates/header');
+		$this->load->view('templates/header', $this->data);
 		if (!$this->form_validation->run()) {
 			$this->data['status'] = "Reset your password";
 			$this->load->view('users/reset', $this->data);

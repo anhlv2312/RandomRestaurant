@@ -8,6 +8,7 @@ body {
 	font-size: 14px;
 	color: black;
 	background-color: darkgray;
+	box-sizing: border-box;
 }
 
 li {
@@ -32,29 +33,51 @@ main {
 footer {
 	display: flex;
 	justify-content: space-around;
-	padding: 2em;
+	padding: 2em 0;
 	border-top: 1px solid #ca3415;
 	background-color: darkgray;
 }
 
 #nav-bar {
 	display: flex;
-	padding: 1em;
+	width: 100%;
+	padding: 15px;
 	justify-content: space-between;
-	align-items: center;
 	background-color: lightgray;
 	border-bottom: 1px solid #ca3415;
 } 
 
+#nav-bar ul {
+	margin-right: 2em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+#nav-bar ul li {
+	font-size: 1.2em;
+	user-select: none;
+	padding: 0.5em;
+}
+
+#nav-bar ul li a {
+	display: inline-block;
+	padding: 0 1em;
+	color: black;
+}
+
+#nav-bar ul li a:hover {
+	color: white;
+}
+
 #banner {
+	height: 150px;
 	display: flex;
 	align-items: flex-end;
 	background-image: url("../images/pexels-photo-675951.jpeg");
-	height: 150px;
 	background-size: 100%;
 	background-position: center, center;
 	background-repeat: no-repeat;
-	border-top: 1px solid #ca3415;
 	border-bottom: 1px solid darkgray;
 }
 
@@ -65,6 +88,15 @@ footer {
 	text-transform: uppercase;
 	line-height: 0.8em;
 	user-select: none;
+}
+
+#home {
+	height: 75vh;
+	width: 100vw;
+	background-image: url("../images/pexels-photo-675951.jpeg");
+	background-size: 100%;
+	background-position: center, center;
+	background-repeat: no-repeat;
 }
 
 h2.logo {
@@ -106,37 +138,19 @@ article.information h4 {
 	margin: 0.5em;
 }
 
-#main-menu article p {
-
-}
-
-
-#nav-menu ul, #category-menu ul {
+#category-menu ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-}
-
-#nav-menu ul li, #category-menu ul li {
-	font-size: 1.2em;
-	user-select: none;
-	padding: 0.5em;
-}
-
-#nav-menu ul li a {
-	display: inline-block;
-	padding: 0 1em;
-	color: black;
-}
-
-#nav-menu ul li a:hover {
-	color: white;
-}
-
-#category-menu ul {
 	flex-grow: 1;
 	background-color: darkgray;
 	align-items: center;
+}
+
+#category-menu ul li {
+	font-size: 1.2em;
+	user-select: none;
+	padding: 0.5em;
 }
 
 #category-menu ul li:hover {
@@ -149,7 +163,7 @@ article.information h4 {
 }
 
 #location {
-	height: 500px;
+	height: 70vh;
 }
 
 #users {
@@ -228,11 +242,12 @@ article.information h4 {
 }
 
 #modal .footer {
+	display: flex;
+	justify-content: space-between;
 	width: 50%;
 	padding: 10px 15px;
 	background-color: black;
 	color: white;
-	text-align: right;
 }
 
 #modal .close:hover {
