@@ -99,7 +99,7 @@ footer {
 }
 
 #home {
-	height: 75vh;
+	height: 70vh;
 	width: 100vw;
 	background-image: url("../images/pexels-photo-675951.jpeg");
 	background-size: cover;
@@ -198,7 +198,7 @@ article.information h4 {
 }
 
 #location {
-	height: 70vh;
+	height: 65vh;
 }
 
 #users {
@@ -330,7 +330,7 @@ article.information h4 {
 }
 
 #bag {
-	width: 26vw;
+	width: 25vw;
 	border-collapse: collapse;
 }
 
@@ -362,12 +362,12 @@ article.information h4 {
 	background-color: #1c9442;
 	border-color: #177133;
 	border-radius: 0.5em;
-	padding: 0 2em;
-	margin: 1em 6em;
-	height: 3em;
+	padding: 1em 1em;
+	margin-top: 2em;
 	color: white;
 	font-size: 1em;
 	outline: none;
+	min-width: 15em;
 }
 
 #order-detail button:hover {
