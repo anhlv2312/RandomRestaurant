@@ -47,10 +47,10 @@
 			<?php foreach ($categories as $category): ?>
 			<article id="<?php echo $category->cat_slug ?>">
 				<ul>
-				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug):?>
+				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug): ?>
 					<li>
 						<figure style="background: url('<?php echo base_url('images/sample.jpg') ?>')" alt="<?php echo $dish->name ?>"></figure>
-						<h3 id="<?php echo $dish->dish_code ?>"><?php echo $dish->dish_code . '. ' . $dish->name ?></h3>
+						<h3 id="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></h3>
 						<p><?php echo $dish->description ?></p>
 					</li>
 				<?php endif; endforeach ?>
