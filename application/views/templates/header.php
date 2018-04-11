@@ -41,6 +41,6 @@
 	 		<section id="banner">
 				<h1><?php if (isset($title)): echo $title; endif ?></h1>
 			</section>
-		<? endif ?>
+		<?php endif ?>
 	</header>
 	<main>
