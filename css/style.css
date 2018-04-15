@@ -344,6 +344,7 @@ article.information h4 {
 	position: fixed;
 	top: 70px;
 	left: 70vw;
+	height: 80vh;
 }
 
 #order-detail {

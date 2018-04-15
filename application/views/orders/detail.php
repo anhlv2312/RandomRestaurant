@@ -3,12 +3,12 @@
 				update_bag();
 			});
 
-			function allowDrop(event) {
-				event.preventDefault();
-			}
-
 			function drag(event) {
 				event.dataTransfer.setData("id", event.target.id);
+			}
+
+			function allowDrop(event) {
+				event.preventDefault();
 			}
 
 			function drop(event) {

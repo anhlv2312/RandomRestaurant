@@ -64,6 +64,7 @@
 					});
 				});
 			};
+
 		</script>
 		<section id="main-menu">
 			<nav id="category-menu">
