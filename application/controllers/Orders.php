@@ -20,7 +20,11 @@ class Orders extends CI_Controller {
 	}
 
 	public function get_items_from_bag() {
-		echo json_encode($this->cart->contents());
+		$items = $this->cart->contents();
+		usort($items, function($a, $b) { 
+			return $a['id'] > $b['id'] ? 1 : -1;
+		});
+		echo json_encode($items);
 	}
 
 	public function add_item_to_bag($dish_code) {
