@@ -24,10 +24,9 @@
 					$('#modal').prop('open', false);
 				}
 			});
-
-			$(document).on('click', '#main-menu article h3 span', function(){
+			$(document).on('click', '#main-menu article h3', function(){
 				$('#modal .header').text($(this).text());
-				load_reviews($(this).attr('id'));
+				load_reviews($(this).attr('dish_code'));
 				$('#modal').prop('open', true);
 			});
 			$(document).on('click', '#category-menu li', function(){
@@ -36,13 +35,14 @@
 				$('#main-menu article').hide();
 				$('#' + $(this).attr('href')).show();
 			});
-			$(document).on('click', '#main-menu article img', function(){
+			$(document).on('click', '#main-menu article button', function(){
 				add_item($(this).attr('dish_code'));
 			});
 
 			$(document).on('click', '#bag .remove', function(){
-				remove_item($(this).attr('id'));
+				remove_item($(this).attr('row_id'));
 			});
+
 
 			function add_item(dish_code) {
 				$.when($.ajax("<?php echo base_url('orders/add_item_to_bag/') ?>" + dish_code)).then(function(data, textStatus, jqXHR ) {
@@ -55,8 +55,6 @@
 					update_bag();
 				});
 			};
-
-
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
 				$.getJSON("<?php echo base_url('reviews/get_reviews_by_dish/') ?>" + dish_code, function(data){
@@ -80,9 +78,11 @@
 				<ul>
 				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug): ?>
 					<li>
-						<figure style="background: url('<?php echo base_url('images/sample.jpg') ?>')" alt="<?php echo $dish->name ?>"></figure>
-						<img dish_code="<?php echo $dish->dish_code ?>" src="<?php echo base_url('images/bag.png') ?>">
-						<h3><span id="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></span></h3>
+						<figure id="<?php echo $dish->dish_code ?>" draggable="true" ondragstart="drag(event)" style="background-image: url('<?php echo base_url('images/sample.jpg') ?>'">
+							<p>Drag me to your bag please!</p>
+						</figure>
+						<button dish_code="<?php echo $dish->dish_code ?>"></button>
+						<h3 dish_code="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></h3>
 						<p><?php echo $dish->description ?></p>
 					</li>
 				<?php endif; endforeach ?>
