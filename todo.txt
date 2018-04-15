@@ -6,6 +6,8 @@ TODO:
 	Dish filter
 	Shop cart
 
+	Check modal on iphone 
+
 DONE:
 	Send password via Email
 	Forgot Password

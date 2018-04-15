@@ -1,4 +1,13 @@
-
+		<section id="modal">
+			<div class="body">
+				<div class="header"></div>
+				<div class="main"></div>
+				<div class="footer">
+					<span>Write Your Review</span>
+					<span class="close">Close</span>
+				</div>
+			</div>
+		</section>
 		<script type="text/javascript">
 			$(window).on("scroll", function(e) {
 				if ($(this).scrollTop() > 150) {
@@ -16,18 +25,18 @@
 				$('#main-menu article:first-of-type').show();
 			});
 			$("#modal .close").on('click', function(){
-				$('#modal').prop('open', false);
+				$('#modal').removeClass('visible');
 			});
 
 			$("#modal .body").on('click', function(event){
 				if (event.target == this){
-					$('#modal').prop('open', false);
+					$('#modal').removeClass('visible');
 				}
 			});
 			$(document).on('click', '#main-menu article h3', function(){
 				$('#modal .header').text($(this).text());
 				load_reviews($(this).attr('dish_code'));
-				$('#modal').prop('open', true);
+				$('#modal').addClass('visible');
 			});
 			$(document).on('click', '#category-menu li', function(){
 				$('#category-menu li').removeClass('selected')
@@ -66,6 +75,7 @@
 			};
 
 		</script>
+
 		<section id="main-menu">
 			<nav id="category-menu">
 				<ul>

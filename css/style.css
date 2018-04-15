@@ -274,13 +274,20 @@ article.information h4 {
 }
 
 #modal {
+	visibility: hidden;
 	position: fixed;
-	z-index: 1;
+	top: 0;
+	left: 0;
+	z-index: 9;
 	border: 0px;
 	width: 100vw;
 	height: 100vh;
 	overflow: auto;
 	background-color: rgba(0,0,0,0.5);
+}
+
+#modal.visible {
+	visibility: visible;
 }
 
 #modal .body {
@@ -289,8 +296,6 @@ article.information h4 {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	animation-name: modal-animate;
-	animation-duration: 0.5s
 }
 
 #modal .header {
@@ -325,11 +330,6 @@ article.information h4 {
 	color: #cc661a;
 	user-select: none;
 	cursor: pointer;
-}
-
-@keyframes modal-animate {
-	from {opacity:0}
-	to {opacity:1}
 }
 
 #modal .review-content {
