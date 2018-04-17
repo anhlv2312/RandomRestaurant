@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2018 at 02:52 PM
+-- Generation Time: Apr 17, 2018 at 12:28 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.14
 
@@ -209,6 +209,7 @@ CREATE TABLE `items` (
   `item_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `var_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `price` float NOT NULL,
   `quantity` tinyint(4) NOT NULL,
   `note` text COLLATE utf8_unicode_ci NOT NULL
@@ -682,7 +683,8 @@ ALTER TABLE `dishes`
 ALTER TABLE `items`
   ADD PRIMARY KEY (`item_id`),
   ADD KEY `FK_ITEM_DISK_CODE` (`dish_code`),
-  ADD KEY `FK_ITEM_ORDER_ID` (`order_id`);
+  ADD KEY `FK_ITEM_ORDER_ID` (`order_id`),
+  ADD KEY `FK_ITEM_VAR_NAME` (`var_name`);
 
 --
 -- Indexes for table `orders`
@@ -712,6 +714,20 @@ ALTER TABLE `variations`
   ADD KEY `FK_VARIATION_DISH_CODE` (`dish_code`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Constraints for dumped tables
 --
 
@@ -726,7 +742,8 @@ ALTER TABLE `dishes`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `FK_ITEM_DISK_CODE` FOREIGN KEY (`dish_code`) REFERENCES `dishes` (`dish_code`),
-  ADD CONSTRAINT `FK_ITEM_ORDER_ID` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`);
+  ADD CONSTRAINT `FK_ITEM_ORDER_ID` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `FK_ITEM_VAR_NAME` FOREIGN KEY (`var_name`) REFERENCES `variations` (`var_name`);
 
 --
 -- Constraints for table `orders`

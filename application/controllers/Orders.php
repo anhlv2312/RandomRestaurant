@@ -58,7 +58,6 @@ class Orders extends CI_Controller {
 	public function place_order() {
 		$items = $this->cart->contents();
 		$this->orders_model->insert_order($items);
-		echo json_encode($items);
 	}
 
 }
