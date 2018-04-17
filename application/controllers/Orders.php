@@ -5,7 +5,7 @@ class Orders extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('session','cart'));
 		$this->load->helper('url');
-		$this->load->model('dishes_model');
+		$this->load->model(array('dishes_model','orders_model'));
 		$this->data['banner'] = TRUE;
 	}
 
@@ -27,12 +27,12 @@ class Orders extends CI_Controller {
 		echo json_encode($items);
 	}
 
-	public function add_item_to_bag($dish_code) {
+	public function add_item_to_bag($dish_code, $var_name="Default") {
 		$dish = $this->dishes_model->get_dish($dish_code);
 		if ($dish == NULL) {
 			show_404();
 		} else {
-			$variation = $this->dishes_model->get_variation($dish_code);
+			$variation = $this->dishes_model->get_variation($dish_code, $var_name);
 			$dish['name'] = preg_replace("/\s\(.*\)/", "", $dish['name']);
 			$dish['name'] = preg_replace("/[^A-Za-z0-9 ]/", '', $dish['name']);
 			$data = array(
@@ -53,6 +53,12 @@ class Orders extends CI_Controller {
 			'qty' => 0
 		);
 		$this->cart->update($data);
+	}
+
+	public function place_order() {
+		$items = $this->cart->contents();
+		$this->orders_model->insert_order($items);
+		echo json_encode($items);
 	}
 
 }
