@@ -6,25 +6,30 @@ class Orders_model extends CI_Model {
 	}
 
 	public function insert_order($user_id, $items, $notes="") {
-		$order = array(
-			'user_id' => $user_id,
-			'order_time' => date("Y-m-d H:i:s"),
-			'notes' => $notes
-		);
-		$this->db->insert('orders', $order);
-		$order_id = $this->db->insert_id();
-		foreach ($items as $key => $value) {
-			$item = array(
-				'order_id' => $order_id,
-				'dish_code' => $value['id'],
-				'var_name' => $value['options']['variation'],
-				'price' => $value['price'],
-				'quantity' => $value['qty'],
-				'notes' => $value['options']['notes']
+		try {
+			$order = array(
+				'user_id' => $user_id,
+				'order_time' => date("Y-m-d H:i:s"),
+				'notes' => $notes
 			);
-			$this->db->insert('items', $item);
+			$this->db->insert('orders', $order);
+			$order_id = $this->db->insert_id();
+			foreach ($items as $key => $value) {
+				$item = array(
+					'order_id' => $order_id,
+					'dish_code' => $value['id'],
+					'var_name' => $value['options']['variation'],
+					'price' => $value['price'],
+					'quantity' => $value['qty'],
+					'notes' => $value['options']['notes']
+				);
+				$this->db->insert('items', $item);
+			}
+			return $order_id;
+		} catch (Exception $e) {
+			return 0;
 		}
-		return $order_id;
+
 	}
 
 	public function get_order($order_id) {

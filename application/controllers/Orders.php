@@ -56,13 +56,15 @@ class Orders extends CI_Controller {
 	}
 
 	public function place_order() {
-		$items = $this->cart->contents();
-		$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items);
-		$temp = $this->orders_model->get_order($order_id);
-
-
-		// $this->cart->destroy();
-		echo json_encode($temp);
+		if (isset($_SESSION['user_id'])) {
+			$items = $this->cart->contents();
+			if (sizeof($items) > 0) {
+				$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items);
+				$this->cart->destroy();
+				$temp = $this->orders_model->get_order($order_id);
+				echo json_encode($temp);
+			}
+		}
 	}
 
 }
