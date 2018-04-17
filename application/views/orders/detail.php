@@ -32,7 +32,9 @@
 				});
 			};
 			function place_order() {
-				alert('placeing order');
+				$.getJSON("<?php echo base_url('orders/place_order') ?>", function(data){
+					update_bag();
+				});
 			};
 		</script>
 		<aside id="order-detail" ondrop="drop(event)" ondragover="allowDrop(event)">

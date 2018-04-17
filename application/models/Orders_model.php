@@ -5,12 +5,11 @@ class Orders_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insert_order($user_id, $items, $notes="") {
+	public function insert_order($user_id, $items) {
 		try {
 			$order = array(
 				'user_id' => $user_id,
 				'order_time' => date("Y-m-d H:i:s"),
-				'notes' => $notes
 			);
 			$this->db->insert('orders', $order);
 			$order_id = $this->db->insert_id();
@@ -21,7 +20,6 @@ class Orders_model extends CI_Model {
 					'var_name' => $value['options']['variation'],
 					'price' => $value['price'],
 					'quantity' => $value['qty'],
-					'notes' => $value['options']['notes']
 				);
 				$this->db->insert('items', $item);
 			}
