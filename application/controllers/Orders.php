@@ -27,7 +27,7 @@ class Orders extends CI_Controller {
 		echo json_encode($items);
 	}
 
-	public function add_item_to_bag($dish_code, $var_name="Default") {
+	public function add_item_to_bag($dish_code, $var_name="Default", $notes="") {
 		$dish = $this->dishes_model->get_dish($dish_code);
 		if ($dish == NULL) {
 			show_404();
@@ -35,29 +35,34 @@ class Orders extends CI_Controller {
 			$variation = $this->dishes_model->get_variation($dish_code, $var_name);
 			$dish['name'] = preg_replace("/\s\(.*\)/", "", $dish['name']);
 			$dish['name'] = preg_replace("/[^A-Za-z0-9 ]/", '', $dish['name']);
-			$data = array(
+			$item = array(
 				'id' => $dish_code,
 				'qty' => 1,
 				'price' => $variation['price'],
 				'name' => $dish['name'],
-				'options' => array('variation' => $variation['var_name'])
+				'options' => array('variation' => $variation['var_name'], 'notes' => $notes)
 			);
-			$this->cart->insert($data);
-			echo json_encode($data);
+			$this->cart->insert($item);
+			echo json_encode($item);
 		}
 	}
 
 	public function remove_item_from_bag($row_id) {
-		$data = array(
+		$item = array(
 			'rowid' => $row_id,
 			'qty' => 0
 		);
-		$this->cart->update($data);
+		$this->cart->update($item);
 	}
 
 	public function place_order() {
 		$items = $this->cart->contents();
-		$this->orders_model->insert_order($items);
+		$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items);
+		$temp = $this->orders_model->get_order($order_id);
+
+
+		// $this->cart->destroy();
+		echo json_encode($temp);
 	}
 
 }

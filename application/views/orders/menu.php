@@ -80,21 +80,21 @@
 			<nav id="category-menu">
 				<ul>
 					<?php foreach ($categories as $category): ?>
-						<li href="<?php echo $category->cat_slug ?>"><?php echo $category->name ?></li>
+						<li href="<?php echo $category['cat_slug'] ?>"><?php echo $category['name'] ?></li>
 					<?php endforeach; ?>
 				</ul>
 			</nav>
 			<?php foreach ($categories as $category): ?>
-			<article id="<?php echo $category->cat_slug ?>">
+			<article id="<?php echo $category['cat_slug'] ?>">
 				<ul>
-				<?php foreach ($dishes as $dish): if ($dish->cat_slug == $category->cat_slug): ?>
+				<?php foreach ($dishes as $dish): if ($dish['cat_slug'] == $category['cat_slug']): ?>
 					<li>
-						<figure id="<?php echo $dish->dish_code ?>" draggable="true" ondragstart="drag(event)" style="background-image: url('<?php echo base_url('images/sample.jpg') ?>'">
+						<figure id="<?php echo $dish['dish_code'] ?>" draggable="true" ondragstart="drag(event)" style="background-image: url('<?php echo base_url('images/sample.jpg') ?>'">
 							<p>Drag me to your bag please!</p>
 						</figure>
-						<button dish_code="<?php echo $dish->dish_code ?>"></button>
-						<h3 dish_code="<?php echo $dish->dish_code ?>"><?php echo ltrim($dish->dish_code, '0') . '. ' . $dish->name ?></h3>
-						<p><?php echo $dish->description ?></p>
+						<button dish_code="<?php echo $dish['dish_code'] ?>"></button>
+						<h3 dish_code="<?php echo $dish['dish_code'] ?>"><?php echo ltrim($dish['dish_code'], '0') . '. ' . $dish['name'] ?></h3>
+						<p><?php echo $dish['description'] ?></p>
 					</li>
 				<?php endif; endforeach ?>
 				</ul>
