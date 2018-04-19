@@ -8,7 +8,7 @@ body {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	font-size: 14px;
 	color: black;
-	background-color: darkgray;
+	background-color: #eee;
 }
 
 li {
@@ -31,7 +31,6 @@ header {
 
 main {
 	display: flex;
-	background-color: #eee;
 }
 
 footer {
@@ -192,10 +191,9 @@ article.information h4 {
 	cursor: pointer;
 }
 
-.category-menu-fixed {
-	width: 70vw;
+#category-menu {
+	position: sticky;
 	top:70px;
-	position: fixed;
 	z-index: 1;
 }
 
@@ -340,14 +338,11 @@ article.information h4 {
 	margin-bottom: 0;
 } 
 
-.order-detail-fixed {
-	position: fixed;
-	top: 70px;
-	left: 70vw;
-	height: 80vh;
-}
-
 #order-detail {
+	z-index: 1;
+	background-color: #eee;
+	position: sticky;
+	top: 70px;
 	display: flex;
 	flex-direction: column;
 	padding: 1.5em;

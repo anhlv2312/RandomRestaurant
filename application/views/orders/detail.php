@@ -37,8 +37,10 @@
 				});
 			};
 		</script>
-		<aside id="order-detail" ondrop="drop(event)" ondragover="allowDrop(event)">
+		<aside ondrop="drop(event)" ondragover="allowDrop(event)">
+			<section id="order-detail">
 			<h2>Order Detail</h2>
 			<table id="bag"></table>
 			<button type="button" onclick="place_order();">Place Your Order</button>
+			</section>
 		</aside>

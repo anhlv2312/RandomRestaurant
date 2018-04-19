@@ -9,16 +9,6 @@
 			</div>
 		</section>
 		<script type="text/javascript">
-			$(window).on("scroll", function(e) {
-				if ($(this).scrollTop() > 150) {
-					$('#category-menu').addClass("category-menu-fixed");
-					$('#order-detail').addClass("order-detail-fixed");
-				} else {
-					$('#category-menu').removeClass("category-menu-fixed");
-					$('#order-detail').removeClass("order-detail-fixed");
-				}
-
-			});
 			$(document).ready(function(){
 				$("#category-menu li:first-of-type").addClass("selected");
 				$('#main-menu article').hide();
@@ -73,7 +63,6 @@
 					});
 				});
 			};
-
 		</script>
 
 		<section id="main-menu">
