@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2018 at 12:28 AM
+-- Generation Time: Apr 22, 2018 at 02:04 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.14
 
@@ -212,8 +212,31 @@ CREATE TABLE `items` (
   `var_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `price` float NOT NULL,
   `quantity` tinyint(4) NOT NULL,
-  `note` text COLLATE utf8_unicode_ci NOT NULL
+  `notes` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `quantity`, `notes`) VALUES
+(54, 62, '01', 'Default', 5, 1, ''),
+(55, 62, '01a', 'Default', 5, 1, ''),
+(56, 62, '02', 'Default', 6, 1, ''),
+(57, 63, '01', 'Default', 5, 1, ''),
+(58, 63, '01a', 'Default', 5, 1, ''),
+(59, 64, '01', 'Default', 5, 1, ''),
+(60, 64, '01a', 'Default', 5, 1, ''),
+(61, 64, '02', 'Default', 6, 1, ''),
+(62, 65, '01', 'Default', 5, 1, ''),
+(63, 65, '01a', 'Default', 5, 1, ''),
+(64, 66, '02', 'Default', 6, 1, ''),
+(65, 66, '03', 'Default', 7, 1, ''),
+(66, 66, '04', 'Default', 5, 1, ''),
+(67, 67, '01a', 'Default', 5, 1, ''),
+(68, 68, '01a', 'Default', 5, 1, ''),
+(69, 68, '01', 'Default', 5, 1, ''),
+(70, 68, '02', 'Default', 6, 1, '');
 
 -- --------------------------------------------------------
 
@@ -225,9 +248,23 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `user_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `order_time` datetime NOT NULL,
+  `expected_time` datetime NOT NULL,
   `pickup_time` datetime NOT NULL,
   `notes` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pickup_time`, `notes`) VALUES
+(62, '0450087209', '2018-04-22 01:10:28', '2018-04-22 01:25:28', '0000-00-00 00:00:00', ''),
+(63, '0450087209', '2018-04-22 01:15:39', '2018-04-22 01:30:39', '0000-00-00 00:00:00', ''),
+(64, '0450087209', '2018-04-22 01:20:03', '2018-04-22 01:35:03', '0000-00-00 00:00:00', ''),
+(65, '0450087209', '2018-04-22 01:36:57', '2018-04-22 01:51:57', '0000-00-00 00:00:00', ''),
+(66, '0450087209', '2018-04-22 01:37:21', '2018-04-22 01:52:21', '0000-00-00 00:00:00', ''),
+(67, '0450087209', '2018-04-22 01:39:49', '2018-04-22 01:54:49', '0000-00-00 00:00:00', ''),
+(68, '0450087209', '2018-04-22 01:44:11', '2018-04-22 01:59:11', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -721,12 +758,12 @@ ALTER TABLE `variations`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- Constraints for dumped tables
 --
