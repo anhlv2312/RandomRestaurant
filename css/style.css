@@ -363,8 +363,11 @@ aside #users {
 
 #order-detail h2 {
 	text-align: center;
-	padding-bottom: 0.5em;
 	margin-bottom: 0.5em;
+}
+
+#active-orders {
+	margin-bottom: 1.5em;
 }
 
 #bag {

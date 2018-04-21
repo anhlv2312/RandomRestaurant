@@ -36,8 +36,8 @@ class Orders_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function get_order($order_id) {
-		$query = $this->db->get_where('orders', array('order_id' => $order_id));
+	public function get_order($user_id, $order_id) {
+		$query = $this->db->get_where('orders', array('user_id' => $user_id, 'order_id' => $order_id));
 		$result = $query->row_array();
 		$items = $this->get_order_items($order_id);
 		$total = 0;

@@ -1,6 +1,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				update_bag();
+				update_active_orders();
 			});
 
 			function drag(event) {
@@ -15,6 +16,21 @@
 				var data = event.dataTransfer.getData("id");
 				add_item(data);
 				event.preventDefault();
+			}
+			function update_active_orders() {
+				$.getJSON("<?php echo base_url('orders/get_orders') ?>", function(data){
+					$('#active-orders').append('<td>ID</td><td>Order Time</td><td>Expected Time</td></tr>');
+					$.each(data, function(i, item){
+						total += item.subtotal;
+						$row = "";
+						$row += '<tr class="row">';
+						$row += '<td>' + item.order_id + '</td>';
+						$row += '<td>' + item.order_time + '</td>';
+						$row += '<td>' + item.expected_time + '</td>';
+						$row += '</tr>';
+						$('#active-orders').append($row);
+					});
+				});				
 			}
 			function update_bag() {
 				$('#bag').empty();
@@ -42,6 +58,8 @@
 						if ($(data).length > 0) {
 							$('#bag').empty();
 							$('#bag').append('<tr class="total"><td colspan="3">Total Amount: <strong>$0.00</strong></td></tr>');
+							$('#active-orders').empty();
+							update_active_orders()
 						} else {
 							alert('Unable to place your order!')
 						}
@@ -52,6 +70,8 @@
 		<aside ondrop="drop(event)" ondragover="allowDrop(event)">
 			<?php if (isset($_SESSION['user_id'])): ?>
 	 			<section id="order-detail">
+					<h2>Active Orders</h2>
+					<table id="active-orders"></table>
 					<h2>Order Detail</h2>
 					<table id="bag"></table>
 					<button onclick="place_order()">Place Your Order</button>
@@ -66,7 +86,12 @@
 						<label for="password">Password:</label>
 						<input type="password" name="password" value="<?php echo set_value('password') ?>">
 						<button type="submit">Login</button>
-
+						<label>Other options:</label>
+						<ul>
+							<li><a href="<?php echo base_url('users/register') ?>">Register new account</a></li>
+							<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>
+							<li><a href="<?php echo base_url('users/reset_password') ?>">Reset your password</a></li>
+						</ul>
 					</form>
 				</section>
 			<?php endif ?>

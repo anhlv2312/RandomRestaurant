@@ -14,6 +14,5 @@
 				<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>
 				<li><a href="<?php echo base_url('users/reset_password') ?>">Reset your password</a></li>
 			</ul>
-			</h4></label>
 		</form>
 	</section>

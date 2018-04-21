@@ -60,10 +60,19 @@ class Orders extends CI_Controller {
 		if (isset($_SESSION['user_id']) && sizeof($items) > 0) {
 			$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items, $this->config->item('bussiness_pickup_waiting_time'));
 			$this->cart->destroy();
-			$result = $this->orders_model->get_order($order_id);
+			$result = $this->orders_model->get_order($_SESSION['user_id'], $order_id);
 			echo json_encode($result);
 		} else {
 			echo "[]";
+		}
+	}
+
+	public function get_order($order_id) {
+		if (isset($_SESSION['user_id'])) {
+			$result = $this->orders_model->get_order($_SESSION['user_id'], $order_id);
+			echo json_encode($result);
+		} else {
+			echo "{}";
 		}
 	}
 
