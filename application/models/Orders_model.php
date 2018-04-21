@@ -5,11 +5,12 @@ class Orders_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insert_order($user_id, $items) {
+	public function insert_order($user_id, $items, $time) {
 		try {
 			$order = array(
 				'user_id' => $user_id,
 				'order_time' => date("Y-m-d H:i:s"),
+				'expected_time' => date("Y-m-d H:i:s", strtotime($time)),
 			);
 			$this->db->insert('orders', $order);
 			$order_id = $this->db->insert_id();
@@ -28,6 +29,11 @@ class Orders_model extends CI_Model {
 			return 0;
 		}
 
+	}
+
+	public function get_orders($user_id) {
+		$query = $this->db->get_where('orders', array('user_id' => $user_id));
+		return $query->result_array();
 	}
 
 	public function get_order($order_id) {
