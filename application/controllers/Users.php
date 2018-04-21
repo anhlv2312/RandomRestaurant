@@ -15,7 +15,14 @@ class Users extends CI_Controller {
 	}
 
 	public function login() {
-		if (isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/index'); }
+
+		if (isset($_GET['referer'])) {
+			$this->data['referer'] = $_GET['referer'];
+		} else {
+			$this->data['referer'] = "users/index";
+		}
+
+		if (isset($_SESSION['user_id'])) { redirect($this->data['referer']); }
 
 		$this->load->view('templates/header', $this->data);
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
@@ -30,7 +37,7 @@ class Users extends CI_Controller {
 		} else {
 			if ($this->users_model->authenticate($user_id, $password)) {
 				$_SESSION['user_id'] = $user_id;
-				header("Location: " . base_url() . "users/index");
+				redirect($this->data['referer']);
 			} else {
 				$this->data['status'] = "Your phone number or password is incorrect";
 				$this->load->view('users/login', $this->data);
@@ -41,11 +48,11 @@ class Users extends CI_Controller {
 
 	public function logout() {
 		session_destroy();
-		header("Location: " . base_url() . "users/index");
+		redirect('users/index');
 	}
 
 	public function index() {
-		if (!isset($_SESSION['user_id'])) { header("Location: " . base_url() . 'users/login'); }
+		if (!isset($_SESSION['user_id'])) { redirect('users/login'); }
 
 		$this->load->view('templates/header', $this->data);
 		$user_id = $_SESSION['user_id'];

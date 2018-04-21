@@ -34,6 +34,10 @@ main {
 	background-color: #eee;
 }
 
+aside {
+	width: 30vw;
+}
+
 footer {
 	display: flex;
 	justify-content: space-around;
@@ -51,7 +55,7 @@ footer {
 	justify-content: space-between;
 	background-color: lightgray;
 	border-bottom: 1px solid #ca3415;
-	z-index: 1;
+	z-index: 9;
 } 
 
 #nav-bar ul {
@@ -229,9 +233,17 @@ article.information h4 {
 	height: 65vh;
 }
 
+aside #users {
+	z-index: 1;
+	background-color: #eee;
+	position: sticky;
+	top: 70px;
+	padding: 4em;
+}
+
 #users {
 	padding: 2em;
-	width: 100vw;
+	width: 100%;
 }
 
 #users form {
@@ -259,7 +271,7 @@ article.information h4 {
 	border-color: #ca3415;
 	border-radius: 0.5em;
 	padding: 0 2em;
-	margin: 2em;
+	margin-top: 2em;
 	height: 3em;
 	color: white;
 	font-size: 1em;
@@ -356,17 +368,19 @@ article.information h4 {
 }
 
 #bag {
-	width: 30vw;
 	margin-right: 1em;
 	border-collapse: collapse;
 }
 
-#bag td, #bag th {
+#bag tr.row td {
 	padding-bottom: 0.5em;
 }
 
-#bag .total {
+#bag tr.total {
 	border-top: 1px solid gray;
+}
+
+#bag tr.total td {
 	text-align: right;
 	padding-top: 0.5em;
 	font-size: 1.2em;
@@ -387,7 +401,7 @@ article.information h4 {
 #order-detail button {
 	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 	background-color: #1c9442;
-	border-color: #177133;
+	border: 1px solid #177133;
 	border-radius: 0.5em;
 	padding: 1em 3em;
 	margin-top: 2em;
@@ -395,6 +409,7 @@ article.information h4 {
 	font-size: 1em;
 	outline: none;
 	align-self: center;
+	text-shadow: -1px 0 1px #177133, 0 1px 1px #177133, 1px 0 1px #177133, 0 -1px 1px #177133;
 }
 
 #order-detail button:hover {

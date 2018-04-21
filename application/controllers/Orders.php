@@ -4,7 +4,7 @@ class Orders extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library(array('session','cart'));
-		$this->load->helper('url');
+		$this->load->helper(array('url','form'));
 		$this->load->model(array('dishes_model','orders_model'));
 		$this->data['banner'] = TRUE;
 	}
@@ -56,14 +56,14 @@ class Orders extends CI_Controller {
 	}
 
 	public function place_order() {
-		if (isset($_SESSION['user_id'])) {
-			$items = $this->cart->contents();
-			if (sizeof($items) > 0) {
-				$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items);
-				$this->cart->destroy();
-				$temp = $this->orders_model->get_order($order_id);
-				echo json_encode($temp);
-			}
+		$items = $this->cart->contents();
+		if (isset($_SESSION['user_id']) && sizeof($items) > 0) {
+			$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items);
+			$this->cart->destroy();
+			$temp = $this->orders_model->get_order($order_id);
+			echo json_encode($temp);
+		} else {
+			echo "{}";
 		}
 	}
 
