@@ -23,7 +23,7 @@
 					$('#modal').removeClass('visible');
 				}
 			});
-			$(document).on('click', '#main-menu article h3', function(){
+			$(document).on('click', '#main-menu article h3 span', function(){
 				$('#modal .header').text($(this).text());
 				load_reviews($(this).attr('dish_code'));
 				$('#modal').addClass('visible');
@@ -82,7 +82,7 @@
 							<p>Drag me to your bag please!</p>
 						</figure>
 						<button dish_code="<?php echo $dish['dish_code'] ?>"></button>
-						<h3 dish_code="<?php echo $dish['dish_code'] ?>"><?php echo ltrim($dish['dish_code'], '0') . '. ' . $dish['name'] ?></h3>
+						<h3><span dish_code="<?php echo $dish['dish_code'] ?>"><?php echo ltrim($dish['dish_code'], '0') . '. ' . $dish['name'] ?><span></h3>
 						<p><?php echo $dish['description'] ?></p>
 					</li>
 				<?php endif; endforeach ?>

@@ -192,7 +192,8 @@ article.information h4 {
 	margin-bottom: 0.5em;
 }
 
-#main-menu article h3:hover {
+#main-menu article span:hover {
+	text-decoration: underline;
 	cursor: pointer;
 }
 
