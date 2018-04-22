@@ -8,7 +8,7 @@ class Users extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('session', 'email', 'form_validation'));
 		$this->load->helper(array('url', 'email', 'form', 'string', 'security'));
-		$this->load->model('users_model');
+		$this->load->model(array('users_model', 'orders_model'));
 		$this->data['banner'] = FALSE;
 		$this->form_validation->set_message('user_exists', 'This {field} does not exists');
 		$this->form_validation->set_message('is_unique', 'This {field} already exists.');
@@ -56,9 +56,10 @@ class Users extends CI_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$user_id = $_SESSION['user_id'];
-		$this->data['status'] = "Your account information";
-		$this->data['message'] = "Hello " . $user_id . ", have a nice day!";
-		$this->load->view('users/account', $this->data);
+		$this->data['status'] = "Hello " . $user_id . ", have a nice day!";;
+		$this->data['message'] = "Your order history:";
+		$this->data['orders'] = $this->orders_model->get_orders($_SESSION['user_id']);
+		$this->load->view('users/history', $this->data);
 		$this->load->view('templates/footer');
 	}
 

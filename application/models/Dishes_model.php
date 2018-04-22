@@ -6,13 +6,13 @@ class Dishes_model extends CI_Model {
 	}
 
 	public function get_categories() {
-		$this->db->order_by("priority");
+		$this->db->order_by('priority', 'asc');
 		$query = $this->db->get('categories');
 		return $query->result_array();
 	}
 
 	public function get_dishes() {
-		$this->db->order_by("dish_code");
+		$this->db->order_by('dish_code', 'asc');
 		$query = $this->db->get('dishes');
 		return $query->result_array();
 	}

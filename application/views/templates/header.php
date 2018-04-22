@@ -20,7 +20,7 @@
 			<li><a href="<?php echo base_url('orders/index') ?>">Takeaway</a></li> 
 			<li><a href="<?php echo base_url('location') ?>">Location</a></li>
 			<li><a href="<?php echo base_url('contact') ?>">Contact Us</a></li>
-			<li><a href="<?php echo base_url('users/index') ?>">Your Account</a></li>
+			<li><a href="<?php echo base_url('users/index') ?>">Your Orders</a></li>
 		</ul>
 	</nav>
 	<header>

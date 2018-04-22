@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 02:04 AM
+-- Generation Time: Apr 22, 2018 at 11:51 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.14
 
@@ -66,30 +66,30 @@ CREATE TABLE `dishes` (
 --
 
 INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
-('01', 'appertizers', 'Vegetarian Spring Rolls (3 pcs)', 'Taro slices & vegetables wrapped in a light pastry, deep-fried and served with sweet and sour sauce'),
-('01a', 'appertizers', 'Vegetarian Curry Puffs (3 pcs)', 'Sweet potatoes, onions & curry spices wrapped in a pastry, deep fried and served with a lime sweet chilli sauce'),
-('02', 'appertizers', 'Homemade Spring Rolls (3 pcs)', 'Minced pork and vegetables wrapped in a light pastry. deep-fried and served with a sweet and sour sauce. '),
+('01', 'appertizers', 'Vegetarian Spring Rolls', 'Taro slices & vegetables wrapped in a light pastry, deep-fried and served with sweet and sour sauce'),
+('01a', 'appertizers', 'Vegetarian Curry Puff', 'Sweet potatoes, onions & curry spices wrapped in a pastry, deep fried and served with a lime sweet chilli sauce'),
+('02', 'appertizers', 'Homemade Spring Rolls', 'Minced pork and vegetables wrapped in a light pastry. deep-fried and served with a sweet and sour sauce. '),
 ('03', 'appertizers', 'Honey Sesame Chicken', 'Tempura battered chicken breast pieces glazed with honey & roasted sesame seeds on crispy glass noodles'),
 ('04', 'appertizers', 'Cha Tofu', 'Freshly deep fried tofu with sweet and sour and soy sauce'),
-('05', 'appertizers', 'Steamed Homemade Dim Sims (4 pcs)', 'Traditional Chinese wrap with pork, water chestnuts, shallots, coriander and served with soy sauce. '),
-('06', 'appertizers', 'Chicken Satay Sticks (3 pcs)', 'Chicken fillet marinated in an aromatic tumeric blend served with homemade peanut satay sauce. '),
-('07', 'appertizers', 'Honey King Prawns (4 pcs)', 'Tempura battered tail-on king prawns glazed with honey and roasted sesame seeds on crispy glass noodles. '),
+('05', 'appertizers', 'Steamed Dim Sims', 'Traditional Chinese wrap with pork, water chestnuts, shallots, coriander and served with soy sauce. '),
+('06', 'appertizers', 'Chicken Satay Sticks', 'Chicken fillet marinated in an aromatic tumeric blend served with homemade peanut satay sauce. '),
+('07', 'appertizers', 'Honey King Prawns', 'Tempura battered tail-on king prawns glazed with honey and roasted sesame seeds on crispy glass noodles. '),
 ('07a', 'appertizers', 'Mach Tong Ngap', 'Honey glazed tender roast duck on a bed of crisp mixed leaves. '),
-('08', 'appertizers', 'Coconut Prawns (4 pcs)', 'Coconut coated tail-on king prawns, deep fried and served with lime sweet chilli sauce'),
-('09', 'appertizers', 'Paper Chicken (Deep-fried) (3 pcs)', 'Vietnamese rice paper rolls with marinated chicken, coriander and shallots, deep-fried and served with lime sweet chilli sauce. '),
-('10', 'appertizers', 'Salad Rolls (3 pcs)', 'Vietnamese rice paper with sliced king prawns, rice vermicelli, mints, lettuces, cucumbers and bean sprouts and served with special dipping sauce'),
+('08', 'appertizers', 'Coconut Prawns', 'Coconut coated tail-on king prawns, deep fried and served with lime sweet chilli sauce'),
+('09', 'appertizers', 'Paper Chicken', 'Vietnamese rice paper rolls with marinated chicken, coriander and shallots, deep-fried and served with lime sweet chilli sauce. '),
+('10', 'appertizers', 'Salad Rolls', 'Vietnamese rice paper with sliced king prawns, rice vermicelli, mints, lettuces, cucumbers and bean sprouts and served with special dipping sauce'),
 ('11', 'appertizers', 'Sang Choi Bao', 'Lemongrass infused chicken breast pieces served with green leaves capsicums, onions and coriander'),
-('12', 'appertizers', 'Salt & Spicy Calamari', 'Tempura battered five-spice & chilli squid slices'),
-('12a', 'appertizers', 'Fish Cakes (4 pcs)', 'Spicy fish cakes served with lime sweet chilli sauce'),
-('12c', 'appertizers', 'Tamarind King Prawns (4pcs)', 'Tempura battered tail-on king prawns glazed in a tasty mild chili tamarind sauce on crispy glass noodles. '),
+('12', 'appertizers', 'Salt And Spicy Calamari', 'Tempura battered five-spice & chilli squid slices'),
+('12a', 'appertizers', 'Fish Cakes', 'Spicy fish cakes served with lime sweet chilli sauce'),
+('12c', 'appertizers', 'Tamarind King Prawns', 'Tempura battered tail-on king prawns glazed in a tasty mild chili tamarind sauce on crispy glass noodles. '),
 ('12d', 'appertizers', 'Salt and Spicy Chicken', 'Tempura battered spice and chilli chicken breast pieces or tofu. '),
 ('12e', 'appertizers', 'Golden Bags', 'A combination of ground chicken, prawn meat, water chestnuts, fresh coriander wrapped in light pastry, deep-fried and served with lime sweet chili sauce. '),
 ('12f', 'appertizers', 'Wing Wing', 'De-boned chicken wing, filled with a combination of ground pork, Mung bean noodles, water chestnuts and coriander. Crumbed, deep-fried and served with a lime sweet chili sauce. '),
 ('12g', 'appertizers', 'Soft Shell Crab', 'Tempura battered five-spice and chilli soft shell crab dipped with sweet vinegar'),
 ('12h', 'appertizers', 'Beef Look Luck', 'Marinated bee( fillet cubes, capsicums, onions and shallots, wok-tossed with black pepper sauce. '),
-('12i', 'appertizers', 'Wontons (4pcs)', 'A traditional & popular Chinese entree, deep fried and served with sweet and sour sauce'),
-('12j', 'appertizers', 'Peking Duck Wraps (2pcs)', 'Roasted Peking duck breast slices wrapped with fresh cucumber, coriander, shallots and traditional sauce'),
-('12k', 'appertizers', 'Nibble Nibble (4 pcs)', 'Marinated chicken nibbles deep fried and served with lime sweet chilli sauce'),
+('12i', 'appertizers', 'Wontons', 'A traditional & popular Chinese entree, deep fried and served with sweet and sour sauce'),
+('12j', 'appertizers', 'Peking Duck Wraps', 'Roasted Peking duck breast slices wrapped with fresh cucumber, coriander, shallots and traditional sauce'),
+('12k', 'appertizers', 'Nibble Nibble', 'Marinated chicken nibbles deep fried and served with lime sweet chilli sauce'),
 ('17', 'mains', 'Basil Chilli Black Bean Mussels', 'Steamed 1/2 New Zealand mussels with special chilli black bean sauce and sweet basil leaves'),
 ('18', 'mains', 'Thai Kra Chai Fish', 'Tempura battered fillet of fish wok tossed with Thai Krachai, fresh chilli, peppercorns, capsicum, zucchini, and carrot in a creamy red curry'),
 ('19', 'mains', 'Peking King Prawn', 'A popular Chinese sauce made from celery, carrot, tomatoes wok tossed with tail on king prawns, onion, tomatoes, pineapple and capsicum'),
@@ -98,7 +98,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('22', 'mains', 'Ginger Shallot King Prawn', 'Tail-on king prawns wok-tossed in fresh ginger, shallots and seasonal vegetables. '),
 ('23', 'mains', 'Tasty King Prawn', 'Coriander infused tail-on king prawns wok-tossed in a gourmet Vietnamese blend and seasonal vegetables. '),
 ('24', 'mains', 'Szechuan Calamari', 'Tender calamari pieces in special blended chilli, Szechuan sauce and seasonal vegetables'),
-('24a', 'mains', 'Prik Phao Calamari (Roasted Chilli Paste)', 'Roasted chilli paste, aromatic basil leaves and calamari, wok tossed with seasonal vegetables'),
+('24a', 'mains', 'Prik Phao Calamari', 'Roasted chilli paste, aromatic basil leaves and calamari, wok tossed with seasonal vegetables'),
 ('24b', 'mains', 'Chilli Plum Calamari', 'Tempura battered tender calamari combined with sweet chilli plum sauce and rice'),
 ('25', 'beef_lamb_pork', 'Black Bean Steak', 'Tender beef slices and seasonal vegetables, blended with special black bean sauce'),
 ('25a', 'beef_lamb_pork', 'Black Pepper Beef', 'Tender beef slices wok-tossed with black pepper, butter, caramelised onion, shallots and capsicum. '),
@@ -115,7 +115,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('29', 'chicken', 'Chilli Garlic Chicken', 'Garlic infused chicken breast pieces wok-tossed with seasonal vegetables and chilli.'),
 ('30', 'chicken', 'Ginger and Shallot Chicken', 'Ginger infused chicken breast pieces wok-tossed with seasonal vegetables.'),
 ('31', 'chicken', 'Sweet and Sour Chicken', 'Golden tempura battered chicken breast fillet or tender pork pieces glazed in a special sweet and sour blend of pineapple, celery and tomatoes'),
-('31a', 'chicken', 'Salty & Spicy Chicken', 'Light battered spicy pork, chicken or tofu with fresh chilli'),
+('31a', 'chicken', 'Salty And Spicy Chicken', 'Light battered spicy pork, chicken or tofu with fresh chilli'),
 ('32', 'chicken', 'Honey Lemon Chicken', 'Tempura battered chicken breast fillet or king prawns glazed with a house-made honey lemon sauce and roasted sesame seeds. '),
 ('32a', 'chicken', 'Satay Chicken', 'Tender chicken breast pieces and seasonal vegetables wok-tossed with homemade peanut satay sauce. '),
 ('32b', 'chicken', 'Chicken Chow Mein', 'Tender chicken breast pieces stir-fried with seasonal vegetables on a bed of thin egg noodles. '),
@@ -129,15 +129,15 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 ('35c', 'thai_vietnamese', 'Mussaman Beef', 'Tender beef pieces cooked with potatoes, onion, peanuts and coconut milk.'),
 ('36', 'thai_vietnamese', 'Pong Ca Ri', 'A mild sweet yellow curry without coconut cream wok-tossed with seasonal vegetables and your choice of chicken, beef or king prawns. (contains egg)'),
 ('37', 'thai_vietnamese', 'Sweet & Chilli Fish', 'Deep-fried snapper fillet smothered in sweet chill sauce with pineapple, tomato and celery.'),
-('38', 'thai_vietnamese', 'Prik Khing (Dry Red Curry)', 'Red curry paste stir-fried with green beans and aromatic kaffir lime leaves. Suitable for curry lovers who enjoy the aroma and flavours of fresh curry without the coconut cream. '),
-('39', 'thai_vietnamese', 'Prik Phao (Roasted Chilli Paste)', 'Roasted chilli paste and aromatic basil leaves wok-tossed with seasonal vegetables and your choice of tender chicken, beef or king prawns. '),
+('38', 'thai_vietnamese', 'Prik Khing', 'Red curry paste stir-fried with green beans and aromatic kaffir lime leaves. Suitable for curry lovers who enjoy the aroma and flavours of fresh curry without the coconut cream. '),
+('39', 'thai_vietnamese', 'Prik Phao', 'Roasted chilli paste and aromatic basil leaves wok-tossed with seasonal vegetables and your choice of tender chicken, beef or king prawns. '),
 ('40', 'thai_vietnamese', 'Basil Chilli Black Bean', 'A new way of combining chilli, black bean sauce and sweet basil, wok-tossed with seasonal vegetables and your choice of tender chicken, beef or king prawns. '),
 ('41', 'thai_vietnamese', 'Pad Thai', 'A popular Thai style noodle dish in our special homemade sauce wok-tossed with tender chicken, flat rice noodles, egg, shallots, onion, bean sprouts and ground peanuts. '),
 ('41a', 'thai_vietnamese', 'Pad Se Heaw', 'Tender chicken breast wok-tossed with flat rice noodles, egg, Chinese vegetables, bean sprouts and shallots. '),
 ('41b', 'thai_vietnamese', 'Char Kway Teaw', 'Flat rice noodles, fresh garlic, chilli, egg, bean sprouts and shallots wok-tossed with your choice of chicken, king prawns or seafood. '),
 ('41c', 'thai_vietnamese', 'Ho Fun Chicken', 'Garlic infused chicken or seafood, stir fried with seasonal vegetables and fiat rice noodles. '),
 ('42', 'thai_vietnamese', 'Thai Fried Rice', 'Tender chicken breast pieces, king prawn and mixed seasonal vegetables wok-tossed with egg and roasted chilli paste.'),
-('42a', 'thai_vietnamese', 'Green Coconut Chicken Fried Rice', 'Creamy green curry wok-tossed with chicken breast pieces and mixed seasonal vegetables with egg, sweet basil and aromatic kaffir lime leaves. '),
+('42a', 'thai_vietnamese', 'Green Coconut Fried Rice', 'Creamy green curry wok-tossed with chicken breast pieces and mixed seasonal vegetables with egg, sweet basil and aromatic kaffir lime leaves. '),
 ('43', 'thai_vietnamese', 'Nasi Goreng', '3 meats - chicken, pork and beef wok-tossed with mixed seasonal vegetables, egg, spicy curry and chilli. '),
 ('44', 'thai_vietnamese', 'Chicken Jasmine Fried Rice', 'Tender chicken breast pieces wok-tossed with mixed seasonal vegetables and egg. '),
 ('44a', 'thai_vietnamese', 'Young Chow Fried Rice', 'Tail-on king prawns, roast park wok-tossed with mixed seasonal vegetables and egg. '),
@@ -220,23 +220,16 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `quantity`, `notes`) VALUES
-(54, 62, '01', 'Default', 5, 1, ''),
-(55, 62, '01a', 'Default', 5, 1, ''),
-(56, 62, '02', 'Default', 6, 1, ''),
-(57, 63, '01', 'Default', 5, 1, ''),
-(58, 63, '01a', 'Default', 5, 1, ''),
-(59, 64, '01', 'Default', 5, 1, ''),
-(60, 64, '01a', 'Default', 5, 1, ''),
-(61, 64, '02', 'Default', 6, 1, ''),
-(62, 65, '01', 'Default', 5, 1, ''),
-(63, 65, '01a', 'Default', 5, 1, ''),
-(64, 66, '02', 'Default', 6, 1, ''),
-(65, 66, '03', 'Default', 7, 1, ''),
-(66, 66, '04', 'Default', 5, 1, ''),
-(67, 67, '01a', 'Default', 5, 1, ''),
-(68, 68, '01a', 'Default', 5, 1, ''),
-(69, 68, '01', 'Default', 5, 1, ''),
-(70, 68, '02', 'Default', 6, 1, '');
+(153, 101, '01', 'Default', 5, 2, ''),
+(154, 101, '01a', 'Default', 5, 1, ''),
+(155, 101, '02', 'Default', 6, 1, ''),
+(156, 102, '01', 'Default', 5, 1, ''),
+(157, 102, '01a', 'Default', 5, 1, ''),
+(158, 102, '02', 'Default', 6, 1, ''),
+(159, 103, '01', 'Default', 5, 1, ''),
+(160, 103, '01a', 'Default', 5, 1, ''),
+(161, 103, '03', 'Default', 7, 1, ''),
+(162, 103, '04', 'Default', 5, 1, '');
 
 -- --------------------------------------------------------
 
@@ -258,13 +251,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pickup_time`, `notes`) VALUES
-(62, '0450087209', '2018-04-22 01:10:28', '2018-04-22 01:25:28', '0000-00-00 00:00:00', ''),
-(63, '0450087209', '2018-04-22 01:15:39', '2018-04-22 01:30:39', '0000-00-00 00:00:00', ''),
-(64, '0450087209', '2018-04-22 01:20:03', '2018-04-22 01:35:03', '0000-00-00 00:00:00', ''),
-(65, '0450087209', '2018-04-22 01:36:57', '2018-04-22 01:51:57', '0000-00-00 00:00:00', ''),
-(66, '0450087209', '2018-04-22 01:37:21', '2018-04-22 01:52:21', '0000-00-00 00:00:00', ''),
-(67, '0450087209', '2018-04-22 01:39:49', '2018-04-22 01:54:49', '0000-00-00 00:00:00', ''),
-(68, '0450087209', '2018-04-22 01:44:11', '2018-04-22 01:59:11', '0000-00-00 00:00:00', '');
+(101, '0450087209', '2018-04-22 22:43:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(102, '0450087209', '2018-04-22 23:12:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(103, '0450087209', '2018-04-22 23:37:23', '2018-04-22 23:52:23', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -758,12 +747,12 @@ ALTER TABLE `variations`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 --
 -- Constraints for dumped tables
 --

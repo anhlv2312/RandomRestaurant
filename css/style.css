@@ -363,11 +363,7 @@ aside #users {
 
 #order-detail h2 {
 	text-align: center;
-	margin-bottom: 0.5em;
-}
-
-#active-orders {
-	margin-bottom: 1.5em;
+	margin-bottom: 1em;
 }
 
 #bag {
@@ -383,6 +379,9 @@ aside #users {
 	border-top: 1px solid gray;
 }
 
+#bag tr.time td {
+	padding-top: 0.5em;
+}
 #bag tr.total td {
 	text-align: right;
 	padding-top: 0.5em;
@@ -420,3 +419,7 @@ aside #users {
 	cursor: pointer;
 }
 
+#order-detail a {
+	margin-top: 2em;
+	text-align: center;
+}

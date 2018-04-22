@@ -58,12 +58,22 @@ class Orders extends CI_Controller {
 	public function place_order() {
 		$items = $this->cart->contents();
 		if (isset($_SESSION['user_id']) && sizeof($items) > 0) {
-			$order_id = $this->orders_model->insert_order($_SESSION['user_id'], $items, $this->config->item('bussiness_pickup_waiting_time'));
+			$order_id = $this->orders_model->place_order($_SESSION['user_id'], $items, $this->config->item('bussiness_pickup_waiting_time'));
 			$this->cart->destroy();
 			$result = $this->orders_model->get_order($_SESSION['user_id'], $order_id);
 			echo json_encode($result);
 		} else {
-			echo "[]";
+			echo "{}";
+		}
+	}
+
+	public function cancel_order($order_id) {
+		if (isset($_SESSION['user_id'])) {
+			$order_id = $this->orders_model->cancel_order($_SESSION['user_id'], $order_id);
+			$result = $this->orders_model->get_order($_SESSION['user_id'], $order_id);
+			echo json_encode($result);
+		} else {
+			echo "{}";
 		}
 	}
 
@@ -76,12 +86,21 @@ class Orders extends CI_Controller {
 		}
 	}
 
+	public function get_latest_order() {
+		if (isset($_SESSION['user_id'])) {
+			$result = $this->orders_model->get_latest_order($_SESSION['user_id']);
+			echo json_encode($result);
+		} else {
+			echo "{}";
+		}
+	}
+
 	public function get_orders() {
 		if (isset($_SESSION['user_id'])) {
 			$result = $this->orders_model->get_orders($_SESSION['user_id']);
 			echo json_encode($result);
 		} else {
-			echo "{}";
+			echo "[]";
 		}
 	}
 
