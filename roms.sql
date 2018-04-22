@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 11:51 PM
+-- Generation Time: Apr 23, 2018 at 01:12 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.14
 
@@ -229,7 +229,23 @@ INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `q
 (159, 103, '01', 'Default', 5, 1, ''),
 (160, 103, '01a', 'Default', 5, 1, ''),
 (161, 103, '03', 'Default', 7, 1, ''),
-(162, 103, '04', 'Default', 5, 1, '');
+(162, 103, '04', 'Default', 5, 1, ''),
+(163, 104, '01', 'Default', 5, 1, ''),
+(164, 104, '01a', 'Default', 5, 1, ''),
+(165, 104, '02', 'Default', 6, 1, ''),
+(166, 104, '03', 'Default', 7, 1, ''),
+(167, 105, '01', 'Default', 5, 1, ''),
+(168, 105, '01a', 'Default', 5, 1, ''),
+(169, 105, '02', 'Default', 6, 1, ''),
+(170, 105, '03', 'Default', 7, 1, ''),
+(171, 105, '04', 'Default', 5, 1, ''),
+(172, 106, '01', 'Default', 5, 1, ''),
+(173, 106, '01a', 'Default', 5, 1, ''),
+(174, 106, '02', 'Default', 6, 1, ''),
+(175, 107, '01', 'Default', 5, 2, ''),
+(176, 107, '02', 'Default', 6, 2, ''),
+(177, 107, '66', 'Default', 19.9, 1, ''),
+(178, 107, '67', 'Default', 15.9, 1, '');
 
 -- --------------------------------------------------------
 
@@ -253,7 +269,11 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pickup_time`, `notes`) VALUES
 (101, '0450087209', '2018-04-22 22:43:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (102, '0450087209', '2018-04-22 23:12:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(103, '0450087209', '2018-04-22 23:37:23', '2018-04-22 23:52:23', '0000-00-00 00:00:00', '');
+(103, '0450087209', '2018-04-22 23:37:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(104, '0450087209', '2018-04-23 00:48:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(105, '0450087209', '2018-04-23 00:54:09', '2018-04-23 01:09:09', '2018-04-23 00:58:09', ''),
+(106, '0450087209', '2018-04-23 01:02:42', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(107, '0450087209', '2018-04-23 01:10:35', '2018-04-23 01:25:35', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -747,12 +767,12 @@ ALTER TABLE `variations`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 --
 -- Constraints for dumped tables
 --

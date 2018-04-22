@@ -13,11 +13,15 @@
 					<ul>
 					<?php foreach ($order['items'] as $item): ?>
 						<li>
-							<?php echo $item['quantity'] . 'x ' . $item['name'] ?>
+							<?php echo $item['quantity'] . ' x ' . $item['name'] ?>
 						</li>
 					<?php endforeach ?>
-					<?php if ($order['expected_time'] != 0): ?>
-						<li class="cancel"><a href="<?php echo base_url('users/cancel_order/'. $order['order_id']) ?>">Cancel this order</a></li>
+					<?php if ($order['expected_time'] != 0 && $order['pickup_time'] == 0): ?>
+						<li class="cancel"><a href="<?php echo base_url('users/cancel_order/'. $order['order_id']) ?>"><strong>Cancel this order</strong></a></li>
+					<?php elseif ($order['expected_time'] == 0): ?>
+						<li class="cancel"><strong>Cancelled</strong></a></li>
+					<?php elseif ($order['pickup_time'] != 0): ?>
+						<li class="cancel"><strong>Finalised</strong> (<?php echo $order['pickup_time'] ?>)</a></li>
 					<?php endif ?>
 					</ul>
 				</details>
@@ -25,8 +29,7 @@
 			<label>Manage your account:</label>
 			<ul>
 				<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>
+				<li><a href="<?php echo base_url('users/logout') ?>">Sing out of your account</a></li>
 			</ul>
-			<br>
-			<h3><a href="<?php echo base_url('users/logout') ?>">Logout</a></h3>
 		</form>
 	</section>
