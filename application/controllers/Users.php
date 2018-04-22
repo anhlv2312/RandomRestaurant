@@ -59,8 +59,19 @@ class Users extends CI_Controller {
 		$this->data['status'] = "Hello " . $user_id . ", have a nice day!";;
 		$this->data['message'] = "Your order history:";
 		$this->data['orders'] = $this->orders_model->get_orders($_SESSION['user_id']);
+
+		usort($this->data['orders'], function($a, $b) { 
+			return $a['order_id'] < $b['order_id'] ? 1 : -1;
+		});
+
 		$this->load->view('users/history', $this->data);
 		$this->load->view('templates/footer');
+	}
+
+	public function cancel_order($order_id) {
+		if (!isset($_SESSION['user_id'])) { redirect('users/login'); }
+		$this->orders_model->cancel_order($_SESSION['user_id'], $order_id);
+		redirect('users/index');
 	}
 
 	public function register() {

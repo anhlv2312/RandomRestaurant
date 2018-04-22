@@ -51,15 +51,20 @@ class Orders_model extends CI_Model {
 
 	public function get_orders($user_id) {
 		$query = $this->db->get_where('orders', array('user_id' => $user_id));
-		return $query->result_array();
+		$result = $query->result_array();
+		if (sizeof($result) > 0) {
+			foreach ($result as &$order) {
+				$order['items'] = $this->get_order_items($order['order_id']);
+			}
+		}
+		return $result;
 	}
 
 	public function get_order($user_id, $order_id) {
 		$query = $this->db->get_where('orders', array('user_id' => $user_id, 'order_id' => $order_id));
 		$result = $query->row_array();
 		if (sizeof($result) > 0) {
-			$items = $this->get_order_items($order_id);
-			$result['items'] = $items;
+			$result['items'] = $this->get_order_items($order_id);;
 		}
 		return $result;
 	}
