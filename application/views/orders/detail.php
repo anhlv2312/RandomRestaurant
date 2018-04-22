@@ -69,7 +69,7 @@
 			}
 
 			function update_order(data) {
-				$('#order-detail h2').text("Your latest order detail");
+				$('#order-detail h2').text("Your active order detail");
 				$('#bag').empty();
 				total = 0;
 				$.each(data.items, function(i, item){
