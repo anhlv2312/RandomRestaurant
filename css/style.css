@@ -13,10 +13,10 @@ body {
 
 }
 
-body.modal {
-    /*overflow: hidden;*/
-	/*padding-right: 15px;*/
-}
+/*body.modal {
+	overflow: hidden;
+	padding-right: 15px;
+}*/
 
 li {
 	list-style: none;
@@ -344,7 +344,7 @@ aside #users {
 
 #modal .header, #modal .main, #modal .review, #modal .footer {
 	padding: 10px 15px;
-	width: 50vw;
+	width: 60vw;
 	background-color: lightgray;
 }
 

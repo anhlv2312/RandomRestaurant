@@ -1,5 +1,9 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
+				<?php if (!isset($_SESSION['user_id'])): ?>
+					$('aside').removeAttr('ondrop');
+					$('aside').removeAttr('ondragover');
+				<?php endif ?>
 				$.getJSON("<?php echo base_url('orders/get_latest_order') ?>", function(data){
 					if ($(data).length > 0) {
 						<?php if (isset($_SESSION['user_id'])) { echo ("update_order(data);"); } ?>

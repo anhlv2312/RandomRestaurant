@@ -29,7 +29,7 @@
 			<label>Manage your account:</label>
 			<ul>
 				<li><a href="<?php echo base_url('users/change_password') ?>">Change your password</a></li>
-				<li><a href="<?php echo base_url('users/change_email') ?>">Change your email</a></li>
+				<li><a href="<?php echo base_url('users/change_email') ?>">Change your email address</a></li>
 				<li><a href="<?php echo base_url('users/logout') ?>">Sing out of your account</a></li>
 			</ul>
 		</form>
