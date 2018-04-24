@@ -2,6 +2,7 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
+	transition: all 0.3s ease;
 }
 
 body {
@@ -13,8 +14,8 @@ body {
 }
 
 body.modal {
-    overflow: hidden;
-	padding-right: 15px;
+    /*overflow: hidden;*/
+	/*padding-right: 15px;*/
 }
 
 li {
@@ -23,12 +24,12 @@ li {
 
 a {
 	text-decoration: none;
-	color: #ca3415;
+	color: #cc661a;
 }
 
 a:hover {
 	text-decoration: none;
-	color: #cc661a;
+	color: #ca3415;
 }
 
 header {
@@ -159,11 +160,14 @@ article.information h4 {
 	padding: 0.5em;
 	text-align: center;
 	text-shadow: 0 0 2px white;
-	visibility: hidden;
+	/*visibility: hidden;*/
+	opacity: 0;
+	cursor: pointer;
 }
 
 #main-menu article figure:hover p {
-	visibility: visible;
+	/*visibility: visible;*/
+	opacity: 1;
 }
 
 #main-menu article ul li {
@@ -199,7 +203,8 @@ article.information h4 {
 }
 
 #main-menu article span:hover {
-	text-decoration: underline;
+	/*color: #cc661a;	*/
+	color: #ca3415;
 	cursor: pointer;
 }
 
@@ -223,6 +228,7 @@ article.information h4 {
 	font-size: 1.2em;
 	user-select: none;
 	padding: 0.5em;
+
 }
 
 #category-menu ul li:hover {
@@ -385,10 +391,11 @@ aside #users {
 }
 
 #modal textarea {
+	border: 1px solid gray;
 	margin-top: 0.5em;
 	text-align: justify;
 	outline: none;
-	padding: 0.2em 0.5em;
+	padding: 0.2em 0.4em;
 	font-size: 1.2em;
 	resize: none;
 	width: 100%;
@@ -418,13 +425,12 @@ aside #users {
 }
 
 #modal span.star {
-	color: gray;
-	/*text-shadow: 0px 0px 1px black;*/
+	color: gold;
+	text-shadow: 0px 0px 1px black;
 }
 
-#modal span.active {
-	color: gold;
-	text-shadow: 0px 0px 1px saddlebrown;
+#modal .main span.star, #modal .review span.star  {
+	font-size: 1.3em;
 }
 
 #modal .review .stars:hover {
@@ -503,4 +509,30 @@ aside #users {
 #order-detail a {
 	margin-top: 2em;
 	text-align: center;
+}
+
+#home {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#home article {
+	text-align: center;
+}
+
+#home a {
+	background: rgba(255,255,255,0.8);
+	border-radius: 0.3em;
+	padding: 1em 1.5em;
+	font-size: 2em;
+	display: block;
+	text-align: center;
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	/*box-shadow: 1px 1px 4px rgba(0,0,0,0.8);*/
+	font-weight: bold;
+}
+
+#home a:hover {
+	background: rgba(255,255,255,0.7);
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }

@@ -60,7 +60,7 @@ class Users extends CI_Controller {
 			return $a['order_id'] < $b['order_id'] ? 1 : -1;
 		});
 
-		$this->load->view('users/history', $this->data);
+		$this->load->view('users/account', $this->data);
 		$this->load->view('templates/footer');
 	}
 

@@ -14,7 +14,7 @@ class Reviews extends CI_Controller {
 		$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
 		foreach ($result as &$review) {
 			if ($review['user_id'] !== $user_id) {
-				$review['user_id'] = substr_replace($review['user_id'],"****",3,-3);
+				$review['user_id'] = substr_replace($review['user_id'],"***",3,-4);
 			}
 		}
 		echo json_encode($result);

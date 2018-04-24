@@ -1,6 +1,6 @@
 		<section id="modal">
 			<div class="body">
-				<div class="header"></div>
+				<div class="header"><span class="dish_name"></span>&nbsp;<span class="dish_rating"></span></div>
 				<div class="main"></div>
 				<?php if (isset($_SESSION['user_id'])): ?>
 				<div class="review">
@@ -29,11 +29,10 @@
 				$("#category-menu li:first-of-type").addClass("selected");
 				$('#main-menu article').hide();
 				$('#main-menu article:first-of-type').show();
-				$('#modal .header').text('1. Vegeterian Spring Rolls');
 			});
 			$('#modal .close').on('click', function(){
-				update_review();
 				hide_model();
+				update_review();
 			});
 
 			$('#modal .body').on('click', function(event){
@@ -49,7 +48,7 @@
 
 
 			$(document).on('click', '#main-menu article h3 span', function(){
-				$('#modal .header').text($(this).text());
+				$('#modal .header .dish_name').text($(this).text());
 				load_reviews($(this).attr('dish_code'));
 				show_model();
 			});
@@ -79,7 +78,7 @@
 
 			function update_review() {
 				dish_code = $('#content').attr('dish_code');
-				content = $('#content').val();
+				content = $('#content').val() ? $('#content').val() : "";
 				rating = $('#content').attr('rating');
 				if (rating > 0 || content.trim() !== '') {
 					$.post('<?php echo base_url('reviews/update_review') ?>', {dish_code: dish_code, content: content, rating: rating}, function(data) {
@@ -105,16 +104,18 @@
 			function show_stars(num) {
 				stars = '';
 				rating = 1;
-				for (i=0; i<num; i++) {
-					stars += '<span class="star active" rating="' + rating + '">&#9733;</span> '
-					rating++;
-				}
-				for (i=0; i<5-num; i++) {
-					stars += '<span class="star" rating="' + rating + '">&#9734;</span> '
-					rating++;
+				for (i=1; i<=5; i++) {
+					if (i <= num) {
+						stars += '<span class="star" rating="' + i + '">&#x2605;</span>';
+					// } else if (i > num && (i-1) < num) {
+					//  	stars += '<span class="star" rating="' + i + '">&#x25F4;</span>';
+					} else {
+						stars += '<span class="star" rating="' + i + '">&#x2606;</span>';
+					}
 				}
 				return stars;
 			}
+
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
 				$("#content").val('');
@@ -122,7 +123,13 @@
 				$('#content').attr('dish_code', dish_code);
 				$('#modal .review .stars').html(show_stars(0));
 				$.getJSON("<?php echo base_url('reviews/get_reviews/') ?>" + dish_code, function(data){
+					var total = 0;
+					var count = 0;
 					$.each(data, function(i, review){
+						if (review.rating > 0) {
+							count++;
+							total += Number(review.rating);
+						}
 						if (review.user_id === user_id) {
 							$("#content").val(review.content);
 							$('#content').attr('rating', review.rating);
@@ -132,6 +139,7 @@
 							$('#modal .main').append('<p id=' + review.user_id + ' class="review-content">' + review.content + '</p>');
 						}
 					});
+					$('#modal .header .dish_rating').html(show_stars(Math.round(total/count)));
 				});
 			};
 		</script>

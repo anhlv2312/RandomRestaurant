@@ -22,7 +22,7 @@
 			<li><a href="<?php echo base_url() ?>">Home</a></li> 
 			<li><a href="<?php echo base_url('orders/index') ?>">Takeaway</a></li> 
 			<li><a href="<?php echo base_url('location') ?>">Location</a></li>
-			<li><a href="<?php echo base_url('users/index') ?>">Your Orders</a></li>
+			<li><a href="<?php echo base_url('users/index') ?>"><?php if (isset($_SESSION['user_id'])) {echo 'Your Account';} else {echo 'Login';} ?></a></li>
 		</ul>
 	</nav>
 	<header>
