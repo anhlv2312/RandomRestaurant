@@ -19,7 +19,7 @@ class Users_model extends CI_Model {
 		$data = array(
 			'user_id' => $user_id,
 			'password' => password_hash($password, PASSWORD_DEFAULT),
-			'email' => $email
+			'email' => strtolower($email),
 		);
 		$this->db->insert('users', $data);
 	}
@@ -27,6 +27,13 @@ class Users_model extends CI_Model {
 	public function set_password($user_id, $password) {
 		$data = array(
 			'password' => password_hash($password, PASSWORD_DEFAULT),
+		);
+		$this->db->update('users', $data, array('user_id' => $user_id));
+	}
+
+	public function set_email($user_id, $email) {
+		$data = array(
+			'email' => strtolower($email),
 		);
 		$this->db->update('users', $data, array('user_id' => $user_id));
 	}
@@ -41,12 +48,4 @@ class Users_model extends CI_Model {
 		}
 	}
 
-	public function get_user($user_id) {
-		$query = $this->db->get_where("users", array('user_id' => $user_id));
-		if (isset($row)) {
-			return $row['email'];
-		} else {
-			return "";
-		}
-	}
 }

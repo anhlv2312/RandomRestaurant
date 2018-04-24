@@ -52,7 +52,9 @@ class Users extends CI_Controller {
 
 		$this->load->view('templates/header', $this->data);
 		$user_id = $_SESSION['user_id'];
-		$this->data['status'] = "Hello " . $user_id . ", have a nice day!";;
+		$email = $this->users_model->get_email($user_id);
+		$this->data['status'] = "Hello " . $user_id;
+		if ($email != "") { $this->data['status'] .= " (" . $email . ")"; }
 		$this->data['message'] = "Your order history:";
 		$this->data['orders'] = $this->orders_model->get_orders($_SESSION['user_id']);
 
@@ -132,6 +134,42 @@ class Users extends CI_Controller {
 			} else {
 				$this->data['status'] = "Your phone number or password is incorrect";
 				$this->load->view('users/change', $this->data);
+			}
+		}
+		$this->load->view('templates/footer');
+	}
+
+
+	public function change_email() {
+		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean|min_length[8]');
+		$this->form_validation->set_rules('new_email', 'New Email', 'trim|required|xss_clean|valid_email');
+		$this->form_validation->set_rules('confirm_email', 'Confirm Email', 'trim|required|xss_clean|matches[new_email]');
+		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|numeric|required|xss_clean|min_length[8]|max_length[12]');
+
+		$user_id = $this->input->post('user_id');
+		$old_password = $this->input->post('old_password');
+		$new_email = $this->input->post('new_email');
+
+		$this->data['user_id'] = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL;
+		$this->data['old_email'] = $this->users_model->get_email($this->data['user_id']);
+
+		$this->load->view('templates/header', $this->data);
+		if (!$this->form_validation->run()) {
+			$this->data['status'] = "Change your email";
+			$this->load->view('users/email', $this->data);
+		} else if (!$this->verify_captcha()) {
+			$this->data['status'] = "Please confirm you are not a robot";
+			$this->load->view('users/email', $this->data);
+		} else {
+			if ($this->users_model->authenticate($user_id, $old_password)) {
+				$_SESSION['user_id'] = $user_id;
+				$this->users_model->set_email($user_id, $new_email);
+				$this->data['status'] = "Email is changed successfully";
+				$this->data['message'] = "Your email has been changed";
+				$this->load->view('users/message', $this->data);
+			} else {
+				$this->data['status'] = "Your phone number or password is incorrect";
+				$this->load->view('users/email', $this->data);
 			}
 		}
 		$this->load->view('templates/footer');
