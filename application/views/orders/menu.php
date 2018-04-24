@@ -2,9 +2,25 @@
 			<div class="body">
 				<div class="header"></div>
 				<div class="main"></div>
+				<?php if (isset($_SESSION['user_id'])): ?>
+				<div class="review">
+					<h3 class="review-user">Your Review</h3>
+					<span class="stars">
+						<span class="star" rating="1">&#9734;</span>
+						<span class="star" rating="2">&#9734;</span>
+						<span class="star" rating="3">&#9734;</span>
+						<span class="star" rating="4">&#9734;</span>
+						<span class="star" rating="5">&#9734;</span>
+					</span>
+					<textarea rows="4" id="content"></textarea>
+				</div>
+				<?php endif ?>
 				<div class="footer">
-					<span>Write Your Review</span>
-					<span class="close">Close</span>
+					<?php if (isset($_SESSION['user_id'])): ?>
+						<span class="close">Save &amp; Close</span>
+					<?php else: ?>
+						<span class="close">Close</span>
+					<?php endif ?>
 				</div>
 			</div>
 		</section>
@@ -13,20 +29,29 @@
 				$("#category-menu li:first-of-type").addClass("selected");
 				$('#main-menu article').hide();
 				$('#main-menu article:first-of-type').show();
+				$('#modal .header').text('1. Vegeterian Spring Rolls');
 			});
-			$("#modal .close").on('click', function(){
-				$('#modal').removeClass('visible');
+			$('#modal .close').on('click', function(){
+				update_review();
+				hide_model();
 			});
 
-			$("#modal .body").on('click', function(event){
+			$('#modal .body').on('click', function(event){
 				if (event.target == this){
-					$('#modal').removeClass('visible');
+					hide_model();
 				}
 			});
+
+			$(document).on('click', '#modal .review .star', function(){
+				$('#content').attr('rating',$(this).attr('rating'))
+				$('#modal .review .stars').html(show_stars($(this).attr('rating')));
+			});
+
+
 			$(document).on('click', '#main-menu article h3 span', function(){
 				$('#modal .header').text($(this).text());
 				load_reviews($(this).attr('dish_code'));
-				$('#modal').addClass('visible');
+				show_model();
 			});
 			$(document).on('click', '#category-menu li', function(){
 				$('#category-menu li').removeClass('selected')
@@ -42,6 +67,28 @@
 				remove_item($(this).attr('row_id'));
 			});
 
+			function show_model() {
+				$('#modal').show();
+				$('body').addClass('modal');
+			}
+
+			function hide_model() {
+				$('#modal').hide();
+				$('body').removeClass('modal');
+			}
+
+			function update_review() {
+				dish_code = $('#content').attr('dish_code');
+				content = $('#content').val();
+				rating = $('#content').attr('rating');
+				if (rating > 0 || content.trim() !== '') {
+					$.post('<?php echo base_url('reviews/update_review') ?>', {dish_code: dish_code, content: content, rating: rating}, function(data) {
+						console.log(data);
+						$('#content').text(data.content);
+						$('#modal #' + user_id).text(data.content);
+					}, 'json');
+				}
+			}
 
 			function add_item(dish_code) {
 				$.when($.ajax("<?php echo base_url('orders/add_item_to_bag/') ?>" + dish_code)).then(function(data, textStatus, jqXHR ) {
@@ -54,12 +101,36 @@
 					update_bag();
 				});
 			};
+
+			function show_stars(num) {
+				stars = '';
+				rating = 1;
+				for (i=0; i<num; i++) {
+					stars += '<span class="star active" rating="' + rating + '">&#9733;</span> '
+					rating++;
+				}
+				for (i=0; i<5-num; i++) {
+					stars += '<span class="star" rating="' + rating + '">&#9734;</span> '
+					rating++;
+				}
+				return stars;
+			}
 			function load_reviews(dish_code) {
 				$('#modal .main').empty();
-				$.getJSON("<?php echo base_url('reviews/get_reviews_by_dish/') ?>" + dish_code, function(data){
+				$("#content").val('');
+				$('#content').attr('rating', 0);
+				$('#content').attr('dish_code', dish_code);
+				$('#modal .review .stars').html(show_stars(0));
+				$.getJSON("<?php echo base_url('reviews/get_reviews/') ?>" + dish_code, function(data){
 					$.each(data, function(i, review){
-						$('#modal .main').append('<h3 class="review-user">' + review.user_id + '</h3>');
-						$('#modal .main').append('<p class="review-content">' + review.content + '</p>');
+						if (review.user_id === user_id) {
+							$("#content").val(review.content);
+							$('#content').attr('rating', review.rating);
+							$('#modal .review .stars').html(show_stars(review.rating));
+						} else {
+							$('#modal .main').append('<h3>' + review.user_id + '</h3> <span class="stars">' + show_stars(review.rating)) + '</span>';
+							$('#modal .main').append('<p id=' + review.user_id + ' class="review-content">' + review.content + '</p>');
+						}
 					});
 				});
 			};

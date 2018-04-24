@@ -16,14 +16,9 @@ class Users extends CI_Controller {
 
 	public function login() {
 
-		if (isset($_GET['referer'])) {
-			$this->data['referer'] = $_GET['referer'];
-		} else {
-			$this->data['referer'] = "users/index";
-		}
+		$this->data['referer'] = isset($_GET['referer']) ? $_GET['referer'] : NULL;
 
 		if (isset($_SESSION['user_id'])) { redirect($this->data['referer']); }
-
 		$this->load->view('templates/header', $this->data);
 		$this->form_validation->set_rules('user_id', 'Phone Number', 'trim|required|xss_clean|min_length[8]|max_length[12]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[8]');
@@ -44,6 +39,7 @@ class Users extends CI_Controller {
 			}
 		}
 		$this->load->view('templates/footer');
+
 	}
 
 	public function logout() {

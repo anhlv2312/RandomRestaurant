@@ -2,7 +2,7 @@
 			$(document).ready(function(){
 				$.getJSON("<?php echo base_url('orders/get_latest_order') ?>", function(data){
 					if ($(data).length > 0) {
-						update_order(data);
+						<?php if (isset($_SESSION['user_id'])) { echo ("update_order(data);"); } ?>
 						$('#order-detail button').hide();
 					} else {
 						update_bag();
@@ -117,11 +117,10 @@
 				<section id="users">
 					<?php echo form_open('users/login?referer=orders/index'); ?>
 						<h3>Please login to place order</h3>
-						<?php echo validation_errors() ?>
 						<label for="user_id">Your Phone Number:</label>
-						<input type="text" name="user_id" value="<?php echo set_value('user_id') ?>">
+						<input type="text" name="user_id">
 						<label for="password">Password:</label>
-						<input type="password" name="password" value="<?php echo set_value('password') ?>">
+						<input type="password" name="password">
 						<button type="submit">Login</button>
 						<label>Other options:</label>
 						<ul>

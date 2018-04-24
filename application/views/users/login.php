@@ -1,6 +1,6 @@
 
 	<section id="users">
-		<?php echo form_open('users/login'); ?>
+		<?php echo form_open('users/login'. (isset($referer) ? "?referer=" . $referer : ""))?>
 			<h3><?php echo $status ?></h3>
 			<?php echo validation_errors() ?>
 			<label for="user_id">Your Phone Number:</label>

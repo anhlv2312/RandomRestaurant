@@ -29,7 +29,6 @@ class Orders_model extends CI_Model {
 		} catch (Exception $e) {
 			return 0;
 		}
-
 	}
 
 	public function cancel_order($user_id, $order_id) {

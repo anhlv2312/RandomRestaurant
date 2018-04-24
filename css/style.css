@@ -9,6 +9,12 @@ body {
 	font-size: 14px;
 	color: black;
 	background-color: darkgray;
+
+}
+
+body.modal {
+    overflow: hidden;
+	padding-right: 15px;
 }
 
 li {
@@ -253,6 +259,10 @@ aside #users {
 	align-items: center;
 }
 
+#users h3 {
+	margin-bottom: 0.5em;
+}
+
 #users label, input {
 	min-width: 250px;
 }
@@ -306,7 +316,7 @@ aside #users {
 
 
 #modal {
-	visibility: hidden;
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -318,23 +328,23 @@ aside #users {
 	background-color: rgba(0,0,0,0.5);
 }
 
-#modal.visible {
-	visibility: visible;
-}
-
 #modal .body {
+	height: 100vh;
 	display: flex;
-	padding-top: 15vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
+#modal .header, #modal .main, #modal .review, #modal .footer {
+	padding: 10px 15px;
+	width: 50vw;
+	background-color: lightgray;
+}
+
 #modal .header {
 	display: flex;
 	justify-content: space-between;
-	padding: 10px 15px;
-	width: 50vw;
 	background-color: black;
 	color: white;
 	font-weight: bold;
@@ -343,17 +353,22 @@ aside #users {
 
 #modal .main {
 	overflow: auto;
-	width: 50vw;
 	height: 50vh;
-	background-color: lightgray;
-	padding: 10px 15px;
 }
 
+#modal .review {
+	padding-top: 1em;
+}
+
+#modal .review h3 {
+	color: #ca3415;
+
+}
+
+
 #modal .footer {
-	display: flex;
-	justify-content: space-between;
-	width: 50vw;
-	padding: 10px 15px;
+	padding: 12px 20px;
+	text-align: right;
 	background-color: black;
 	color: white;
 }
@@ -365,12 +380,57 @@ aside #users {
 }
 
 #modal .review-content {
+	text-align: justify;
 	margin-bottom: 1em;
+}
+
+#modal textarea {
+	margin-top: 0.5em;
+	text-align: justify;
+	outline: none;
+	padding: 0.2em 0.5em;
+	font-size: 1.2em;
+	resize: none;
+	width: 100%;
+}
+
+#modal h3 {
+	display: inline;
 } 
 
-#modal .review-content:last-of-type {
-	margin-bottom: 0;
-} 
+#modal button { 
+	font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+	background-color: #1c9442;
+	border: 1px solid #177133;
+	border-radius: 0.3em;
+	padding: 0.3em 1em;
+	margin-right: 0.5em;
+	color: white;
+	font-size: 1em;
+	outline: none;
+	align-self: center;
+	text-shadow: -1px 0 1px #177133, 0 1px 1px #177133, 1px 0 1px #177133, 0 -1px 1px #177133;
+}
+
+#modal button:hover {
+	background-color: #2abe58;
+	cursor: pointer;
+}
+
+#modal span.star {
+	color: gray;
+	/*text-shadow: 0px 0px 1px black;*/
+}
+
+#modal span.active {
+	color: gold;
+	text-shadow: 0px 0px 1px saddlebrown;
+}
+
+#modal .review .stars:hover {
+	cursor: pointer;
+}
+
 
 #order-detail {
 	z-index: 1;
