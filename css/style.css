@@ -246,6 +246,7 @@ article.information h4 {
 }
 
 #location {
+	background: lightgray;
 	height: 65vh;
 }
 
