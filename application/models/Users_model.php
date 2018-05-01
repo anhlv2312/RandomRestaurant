@@ -48,4 +48,14 @@ class Users_model extends CI_Model {
 		}
 	}
 
+	public function get_user($user_id) {
+		$query = $this->db->get_where("users", array('user_id' => $user_id));
+		$row = $query->row_array();
+		if (isset($row)) {
+			return $row['email'];
+		} else {
+			return "";
+		}
+	}
+
 }
