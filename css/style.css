@@ -290,7 +290,7 @@ aside #users {
 
 #users button {
 	background-color: #ca661a;
-	border-color: #ca3415;
+	border: 1px solid #ca3415;
 	border-radius: 0.5em;
 	padding: 0 2em;
 	margin-top: 2em;
