@@ -61,6 +61,7 @@ footer {
 	top:0px;
 	width: 100vw;
 	display: flex;
+	height: 70px;
 	padding: 15px;
 	justify-content: space-between;
 	background-color: lightgray;
