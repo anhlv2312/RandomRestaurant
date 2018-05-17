@@ -77,6 +77,11 @@
 				$('#bag').empty();
 				$('#main-menu article button').attr('disabled', true);
 				$('#main-menu figure p').hide();
+				$('#main-menu figure').attr('draggable', false);
+				$('aside').removeAttr('ondrop');
+				$('aside').removeAttr('ondragover');
+				$('#order-detail button').hide();
+
 				total_amount = 0;
 				order_id = data.order_id;
 				$.each(data.items, function(i, item){
@@ -93,9 +98,7 @@
 				$('#bag').append('<tr class="time"><td colspan="2">Order Time: ' + data.order_time + '</td></tr>');
 				$('#bag').append('<tr class="time"><td colspan="2">Pickup Time: ' + data.expected_time + ' <span id="countdown"></span></td></tr>');
 				
-				$('aside').removeAttr('ondrop');
-				$('aside').removeAttr('ondragover');
-				$('#order-detail button').hide();
+
 				if (!data.reciepts) {
 					$('#paypal').show();
 				} else {
