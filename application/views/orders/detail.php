@@ -101,8 +101,7 @@
 				} else {
 					$('#paid').show();
 				}
-console.log("update " + total_amount);
-				create_timer(data.expected_time);
+				//create_timer(data.expected_time);
 			}
 
 			function place_order() {
@@ -169,8 +168,8 @@ console.log("update " + total_amount);
 					color:  'gold'
 				},
 				client: {
-					sandbox:	'AT_XNLFQDDJnf-vPyDNkoN8bhuEme2dAUzpFyq5lOlST-_gFmKkeW0pHr8sVEiqWBccOa2Uk2lvx5Z-l',
-					production: 'xxxxxxxxx'
+					sandbox:	'<?php echo $this->config->item('paypal_client_id_sandbox') ?>',
+					production: '<?php echo $this->config->item('paypal_client_id_sandbox') ?>'
 				},
 				commit: true,
 				payment: function(data, actions) {

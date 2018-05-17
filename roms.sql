@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2018 at 07:31 PM
+-- Generation Time: May 17, 2018 at 09:57 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.14
 
@@ -220,20 +220,6 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `quantity`, `notes`) VALUES
-(153, 101, '01', 'Default', 5, 2, ''),
-(154, 101, '01a', 'Default', 5, 1, ''),
-(155, 101, '02', 'Default', 6, 1, ''),
-(156, 102, '01', 'Default', 5, 1, ''),
-(157, 102, '01a', 'Default', 5, 1, ''),
-(158, 102, '02', 'Default', 6, 1, ''),
-(159, 103, '01', 'Default', 5, 1, ''),
-(160, 103, '01a', 'Default', 5, 1, ''),
-(161, 103, '03', 'Default', 7, 1, ''),
-(162, 103, '04', 'Default', 5, 1, ''),
-(163, 104, '01', 'Default', 5, 1, ''),
-(164, 104, '01a', 'Default', 5, 1, ''),
-(165, 104, '02', 'Default', 6, 1, ''),
-(166, 104, '03', 'Default', 7, 1, ''),
 (167, 105, '01', 'Default', 5, 1, ''),
 (168, 105, '01a', 'Default', 5, 1, ''),
 (169, 105, '02', 'Default', 6, 1, ''),
@@ -242,19 +228,14 @@ INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `q
 (172, 106, '01', 'Default', 5, 1, ''),
 (173, 106, '01a', 'Default', 5, 1, ''),
 (174, 106, '02', 'Default', 6, 1, ''),
-(175, 107, '01', 'Default', 5, 2, ''),
-(176, 107, '02', 'Default', 6, 2, ''),
-(177, 107, '66', 'Default', 19.9, 1, ''),
-(178, 107, '67', 'Default', 15.9, 1, ''),
-(179, 108, '01', 'Default', 5, 1, ''),
-(180, 108, '01a', 'Default', 5, 1, ''),
-(181, 108, '02', 'Default', 6, 1, ''),
-(182, 109, '01', 'Default', 5, 1, ''),
-(183, 109, '01a', 'Default', 5, 2, ''),
-(184, 109, '02', 'Default', 6, 2, ''),
-(185, 110, '02', 'Default', 6, 2, ''),
-(186, 110, '01a', 'Default', 5, 2, ''),
-(187, 110, '01', 'Default', 5, 3, '');
+(216, 118, '01', 'Default', 5, 1, ''),
+(217, 118, '02', 'Default', 6, 1, ''),
+(218, 118, '35', 'Beef', 14.9, 1, ''),
+(219, 118, '35a', 'Beef', 14.9, 1, ''),
+(220, 118, '35b', 'Beef', 14.9, 1, ''),
+(221, 119, '01', 'Default', 5, 1, ''),
+(222, 119, '02', 'Default', 6, 1, ''),
+(223, 119, '01a', 'Default', 5, 1, '');
 
 -- --------------------------------------------------------
 
@@ -276,16 +257,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pickup_time`, `notes`) VALUES
-(101, '0450087209', '2018-04-22 22:43:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(102, '0450087209', '2018-04-22 23:12:09', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(103, '0450087209', '2018-04-22 23:37:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(104, '0450087209', '2018-04-23 00:48:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
 (105, '0450087209', '2018-04-23 00:54:09', '2018-04-23 01:09:09', '2018-04-23 00:58:09', ''),
 (106, '0450087209', '2018-04-23 01:02:42', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(107, '0450087209', '2018-04-23 01:10:35', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(108, '0450087209', '2018-04-25 02:22:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(109, '0450087209', '2018-05-17 17:37:14', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
-(110, '0450087209', '2018-05-17 18:51:29', '2018-05-17 19:06:29', '0000-00-00 00:00:00', '');
+(118, '0450087209', '2018-05-17 21:39:51', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(119, '0450087209', '2018-05-17 21:52:55', '2018-05-17 22:07:55', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -298,6 +273,13 @@ CREATE TABLE `receipts` (
   `order_id` int(11) NOT NULL,
   `reference` varchar(64) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `receipts`
+--
+
+INSERT INTO `receipts` (`receipt_id`, `order_id`, `reference`) VALUES
+(4, 119, '');
 
 -- --------------------------------------------------------
 
@@ -810,17 +792,17 @@ ALTER TABLE `variations`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 --
 -- AUTO_INCREMENT for table `receipts`
 --
 ALTER TABLE `receipts`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
