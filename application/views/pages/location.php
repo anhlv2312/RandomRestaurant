@@ -23,8 +23,6 @@
 		restaurantInfo.setContent('<div><strong>Random Restaurant</strong><br>23 Random Street St. Lucia, QLD 4067</div>');
 		restaurantInfo.open(map, restaurantMarker);
 
-
-
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position){
 				start = {lat: position.coords.latitude, lng: position.coords.longitude };
@@ -42,10 +40,6 @@
 		} else {
 			calculateAndDisplayRoute(directionsService, directionsDisplay, start, restaurant);
 		}
-
-		
-
-
 
 	}
 	function calculateAndDisplayRoute(directionsService, directionsDisplay, start, end) {

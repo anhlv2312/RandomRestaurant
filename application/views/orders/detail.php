@@ -1,4 +1,7 @@
 		<script type="text/javascript">
+			var total_amount = 0;
+			var order_id = null;
+
 			$(document).ready(function(){
 				<?php if (!isset($_SESSION['user_id'])): ?>
 					$('aside').removeAttr('ondrop');
@@ -6,11 +9,7 @@
 				<?php endif ?>
 				$.getJSON("<?php echo base_url('orders/get_latest_order') ?>", function(data){
 					if ($(data).length > 0) {
-						<?php if (isset($_SESSION['user_id'])) { echo ("update_order(data);"); } ?>
-						$('#order-detail button').hide();
-					} else {
-						update_bag();
-						$('#order-detail button').show();
+						if (user_id !== null) {update_order(data);}
 					}
 				});
 			});
@@ -31,10 +30,10 @@
 	
 			function update_bag() {
 				$('#bag').empty();
-				total = 0;
+				total_amount = 0;
 				$.getJSON("<?php echo base_url('orders/get_items_from_bag') ?>", function(data){
 					$.each(data, function(i, item){
-						total += item.subtotal;
+						total_amount += item.subtotal;
 						$row = "";
 						$row += '<tr class="row">';
 						$row += '<td>' + item.qty + ' x <strong>' + item.id + '. ' + item.name + '</strong></td>';
@@ -43,8 +42,9 @@
 						$row += '</tr>';
 						$('#bag').append($row);
 					});
-					$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total.toFixed(2) + '</strong></td></tr>');
+					$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
 				});
+
 			};
 
 			function create_timer(datetime) {
@@ -73,11 +73,14 @@
 			}
 
 			function update_order(data) {
-				$('#order-detail h2').text("Your active order detail");
+				$('#order-detail h2').text("Your current active order");
 				$('#bag').empty();
-				total = 0;
+				$('#main-menu article button').attr('disabled', true);
+				$('#main-menu figure p').hide();
+				total_amount = 0;
+				order_id = data.order_id;
 				$.each(data.items, function(i, item){
-					total += (item.price * item.quantity);
+					total_amount += (item.price * item.quantity);
 					$row = "";
 					$row += '<tr class="row">';
 					$row += '<td>' + item.quantity + ' x <strong>' + item.dish_code + '. ' + item.name + '</strong></td>';
@@ -85,14 +88,23 @@
 					$row += '</tr>';
 					$('#bag').append($row);
 				});
-				$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total.toFixed(2) + '</strong></td></tr>');
+				$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
 				$('#bag').append('<tr class="time"><td colspan="2">Order Number: <strong>' + data.order_id + '</strong></td></tr>');
 				$('#bag').append('<tr class="time"><td colspan="2">Order Time: ' + data.order_time + '</td></tr>');
 				$('#bag').append('<tr class="time"><td colspan="2">Pickup Time: ' + data.expected_time + ' <span id="countdown"></span></td></tr>');
-				create_timer(data.expected_time);
+				
 				$('aside').removeAttr('ondrop');
 				$('aside').removeAttr('ondragover');
+				$('#order-detail button').hide();
+				if (!data.reciepts) {
+					$('#paypal').show();
+				} else {
+					$('#paid').show();
+				}
+console.log("update " + total_amount);
+				create_timer(data.expected_time);
 			}
+
 			function place_order() {
 				if ($('#bag tr.row').length === 0) {
 					alert('Your bag is empty!');
@@ -113,7 +125,16 @@
 			<?php if (isset($_SESSION['user_id'])): ?>
 	 			<section id="order-detail">
 					<h2>Items in your bag</h2>
-					<table id="bag"></table>
+					<div class="wrapper">
+						<table id="bag">
+							<tr><td>You have no item in your bag, please select some!</td></tr>
+						</table>
+						<img id="paid" src="<?php echo base_url('images/paid.png') ?>">
+					</div>
+					
+					<div id="paypal">
+						<div id="paypal-button"></div>
+					</div>
 					<button onclick="place_order()">Place Your Order</button>
 					<a href="<?php echo base_url('users/index') ?>">View Order History</a></li>
 				</section>
@@ -136,3 +157,44 @@
 				</section>
 			<?php endif ?>
 		</aside>
+
+		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+		<script>
+			paypal.Button.render({
+				env: 'sandbox',
+				style: {
+					layout: 'vertical',
+					size:   'medium',
+					shape:  'rect',
+					color:  'gold'
+				},
+				client: {
+					sandbox:	'AT_XNLFQDDJnf-vPyDNkoN8bhuEme2dAUzpFyq5lOlST-_gFmKkeW0pHr8sVEiqWBccOa2Uk2lvx5Z-l',
+					production: 'xxxxxxxxx'
+				},
+				commit: true,
+				payment: function(data, actions) {
+					return actions.payment.create({
+						payment: {
+							transactions: [
+								{
+									amount: { total: total_amount, currency: 'AUD' },
+									description: 'Takeaway order number ' + order_id + ' for ' + user_id,
+									invoice_number: order_id,
+								}
+							]
+						}
+					});
+				},
+				onAuthorize: function(data, actions) {
+					return actions.payment.execute().then(function(payment) {
+						$.when($.ajax("<?php echo base_url('orders/pay_for_order/') ?>" + order_id)).then(function(data, textStatus, jqXHR ) {
+							$('#paypal').hide();
+							$('#paid').show();
+						});	
+					});
+				}
+
+			}, '#paypal-button');
+		</script>
+

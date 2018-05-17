@@ -104,4 +104,13 @@ class Orders extends CI_Controller {
 		}
 	}
 
+	public function pay_for_order($order_id) {
+		if (isset($_SESSION['user_id'])) {
+			$result = $this->orders_model->create_reciept($order_id);
+			echo json_encode($result);
+		} else {
+			echo "[]";
+		}
+	}
+
 }
