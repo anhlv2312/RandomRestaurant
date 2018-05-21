@@ -132,6 +132,8 @@ class Orders extends CI_Controller {
 
 			$handle = popen('./receipts.sh ' . $receipt_url, 'r');
 
+			sleep(5);
+
 			$file = './receipts/temp.pdf';
 			if (!file_exists($file)) show_404();
 			if (!is_readable($file)) show_404();
