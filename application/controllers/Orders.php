@@ -122,7 +122,7 @@ class Orders extends CI_Controller {
 	}
 
 	public function print_receipt($order_id) {
-		$handle = popen('./receipts.sh ' . base_url('get_receipt/') . $order_id, 'r');
+		$handle = popen('./receipts.sh ' . base_url('orders/get_receipt/') . $order_id, 'r');
 		$read = fread($handle, 10000);
 		echo $read;
 		pclose($handle);
