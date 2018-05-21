@@ -78,7 +78,7 @@ class Orders_model extends CI_Model {
 		$this->db->order_by('order_id', 'dsc');
 		$query = $this->db->get_where('orders', array('user_id' => $user_id, 'expected_time !=' => 0,  'pickup_time' => 0));
 		$order_id = $query->row_array()['order_id'];
-		return $this->get_order($user_id, $order_id);
+		return $this->get_order($order_id);
 	}
 
 	public function create_receipt($order_id) {
