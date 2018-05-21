@@ -104,7 +104,7 @@
 				} else {
 					$('#paid').show();
 				}
-				//create_timer(data.expected_time);
+				create_timer(data.expected_time);
 			}
 
 			function place_order() {
