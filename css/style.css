@@ -176,6 +176,7 @@ article.information h4 {
 	height: 80px;
 	margin: 1.5em;
 	cursor: pointer;
+	transition: opacity 1s ease;
 }
 
 #main-menu article button:disabled {

@@ -52,9 +52,9 @@
 					} else {
 						$('#bag').append('<tr><td>You have no item in your bag, please select some!</td></tr>');
 					}
+					$('#main-menu article button').attr('disabled', false);
 				});
 
-				$('#main-menu article button').attr('disabled', false);
 			};
 
 			function create_timer(datetime) {
