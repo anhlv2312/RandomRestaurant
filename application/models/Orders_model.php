@@ -55,6 +55,7 @@ class Orders_model extends CI_Model {
 		if (sizeof($result) > 0) {
 			foreach ($result as &$order) {
 				$order['items'] = $this->get_order_items($order['order_id']);
+				$order['receipts'] = $this->get_order_receipts($order['order_id']);
 			}
 		}
 		return $result;
@@ -65,12 +66,14 @@ class Orders_model extends CI_Model {
 		$result = $query->row_array();
 		if (sizeof($result) > 0) {
 			$result['items'] = $this->get_order_items($order_id);
+			$result['receipts'] = $this->get_order_receipts($order_id);
 		}
+		return $result;
+	}
+
+	public function get_order_receipts($order_id) {
 		$query = $this->db->get_where('receipts', array('order_id' => $order_id));
-		$receipts = $query->row_array();
-		if (sizeof($receipts) > 0) {
-			$result['receipts'] = $receipts;
-		}
+		$result = $query->row_array();
 		return $result;
 	}
 
