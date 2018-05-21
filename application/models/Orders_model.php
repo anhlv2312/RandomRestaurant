@@ -69,7 +69,7 @@ class Orders_model extends CI_Model {
 		$query = $this->db->get_where('receipts', array('order_id' => $order_id));
 		$receipts = $query->row_array();
 		if (sizeof($receipts) > 0) {
-			$result['reciepts'] = $receipts;
+			$result['receipts'] = $receipts;
 		}
 		return $result;
 	}
