@@ -79,7 +79,7 @@ class Orders extends CI_Controller {
 
 	public function get_order($order_id) {
 		if (isset($_SESSION['user_id'])) {
-			$result = $this->orders_model->get_order($_SESSION['user_id'], $order_id);
+			$result = $this->orders_model->get_order($order_id);
 			echo json_encode($result);
 		} else {
 			echo "{}";
@@ -106,11 +106,17 @@ class Orders extends CI_Controller {
 
 	public function pay_for_order($order_id) {
 		if (isset($_SESSION['user_id'])) {
-			$result = $this->orders_model->create_reciept($order_id);
+			$result = $this->orders_model->create_receipt($order_id);
 			echo json_encode($result);
 		} else {
 			echo "[]";
 		}
+	}
+
+	public function get_receipt($order_id) {
+		$result = $this->orders_model->get_order($order_id);
+		$this->data['order'] = $result;
+		$this->load->view('orders/receipt', $this->data);
 	}
 
 }

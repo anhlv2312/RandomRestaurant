@@ -60,8 +60,8 @@ class Orders_model extends CI_Model {
 		return $result;
 	}
 
-	public function get_order($user_id, $order_id) {
-		$query = $this->db->get_where('orders', array('user_id' => $user_id, 'order_id' => $order_id));
+	public function get_order($order_id) {
+		$query = $this->db->get_where('orders', array('order_id' => $order_id));
 		$result = $query->row_array();
 		if (sizeof($result) > 0) {
 			$result['items'] = $this->get_order_items($order_id);
@@ -81,14 +81,14 @@ class Orders_model extends CI_Model {
 		return $this->get_order($user_id, $order_id);
 	}
 
-	public function create_reciept($order_id) {
+	public function create_receipt($order_id) {
 		try {
-			$reciept = array(
+			$receipt = array(
 				'order_id' => $order_id,
 			);
-			$this->db->insert('receipts', $reciept);
-			$reciept_id = $this->db->insert_id();
-			return $reciept_id;
+			$this->db->insert('receipts', $receipt);
+			$receipt_id = $this->db->insert_id();
+			return $receipt_id;
 		} catch (Exception $e) {
 			return 0;
 		}
