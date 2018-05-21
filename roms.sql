@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
--- https://www.phpmyadmin.net/
+-- version 4.0.10.20
+-- https://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 21, 2018 at 11:16 PM
--- Server version: 5.7.21
--- PHP Version: 7.1.14
+-- Host: localhost
+-- Generation Time: May 21, 2018 at 11:52 PM
+-- Server version: 5.5.56-MariaDB
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `roms`
@@ -28,11 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE IF NOT EXISTS `categories` (
   `cat_slug` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `priority` tinyint(4) NOT NULL
+  `priority` tinyint(4) NOT NULL,
+  PRIMARY KEY (`cat_slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -54,11 +53,13 @@ INSERT INTO `categories` (`cat_slug`, `name`, `description`, `priority`) VALUES
 -- Table structure for table `dishes`
 --
 
-CREATE TABLE `dishes` (
+CREATE TABLE IF NOT EXISTS `dishes` (
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `cat_slug` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci
+  `description` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`dish_code`),
+  KEY `FK_DISH_CAT_SLUG` (`cat_slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -205,15 +206,34 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 -- Table structure for table `items`
 --
 
-CREATE TABLE `items` (
-  `item_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `var_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `price` float NOT NULL,
   `quantity` tinyint(4) NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `notes` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`item_id`),
+  KEY `FK_ITEM_DISK_CODE` (`dish_code`),
+  KEY `FK_ITEM_ORDER_ID` (`order_id`),
+  KEY `FK_ITEM_VAR_NAME` (`var_name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=240 ;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `quantity`, `notes`) VALUES
+(231, 122, '01', 'Default', 5, 1, ''),
+(232, 122, '11', 'Default', 6, 1, ''),
+(233, 122, '32', 'Chicken', 13.9, 1, ''),
+(234, 122, '32b', 'Default', 13.9, 1, ''),
+(235, 123, '03', 'Default', 7, 1, ''),
+(236, 123, '07a', 'Default', 7, 1, ''),
+(237, 123, '10', 'Chicken', 7, 1, ''),
+(238, 123, '32a', 'Default', 13.9, 1, ''),
+(239, 123, '28a', 'Default', 14.9, 1, '');
 
 -- --------------------------------------------------------
 
@@ -221,14 +241,24 @@ CREATE TABLE `items` (
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `order_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `order_time` datetime NOT NULL,
   `expected_time` datetime NOT NULL,
   `pickup_time` datetime NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `notes` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `FK_ORDER_USER_ID` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=124 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pickup_time`, `notes`) VALUES
+(122, '0452217209', '2018-05-21 23:43:23', '2018-05-21 23:58:23', '2018-05-21 23:52:23', ''),
+(123, '0452217209', '2018-05-21 23:48:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -236,11 +266,20 @@ CREATE TABLE `orders` (
 -- Table structure for table `receipts`
 --
 
-CREATE TABLE `receipts` (
-  `receipt_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `receipts` (
+  `receipt_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `reference` varchar(64) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `reference` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`receipt_id`),
+  KEY `FK_RECEIPTS_ORDER_ID` (`order_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `receipts`
+--
+
+INSERT INTO `receipts` (`receipt_id`, `order_id`, `reference`) VALUES
+(6, 122, '');
 
 -- --------------------------------------------------------
 
@@ -248,11 +287,13 @@ CREATE TABLE `receipts` (
 -- Table structure for table `reviews`
 --
 
-CREATE TABLE `reviews` (
+CREATE TABLE IF NOT EXISTS `reviews` (
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `rating` tinyint(4) NOT NULL
+  `rating` tinyint(4) NOT NULL,
+  PRIMARY KEY (`dish_code`,`user_id`),
+  KEY `FK_REVIEW_USER_ID` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -459,12 +500,13 @@ INSERT INTO `reviews` (`dish_code`, `user_id`, `content`, `rating`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `last_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(256) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -477,6 +519,7 @@ INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`) 
 ('0417935528', '', '', '', ''),
 ('0437347207', '', '', '', ''),
 ('0452000826', '', '', '', ''),
+('0452217209', '$2y$10$vB1EBCAUWiYLAnR8HGzTIeVeURzN2UA2mqLIqJSYN16PB5LuYTvS2', '', '', 'anhlv@ymail.com'),
 ('0460994447', '', '', '', ''),
 ('0466483938', '', '', '', ''),
 ('0472771243', '', '', '', ''),
@@ -493,10 +536,12 @@ INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`) 
 -- Table structure for table `variations`
 --
 
-CREATE TABLE `variations` (
+CREATE TABLE IF NOT EXISTS `variations` (
   `var_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
-  `price` float NOT NULL
+  `price` float NOT NULL,
+  PRIMARY KEY (`var_name`,`dish_code`),
+  KEY `FK_VARIATION_DISH_CODE` (`dish_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -673,85 +718,6 @@ INSERT INTO `variations` (`var_name`, `dish_code`, `price`) VALUES
 ('Tofu', '31a', 11.9);
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`cat_slug`);
-
---
--- Indexes for table `dishes`
---
-ALTER TABLE `dishes`
-  ADD PRIMARY KEY (`dish_code`),
-  ADD KEY `FK_DISH_CAT_SLUG` (`cat_slug`);
-
---
--- Indexes for table `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`item_id`),
-  ADD KEY `FK_ITEM_DISK_CODE` (`dish_code`),
-  ADD KEY `FK_ITEM_ORDER_ID` (`order_id`),
-  ADD KEY `FK_ITEM_VAR_NAME` (`var_name`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `FK_ORDER_USER_ID` (`user_id`);
-
---
--- Indexes for table `receipts`
---
-ALTER TABLE `receipts`
-  ADD PRIMARY KEY (`receipt_id`),
-  ADD KEY `FK_RECEIPTS_ORDER_ID` (`order_id`);
-
---
--- Indexes for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`dish_code`,`user_id`),
-  ADD KEY `FK_REVIEW_USER_ID` (`user_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- Indexes for table `variations`
---
-ALTER TABLE `variations`
-  ADD PRIMARY KEY (`var_name`,`dish_code`),
-  ADD KEY `FK_VARIATION_DISH_CODE` (`dish_code`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
---
--- AUTO_INCREMENT for table `receipts`
---
-ALTER TABLE `receipts`
-  MODIFY `receipt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
 -- Constraints for dumped tables
 --
 
@@ -793,7 +759,6 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `variations`
   ADD CONSTRAINT `FK_VARIATION_DISH_CODE` FOREIGN KEY (`dish_code`) REFERENCES `dishes` (`dish_code`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

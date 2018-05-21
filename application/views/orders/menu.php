@@ -57,6 +57,7 @@
 				$(this).addClass('selected');
 				$('#main-menu article').hide();
 				$('#' + $(this).attr('href')).show();
+				$('html, body').animate({scrollTop:0}, 1000)
 			});
 			$(document).on('click', '#main-menu article button', function(){
 				add_item($(this).attr('dish_code'));

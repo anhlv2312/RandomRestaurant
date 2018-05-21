@@ -29,6 +29,7 @@
 			}
 	
 			function update_bag() {
+				$('#main-menu article button').attr('disabled', true);
 				$('#bag').empty();
 				total_amount = 0;
 				$.getJSON("<?php echo base_url('orders/get_items_from_bag') ?>", function(data){
@@ -44,7 +45,7 @@
 					});
 					$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
 				});
-
+				$('#main-menu article button').attr('disabled', false);
 			};
 
 			function create_timer(datetime) {
