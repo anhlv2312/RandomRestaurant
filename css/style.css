@@ -305,15 +305,13 @@ aside #users {
 	padding-left: 3em;
 }
 
-#users details li.cancel {
+#users details li.status {
 	padding-left: 3em;
 	margin-top: 0.5em;
 }
 
-#users details li.finalised {
+#users details .finalised {
 	color: darkgreen;
-	padding-left: 3em;
-	margin-top: 0.5em;
 }
 
 #modal {
