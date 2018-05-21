@@ -121,4 +121,11 @@ class Orders extends CI_Controller {
 		}
 	}
 
+	public function print_receipt($order_id) {
+		$handle = popen('wkhtmltopdf https://localhost/', 'r');
+		$read = fread($handle, 2096);
+		echo $read;
+		pclose($handle);
+	}
+
 }
