@@ -33,10 +33,11 @@
 	
 			function update_bag() {
 				$('#main-menu article button').attr('disabled', true);
+				$('#bag').empty();
 				total_amount = 0;
 				$.getJSON("<?php echo base_url('orders/get_items_from_bag') ?>", function(data){
 					if ($(data).length > 0) {
-						$('#bag').empty();
+						
 						$.each(data, function(i, item){
 							total_amount += item.subtotal;
 							$row = "";
@@ -48,6 +49,8 @@
 							$('#bag').append($row);
 						});
 						$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
+					} else {
+						$('#bag').append('<tr><td>You have no item in your bag, please select some!</td></tr>');
 					}
 				});
 
