@@ -131,7 +131,6 @@ class Orders extends CI_Controller {
 		if (get_headers($receipt_url, 1)[0] == "HTTP/1.1 200 OK") {
 
 			$handle = popen('./receipts.sh ' . $receipt_url, 'r');
-			sleep(2);
 
 			$file = './receipts/temp.pdf';
 			if (!file_exists($file)) show_404();
