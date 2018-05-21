@@ -122,7 +122,7 @@ class Orders extends CI_Controller {
 	}
 
 	public function print_receipt($order_id) {
-		$handle = popen('wkhtmltopdf https://localhost/', 'r');
+		$handle = popen('./receipt.sh http://localhost/roms/orders/get_receipt/' . $order_id, 'r');
 		$read = fread($handle, 2096);
 		echo $read;
 		pclose($handle);
