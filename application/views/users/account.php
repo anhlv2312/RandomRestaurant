@@ -18,11 +18,21 @@
 							</li>
 						<?php endforeach ?>
 						<?php if ($order['expected_time'] != 0 && $order['pickup_time'] == 0): ?>
-							<li class="cancel"><a href="<?php echo base_url('users/cancel_order/'. $order['order_id']) ?>"><strong>Cancel this order</strong></a></li>
+							<li class="cancel">
+								<a href="<?php echo base_url('users/cancel_order/'. $order['order_id']) ?>">
+									<strong>Cancel this order</strong>
+								</a>
+							</li>
 						<?php elseif ($order['expected_time'] == 0): ?>
-							<li class="cancel"><strong>Cancelled</strong></a></li>
+							<li class="cancel"><strong>Cancelled</strong></li>
 						<?php elseif ($order['pickup_time'] != 0): ?>
-							<li class="finalised"><strong>Finalised</strong> (<?php echo $order['pickup_time'] ?>)</a></li>
+							<li class="finalised"><strong>Finalised</strong>
+								<a href="<?php echo base_url('orders/get_receipt/'. $order['order_id']) ?>">
+									Download Receipt
+								</a>
+							</li>
+						<?php elseif (isset($order['receipts'])): ?>
+							<li class="finalised"><strong>Paid</strong> </li>
 						<?php endif ?>
 						</ul>
 					</details>

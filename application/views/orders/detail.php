@@ -33,21 +33,24 @@
 	
 			function update_bag() {
 				$('#main-menu article button').attr('disabled', true);
-				$('#bag').empty();
 				total_amount = 0;
 				$.getJSON("<?php echo base_url('orders/get_items_from_bag') ?>", function(data){
-					$.each(data, function(i, item){
-						total_amount += item.subtotal;
-						$row = "";
-						$row += '<tr class="row">';
-						$row += '<td>' + item.qty + ' x <strong>' + item.id + '. ' + item.name + '</strong></td>';
-						$row += '<td style="text-align: right"><span class="remove" row_id="' + item.rowid + '">&#10060;</span> ';
-						$row += '$' + item.subtotal.toFixed(2) + '</td>';
-						$row += '</tr>';
-						$('#bag').append($row);
-					});
-					$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
+					if ($(data).length > 0) {
+						$('#bag').empty();
+						$.each(data, function(i, item){
+							total_amount += item.subtotal;
+							$row = "";
+							$row += '<tr class="row">';
+							$row += '<td>' + item.qty + ' x <strong>' + item.id + '. ' + item.name + '</strong></td>';
+							$row += '<td style="text-align: right"><span class="remove" row_id="' + item.rowid + '">&#10060;</span> ';
+							$row += '$' + item.subtotal.toFixed(2) + '</td>';
+							$row += '</tr>';
+							$('#bag').append($row);
+						});
+						$('#bag').append('<tr class="total"><td colspan="2">Total Amount: <strong>$' + total_amount.toFixed(2) + '</strong></td></tr>');
+					}
 				});
+
 				$('#main-menu article button').attr('disabled', false);
 			};
 
