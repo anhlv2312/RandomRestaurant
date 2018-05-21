@@ -58,7 +58,7 @@ class Orders extends CI_Controller {
 	public function place_order() {
 		$items = $this->cart->contents();
 		if (isset($_SESSION['user_id']) && sizeof($items) > 0) {
-			$order_id = $this->orders_model->place_order($_SESSION['user_id'], $items, $this->config->item('bussiness_pickup_waiting_time'));
+			$order_id = $this->orders_model->place_order($_SESSION['user_id'], $items, $this->config->item('pickup_waiting_time'));
 			$this->cart->destroy();
 			$result = $this->orders_model->get_order($order_id);
 			echo json_encode($result);
@@ -113,19 +113,41 @@ class Orders extends CI_Controller {
 		}
 	}
 
-	public function get_receipt($order_id) {
+	public function generate_receipt($order_id) {
 		$result = $this->orders_model->get_order($order_id);
 		if (isset($result['receipts'])) {
 			$this->data['order'] = $result;
 			$this->load->view('orders/receipt', $this->data);
-		}
+		} else {
+			show_404();
+		}	
 	}
 
-	public function print_receipt($order_id) {
-		$handle = popen('./receipts.sh ' . base_url('orders/get_receipt/') . $order_id, 'r');
-		$read = fread($handle, 10000);
-		echo $read;
-		pclose($handle);
+	public function get_receipt($order_id) {
+		if (!isset($_SESSION['user_id'])) { redirect('users/login'); }
+
+		$receipt_url = $this->config->item('receipt_generator_url') . $order_id;
+
+		if (get_headers($receipt_url, 1)[0] == "HTTP/1.1 200 OK") {
+
+			$handle = popen('./receipts.sh ' . $receipt_url, 'r');
+			error_reporting(E_ALL);
+			ini_set('display_errors',1);
+
+			$file = './receipts/temp.pdf';
+			if (!file_exists($file)) show_404();
+			if (!is_readable($file)) show_404();
+
+			header('Cache-Control: public'); 
+			header('Content-Type: application/pdf');
+			header('Content-Disposition: attachment; filename="Receipt_For_Order_'. $order_id . '.pdf"');
+			header('Content-Length: '.filesize($file));
+
+			readfile($file);
+		} else {
+			show_404();
+		}
+
 	}
 
 }
