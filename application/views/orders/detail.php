@@ -3,15 +3,18 @@
 			var order_id = null;
 
 			$(document).ready(function(){
-				<?php if (!isset($_SESSION['user_id'])): ?>
+				if (user_id !== null) {
+					$.getJSON("<?php echo base_url('orders/get_latest_order') ?>", function(data){
+						if (data !== null) {
+							update_order(data);
+						} else {
+							update_bag();
+						}
+					});
+				} else {
 					$('aside').removeAttr('ondrop');
 					$('aside').removeAttr('ondragover');
-				<?php endif ?>
-				$.getJSON("<?php echo base_url('orders/get_latest_order') ?>", function(data){
-					if ($(data).length > 0) {
-						if (user_id !== null) {update_order(data);}
-					}
-				});
+				}
 			});
 
 			function drag(event) {
