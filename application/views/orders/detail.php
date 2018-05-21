@@ -106,7 +106,7 @@
 				$('#bag').append('<tr class="time"><td colspan="2">Pickup Time: ' + data.expected_time + ' <span id="countdown"></span></td></tr>');
 				
 
-				if (!data.reciepts) {
+				if (!data.receipts) {
 					$('#paypal').show();
 				} else {
 					$('#paid').show();
