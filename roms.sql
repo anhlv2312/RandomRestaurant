@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 21, 2018 at 11:52 PM
+-- Generation Time: May 22, 2018 at 12:20 PM
 -- Server version: 5.5.56-MariaDB
 -- PHP Version: 5.4.16
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `roms`
 --
+CREATE DATABASE IF NOT EXISTS `roms` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `roms`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `cat_slug` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -53,6 +56,7 @@ INSERT INTO `categories` (`cat_slug`, `name`, `description`, `priority`) VALUES
 -- Table structure for table `dishes`
 --
 
+DROP TABLE IF EXISTS `dishes`;
 CREATE TABLE IF NOT EXISTS `dishes` (
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `cat_slug` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -206,6 +210,7 @@ INSERT INTO `dishes` (`dish_code`, `cat_slug`, `name`, `description`) VALUES
 -- Table structure for table `items`
 --
 
+DROP TABLE IF EXISTS `items`;
 CREATE TABLE IF NOT EXISTS `items` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -241,6 +246,7 @@ INSERT INTO `items` (`item_id`, `order_id`, `dish_code`, `var_name`, `price`, `q
 -- Table structure for table `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
@@ -266,6 +272,7 @@ INSERT INTO `orders` (`order_id`, `user_id`, `order_time`, `expected_time`, `pic
 -- Table structure for table `receipts`
 --
 
+DROP TABLE IF EXISTS `receipts`;
 CREATE TABLE IF NOT EXISTS `receipts` (
   `receipt_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -287,6 +294,7 @@ INSERT INTO `receipts` (`receipt_id`, `order_id`, `reference`) VALUES
 -- Table structure for table `reviews`
 --
 
+DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE IF NOT EXISTS `reviews` (
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -500,6 +508,7 @@ INSERT INTO `reviews` (`dish_code`, `user_id`, `content`, `rating`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -514,21 +523,21 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`) VALUES
-('0413489926', '', '', '', ''),
-('0416616915', '', '', '', ''),
-('0417935528', '', '', '', ''),
-('0437347207', '', '', '', ''),
-('0452000826', '', '', '', ''),
+('0413489926', '$2y$10$cT5C6uFaxsX7C0OSls4JdeRpZ1ap.S9kDjgZ5Bkm4hULzv9Y5IIDK', '', '', ''),
+('0416616915', '$2y$10$E9lsu6C7Ip8d9T9z.AeZPexV61rci8sRY0yTa5r0IGyNAVYq.MWzu', '', '', ''),
+('0417935528', '$2y$10$1GR593kXFCAxt5cK/VV5se9ofKU2/0uElcDHOPe0mDaoQfbIPkmRu', '', '', ''),
+('0437347207', '$2y$10$OiBk0RIKcEBv4zzc8eomKu6Cg3lIG3S6AjBP8/MAjvWHmLDwoyHnK', '', '', ''),
+('0452000826', '$2y$10$9qhjKh5ya7f8zG1QAShm7.tVWJnIl97QZDlP8UjdMikTyr8aBzZKG', '', '', ''),
 ('0452217209', '$2y$10$vB1EBCAUWiYLAnR8HGzTIeVeURzN2UA2mqLIqJSYN16PB5LuYTvS2', '', '', 'anhlv@ymail.com'),
-('0460994447', '', '', '', ''),
-('0466483938', '', '', '', ''),
-('0472771243', '', '', '', ''),
-('0474053564', '', '', '', ''),
-('0477435523', '', '', '', ''),
-('0488941882', '', '', '', ''),
-('0489392336', '', '', '', ''),
-('0492726924', '', '', '', ''),
-('0493744028', '', '', '', '');
+('0460994447', '$2y$10$Qubgbn1VIy7WffHZZhdJUuX/YeCAPibKxRI2..7840TxbIPhoE/Va', '', '', ''),
+('0466483938', '$2y$10$3e174rOOejJePY81xnwkQO4qexssIvbZEa1zOy8VqcOosD0M5Fdo.', '', '', ''),
+('0472771243', '$2y$10$14Gfh917uvz5GMl8ZM.UK.CqrZeKUVQQqKH2LVvgKSWNNVAhifg4y', '', '', ''),
+('0474053564', '$2y$10$VbEYTBBQYF88P6Gdw/XiFefU9UEMU/7La0ALmdvSRvPHw3bPzlPwG', '', '', ''),
+('0477435523', '$2y$10$Z/RJkUtJzKBaP02pmSpAKe46AXVc6rjh79yzXqLbTdRZivbUXDRem', '', '', ''),
+('0488941882', '$2y$10$rISKoTSPnnS5Y9Oe0m6y4e7e6nAJ0UBD1v6.YZOJbNQA8xbEKUip.', '', '', ''),
+('0489392336', '$2y$10$zsNf3zr3iphsfhLrymZPl.L7zZd2UvgJrA4FmmrODLSRnXhxTPRPe', '', '', ''),
+('0492726924', '$2y$10$OEOsbkxmc/e9lSjPGjZz1OSmw8.Iop1GCjYfl35MJ/cuZwkbgoUGa', '', '', ''),
+('0493744028', '$2y$10$5p20MC1UoxudUs7qmlSbSOrn.RpJDHaoCc8O3AipSL53T8CkwTWdu', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -536,6 +545,7 @@ INSERT INTO `users` (`user_id`, `password`, `first_name`, `last_name`, `email`) 
 -- Table structure for table `variations`
 --
 
+DROP TABLE IF EXISTS `variations`;
 CREATE TABLE IF NOT EXISTS `variations` (
   `var_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `dish_code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
