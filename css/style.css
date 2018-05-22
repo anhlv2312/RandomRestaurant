@@ -581,5 +581,54 @@ aside #users {
 
 
 #receipt {
+	width: 600px;
+	display: flex;
+	flex-direction: column;
 	background: white;
+	font-size: 1.5em;
 }
+
+#receipt h2 {
+	width: 100%;
+	text-align: center;
+	text-shadow: none;
+}
+
+#receipt h3 {
+	margin: 1em;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+#receipt p {
+	padding-top: 0.2em;
+	font-size: 0.8em;
+	width: 100%;
+	text-align: center;
+}
+
+#receipt ul li {
+	padding-top: 0.2em;
+}
+
+#receipt table {
+	margin-top: 1em;
+	width: 100%;
+}
+
+#receipt table td {
+	padding: 0.2em 0;
+	border-top: 1px dashed black;
+}
+
+#receipt table tr td:last-child {
+	text-align: right;
+}
+
+#receipt table tr:last-child td {
+	padding-top: 1em;
+	font-size: 1.2em;
+}
+
+
+
