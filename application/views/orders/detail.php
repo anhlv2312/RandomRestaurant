@@ -143,10 +143,49 @@
 						</table>
 						<img id="paid" src="<?php echo base_url('images/paid.png') ?>">
 					</div>
-					
 					<div id="paypal">
 						<div id="paypal-button"></div>
 					</div>
+					<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+					<script>
+						paypal.Button.render({
+							env: 'sandbox',
+							style: {
+								layout: 'vertical',
+								size:   'medium',
+								shape:  'rect',
+								color:  'gold'
+							},
+							client: {
+								sandbox:	'<?php echo $this->config->item('paypal_client_id_sandbox') ?>',
+								production: '<?php echo $this->config->item('paypal_client_id_sandbox') ?>'
+							},
+							commit: true,
+							payment: function(data, actions) {
+								return actions.payment.create({
+									payment: {
+										transactions: [
+											{
+												amount: { total: total_amount, currency: 'AUD' },
+												description: 'Takeaway order number ' + order_id + ' for ' + user_id,
+												invoice_number: order_id,
+											}
+										]
+									}
+								});
+							},
+							onAuthorize: function(data, actions) {
+								return actions.payment.execute().then(function(payment) {
+									$.when($.ajax("<?php echo base_url('orders/pay_for_order/') ?>" + order_id)).then(function(data, textStatus, jqXHR ) {
+										$('#paypal').hide();
+										$('#paid').show();
+									});	
+								});
+							}
+
+						}, '#paypal-button');
+					</script>
+
 					<button onclick="place_order()">Place Your Order</button>
 					<a href="<?php echo base_url('users/index') ?>">View Order History</a></li>
 				</section>
@@ -169,44 +208,4 @@
 				</section>
 			<?php endif ?>
 		</aside>
-
-		<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-		<script>
-			paypal.Button.render({
-				env: 'sandbox',
-				style: {
-					layout: 'vertical',
-					size:   'medium',
-					shape:  'rect',
-					color:  'gold'
-				},
-				client: {
-					sandbox:	'<?php echo $this->config->item('paypal_client_id_sandbox') ?>',
-					production: '<?php echo $this->config->item('paypal_client_id_sandbox') ?>'
-				},
-				commit: true,
-				payment: function(data, actions) {
-					return actions.payment.create({
-						payment: {
-							transactions: [
-								{
-									amount: { total: total_amount, currency: 'AUD' },
-									description: 'Takeaway order number ' + order_id + ' for ' + user_id,
-									invoice_number: order_id,
-								}
-							]
-						}
-					});
-				},
-				onAuthorize: function(data, actions) {
-					return actions.payment.execute().then(function(payment) {
-						$.when($.ajax("<?php echo base_url('orders/pay_for_order/') ?>" + order_id)).then(function(data, textStatus, jqXHR ) {
-							$('#paypal').hide();
-							$('#paid').show();
-						});	
-					});
-				}
-
-			}, '#paypal-button');
-		</script>
 

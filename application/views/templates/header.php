@@ -6,11 +6,11 @@
 	<title>Random Restaurant</title>
 	<link rel="stylesheet" href="<?php echo base_url('css/style.css') ?>">
 	<script src="<?php echo base_url('js/jquery.min.js') ?>"></script>
+	<script type="text/javascript">
+		var user_id = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "null" ?>;
+	</script>
 </head>
 <body>
-	<script type="text/javascript">
-		var user_id = "<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL?>";
-	</script>
 	<nav id="nav-bar">
 		<h2 class="logo" >
 			<a href="<?php echo base_url() ?>">
