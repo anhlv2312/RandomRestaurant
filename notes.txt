@@ -9,27 +9,25 @@ on the top left of the website is the navigation bar, which includes order page,
 if the customer hasn't got an account, they can easily register for one by providing the phone number and email address, then the system will send an temporary password via SMS to the customer to verify the phone number. the phone number will be used as the user id. after login by using the temporary password, they can change to their own. If the customer forget their password, they can use the reset password feature to recover the password.
 
 
-Ajax: Review/rating, Load items in cart
-
-Client Side:
-	
-
 Feature:
 	Login/Logout
-	Register/Forgot Password 
+	Register/Edit Information/Forgot Password 
 	Send SMS
 	Send Email
 	Place Order, show estimation time.
 	Online payment via Paypal
 	Order history/Download PDF Receipt
 	Review/Rating
-	Google Map API/Show direction
-
+	
+Client Side: 
+	Ajax: Review/rating, Load items in cart
+	Drag & Drop to shopping bag
+	Preload menu items (not change frequently)
+	Google Map API/Show direction,
+	Sticky menu bar, shoping bag
 
 
 User CodeIgniter Framework for MVC, supports form validation and security enhancement.
-
-
 
 https://www.sandbox.paypal.com/au/home
 anhlv-facilitator@outlook.com
