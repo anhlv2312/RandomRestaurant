@@ -1,0 +1,36 @@
+Hi
+
+Today I'm gonna present my INFS7202 project, it's basicaly a website that allows customers of a restaurent place takeaways orders, 
+
+this is the homepage, it has not much to show, only the banner and the button that user can click to jump to the order page, 
+
+on the top left of the website is the navigation bar, which includes order page, location or map, and login button, 
+
+if the customer hasn't got an account, they can easily register for one by providing the phone number and email address, then the system will send an temporary password via SMS to the customer to verify the phone number. the phone number will be used as the user id. after login by using the temporary password, they can change to their own. If the customer forget their password, they can use the reset password feature to recover the password.
+
+
+Ajax: Review/rating, Load items in cart
+
+Client Side:
+	
+
+Feature:
+	Login/Logout
+	Register/Forgot Password 
+	Send SMS
+	Send Email
+	Place Order, show estimation time.
+	Online payment via Paypal
+	Order history/Download PDF Receipt
+	Review/Rating
+	Google Map API/Show direction
+
+
+
+User CodeIgniter Framework for MVC, supports form validation and security enhancement.
+
+
+
+https://www.sandbox.paypal.com/au/home
+anhlv-facilitator@outlook.com
+anhlv-buyer@outlook.com
