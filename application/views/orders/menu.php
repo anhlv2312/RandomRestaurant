@@ -162,7 +162,14 @@
 				<ul>
 				<?php foreach ($dishes as $dish): if ($dish['cat_slug'] == $category['cat_slug']): ?>
 					<li>
-						<figure id="<?php echo $dish['dish_code'] ?>" draggable="true" ondragstart="drag(event)" style="background-image: url('<?php echo base_url('images/sample.jpg') ?>'">
+						<figure id="<?php echo $dish['dish_code'] ?>" draggable="true" ondragstart="drag(event)" style="background-image: url('<?php
+							$images_file = 'images/dishes/' . $dish['dish_code'] . '.jpeg'; 
+							if (file_exists(FCPATH . '/' . $images_file)) {
+								echo base_url($images_file);
+							} else {
+								echo base_url('images/dishes/sample.jpeg');
+							}
+							?>'">
 							<p>Drag me to your bag please!</p>
 						</figure>
 						<button dish_code="<?php echo $dish['dish_code'] ?>"></button>
