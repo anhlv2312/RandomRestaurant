@@ -12,6 +12,9 @@
 						}
 					});
 				} else {
+					$('#main-menu article button').attr('disabled', true);
+					$('#main-menu figure p').hide();
+					$('#main-menu figure').attr('draggable', false);
 					$('aside').removeAttr('ondrop');
 					$('aside').removeAttr('ondragover');
 				}
@@ -32,7 +35,6 @@
 			}
 	
 			function update_bag() {
-				$('#main-menu article button').attr('disabled', true);
 				$('#bag').empty();
 				total_amount = 0;
 				$.getJSON("<?php echo base_url('orders/get_items_from_bag') ?>", function(data){
@@ -52,7 +54,6 @@
 					} else {
 						$('#bag').append('<tr><td>You have no item in your bag, please select some!</td></tr>');
 					}
-					$('#main-menu article button').attr('disabled', false);
 				});
 
 			};

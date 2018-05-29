@@ -2,6 +2,7 @@
 	<section id="users">
 		<?php echo form_open('users/register'); ?>
 			<h3><?php echo $status ?></h3>
+			<p>You may have a working phone number to register</p>
 			<?php echo validation_errors() ?>
 			<label for="user_id">Your Phone Number:</label>
 			<input type="text" name="user_id" value="<?php echo set_value('user_id') ?>">

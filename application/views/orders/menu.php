@@ -91,14 +91,18 @@
 			}
 
 			function add_item(dish_code) {
+				$('#main-menu article button').attr('disabled', true);
 				$.when($.ajax("<?php echo base_url('orders/add_item_to_bag/') ?>" + dish_code)).then(function(data, textStatus, jqXHR ) {
 					update_bag();
+					$('#main-menu article button').attr('disabled', false);
 				});
 			};
 
 			function remove_item(row_id) {
+				$('#main-menu article button').attr('disabled', true);
 				$.when($.ajax("<?php echo base_url('orders/remove_item_from_bag/') ?>" + row_id)).then(function(data, textStatus, jqXHR ) {
 					update_bag();
+					$('#main-menu article button').attr('disabled', false);
 				});
 			};
 
