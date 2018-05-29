@@ -131,7 +131,7 @@
 							count++;
 							total += Number(review.rating);
 						}
-						if (review.user_id === user_id) {
+						if (review.user_id == user_id) {
 							$("#content").val(review.content);
 							$('#content').attr('rating', review.rating);
 							$('#modal .review .stars').html(show_stars(review.rating));
